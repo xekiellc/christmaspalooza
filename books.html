@@ -70,9 +70,10 @@
   .book-card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;text-decoration:none;color:var(--cream)}
   .book-card:hover{transform:translateY(-6px);border-color:var(--gold)}
   .book-cover{height:220px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));display:flex;align-items:center;justify-content:center}
-  .book-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+  .book-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:1}
   .book-cover img.loaded{opacity:1}
-  .book-cover .fallback{position:relative;z-index:1;text-align:center;padding:14px}
+  .book-cover img.loaded ~ .fallback{display:none}
+  .book-cover .fallback{position:relative;z-index:0;text-align:center;padding:14px}
   .book-cover .fallback .emo{font-size:3rem;display:block;margin-bottom:8px}
   .book-cover .fallback .ftitle{font-family:'Lilita One',cursive;color:#fff;font-size:.95rem;line-height:1.2;text-shadow:0 2px 0 rgba(0,0,0,.4)}
   .cat-badge{position:absolute;top:8px;left:8px;z-index:2;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:999px}
@@ -170,14 +171,12 @@
 
   function applyFilters() {
     filtered = allBooks.filter(b => activecat === 'all' || b.category === activecat);
-
     filtered.sort((a, b) => {
       if (sortBy === 'newest') return (b.published_year || 0) - (a.published_year || 0);
       if (sortBy === 'oldest') return (a.published_year || 0) - (b.published_year || 0);
       if (sortBy === 'title') return (a.title || '').localeCompare(b.title || '');
       return 0;
     });
-
     displayed = 0;
     document.getElementById('books-grid').innerHTML = '';
     document.getElementById('results-count').textContent = `${filtered.length} books`;
@@ -190,13 +189,11 @@
     a.href = book.buy_url || `https://bookshop.org/search?keywords=${encodeURIComponent(book.title)}`;
     a.target = '_blank';
     a.rel = 'noopener';
-
     const cat = book.category || 'fiction';
     const emoji = CAT_EMOJI[cat] || '📚';
     const imgHtml = book.cover_url
       ? `<img src="${book.cover_url}" alt="${book.title}" loading="lazy" onload="this.classList.add('loaded')">`
       : '';
-
     a.innerHTML = `
       <div class="book-cover">
         ${imgHtml}
