@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Christmas News — ChristmasPalooza</title>
-<meta name="description" content="Daily Christmas news — Hallmark announcements, holiday events, Santa sightings, ornament releases and more. Updated every day.">
-<meta property="og:title" content="Christmas News — ChristmasPalooza">
-<meta property="og:description" content="Daily Christmas news updated every morning. The world's most festive news feed.">
-<meta property="og:url" content="https://christmaspalooza.com/news.html">
+<title>Christmas Movies & TV — ChristmasPalooza</title>
+<meta name="description" content="The ultimate Christmas movie and TV database. 240+ titles with filters by genre, type, and decade. Updated with new releases.">
+<meta property="og:title" content="Christmas Movies & TV — ChristmasPalooza">
+<meta property="og:description" content="240+ Christmas movies and TV shows. Filter by genre, decade, and more.">
+<meta property="og:url" content="https://christmaspalooza.com/movies.html">
 <meta property="og:type" content="website">
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
@@ -56,30 +56,49 @@
   .page-head .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:14px}
   .page-head h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(2.4rem,7vw,4.5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep)}
   .page-head p{max-width:560px;margin:12px auto 0;font-weight:600;opacity:.9;font-size:1.05rem}
-  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 30px}
-  .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.8rem;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
+  .filter-bar{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:18px 20px;margin-bottom:28px}
+  .filter-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .filter-row:last-child{margin-bottom:0}
+  .filter-label{font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);min-width:60px}
+  .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.78rem;padding:7px 14px;border-radius:999px;cursor:pointer;transition:.15s}
   .chip:hover{border-color:var(--gold);transform:translateY(-2px)}
   .chip.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
-  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.news-grid{grid-template-columns:1fr}}
-  .news-card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;text-decoration:none;color:var(--cream)}
-  .news-card:hover{transform:translateY(-6px);border-color:var(--gold)}
-  .news-card .thumb{height:180px;overflow:hidden;background:linear-gradient(135deg,var(--green-deep),var(--red-deep));position:relative;display:flex;align-items:center;justify-content:center;font-size:3rem}
-  .news-card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
-  .news-card .thumb img.loaded{opacity:1}
-  .news-card .body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
-  .news-card .source-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .news-card .source{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--gold)}
-  .news-card .date{font-size:.72rem;font-weight:700;opacity:.6}
-  .news-card h3{font-weight:800;font-size:1rem;color:#fff;line-height:1.3;margin-bottom:8px}
-  .news-card p{font-size:.88rem;font-weight:600;opacity:.85;flex:1;line-height:1.5}
-  .news-card .read-more{margin-top:12px;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold)}
+  .chip.debate-chip.active{background:var(--pink);border-color:var(--pink);color:#fff}
+  .debate-badge{position:absolute;top:8px;right:8px;z-index:3;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 7px;border-radius:999px;background:var(--pink);color:#fff}
+  .results-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+  .results-count{font-weight:800;font-size:.9rem;opacity:.8}
+  .sort-select{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:999px;cursor:pointer}
+  .movie-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  @media(max-width:1100px){.movie-grid{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:800px){.movie-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:560px){.movie-grid{grid-template-columns:repeat(2,1fr)}}
+  .movie-card{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.16);transition:.2s;display:block;text-decoration:none}
+  .movie-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .poster{position:relative;aspect-ratio:2/3;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
+  .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+  .poster img.loaded{opacity:1}
+  .poster .fallback{position:relative;z-index:1;padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px}
+  .poster .fallback .emo{font-size:2.4rem}
+  .poster .fallback .ttl{font-family:'Lilita One',cursive;color:#fff;font-size:.88rem;line-height:1.1;text-shadow:0 2px 0 rgba(0,0,0,.4)}
+  .poster .fallback .yr{font-weight:800;font-size:.72rem;color:var(--gold)}
+  .mbar{position:absolute;bottom:0;left:0;right:0;z-index:2;background:linear-gradient(180deg,transparent,rgba(0,0,0,.9));padding:20px 8px 8px}
+  .mbar .mtitle{font-weight:800;color:#fff;font-size:.82rem;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+  .mbar .mmeta{display:flex;justify-content:space-between;align-items:center;margin-top:3px}
+  .mbar .myear{font-size:.7rem;font-weight:700;opacity:.7}
+  .mbar .mrating{font-size:.7rem;font-weight:800;color:var(--gold)}
+  .type-badge{position:absolute;top:8px;left:8px;z-index:3;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 7px;border-radius:999px}
+  .type-movie{background:var(--red);color:#fff}
+  .type-tv{background:var(--blue);color:var(--ink)}
   .load-more{display:block;margin:36px auto 0;background:var(--red);color:#fff;border:none;font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:14px 32px;border-radius:999px;cursor:pointer;font-size:1rem;box-shadow:0 7px 0 var(--red-deep);transition:.15s}
   .load-more:hover{transform:translateY(3px);box-shadow:0 4px 0 var(--red-deep)}
   .load-more:disabled{opacity:.5;cursor:not-allowed;transform:none}
   .loading{text-align:center;padding:60px 0;font-weight:800;font-size:1.1rem;opacity:.7}
   .empty{text-align:center;padding:60px 0;font-weight:700;opacity:.6}
+  .debate-banner{background:linear-gradient(90deg,var(--pink),var(--red));border-radius:14px;padding:14px 18px;margin-bottom:24px;display:none;align-items:center;gap:12px}
+  .debate-banner.show{display:flex}
+  .debate-banner .ic{font-size:1.8rem;flex-shrink:0}
+  .debate-banner .txt{font-weight:700;font-size:.95rem}
+  .debate-banner .txt b{font-weight:800}
   footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
   .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
   .foot-logo .lc{color:#fff}
@@ -95,170 +114,234 @@
   <ul class="nav-links">
     <li><a href="/">Countdown</a></li>
     <li><a href="/recipes.html">Recipes</a></li>
-    <li><a href="/movies.html">Movies</a></li>
+    <li><a href="/movies.html" class="active">Movies</a></li>
     <li><a href="/books.html">Bookstore</a></li>
-    <li><a href="/news.html" class="active">News</a></li>
+    <li><a href="/news.html">News</a></li>
   </ul>
 </div></nav>
 
 <div class="wrap">
   <div class="page-head">
-    <span class="eyebrow">📰 Updated Daily</span>
-    <h1>Christmas News</h1>
-    <p>Hallmark announcements, holiday events, ornament releases, Santa sightings — the world's most festive news feed.</p>
+    <span class="eyebrow">🎬 240+ Titles</span>
+    <h1>Christmas Movies & TV</h1>
+    <p>Every Christmas movie and TV show worth watching — classics, comedies, cartoons, Hallmark, and the great holiday debates.</p>
   </div>
 
-  <div class="filters" id="filters">
-    <button class="chip active" data-filter="all">All News</button>
-    <button class="chip" data-filter="hallmark">Hallmark</button>
-    <button class="chip" data-filter="movies">Movies</button>
-    <button class="chip" data-filter="recipes">Recipes</button>
-    <button class="chip" data-filter="santa">Santa</button>
-    <button class="chip" data-filter="shopping">Shopping</button>
+  <div class="filter-bar">
+    <div class="filter-row">
+      <span class="filter-label">Type</span>
+      <button class="chip active" data-filter="type" data-value="all">All</button>
+      <button class="chip" data-filter="type" data-value="movie">Movies</button>
+      <button class="chip" data-filter="type" data-value="tv">TV Shows</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Genre</span>
+      <button class="chip active" data-filter="genre" data-value="all">All</button>
+      <button class="chip" data-filter="genre" data-value="Comedy">Comedy</button>
+      <button class="chip" data-filter="genre" data-value="Family">Family</button>
+      <button class="chip" data-filter="genre" data-value="Animation">Animation</button>
+      <button class="chip" data-filter="genre" data-value="Romance">Romance</button>
+      <button class="chip" data-filter="genre" data-value="Drama">Drama</button>
+      <button class="chip" data-filter="genre" data-value="Horror">Horror</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Era</span>
+      <button class="chip active" data-filter="era" data-value="all">All</button>
+      <button class="chip" data-filter="era" data-value="classic">Classic (pre-1980)</button>
+      <button class="chip" data-filter="era" data-value="80s90s">80s & 90s</button>
+      <button class="chip" data-filter="era" data-value="2000s">2000s</button>
+      <button class="chip" data-filter="era" data-value="2010s">2010s</button>
+      <button class="chip" data-filter="era" data-value="2020s">2020s</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">🔥 Hot</span>
+      <button class="chip debate-chip" data-filter="debatable" data-value="true">🤔 Debatable Christmas Movies</button>
+    </div>
   </div>
 
-  <div class="news-grid" id="news-grid">
-    <div class="loading">🎄 Loading the latest Christmas news...</div>
+  <div class="debate-banner" id="debate-banner">
+    <span class="ic">🤔</span>
+    <div class="txt"><b>The Great Christmas Movie Debate.</b> Are these really Christmas movies? You decide — and tell us why.</div>
   </div>
 
-  <button class="load-more" id="load-more" style="display:none">Load More Stories</button>
+  <div class="results-bar">
+    <span class="results-count" id="results-count">Loading...</span>
+    <select class="sort-select" id="sort-select">
+      <option value="popularity">Most Popular</option>
+      <option value="rating">Highest Rated</option>
+      <option value="year_desc">Newest First</option>
+      <option value="year_asc">Oldest First</option>
+      <option value="title">A–Z</option>
+    </select>
+  </div>
+
+  <div class="movie-grid" id="movie-grid">
+    <div class="loading">🎄 Loading Christmas movies...</div>
+  </div>
+
+  <button class="load-more" id="load-more" style="display:none">Load More</button>
 </div>
 
 <footer>
   <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
-  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day.</p>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Movie data by TMDB · Christmas All Year. Party All Day.</p>
 </footer>
 
 <script>
   const SUPABASE_URL = 'https://sjpjzdbzufvqikzazatf.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcGp6ZGJ6dWZ2cWlremF6YXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NTU1NzQsImV4cCI6MjA5NjUzMTU3NH0.pEdyCUyb2n9w07hcvzISC-02FS88A-cofdF-vDdX_K4';
-  const PAGE_SIZE = 24;
+  const TMDB_IMG = 'https://image.tmdb.org/t/p/w342';
+  const PAGE_SIZE = 40;
 
-  let currentPage = 0;
-  let currentFilter = 'all';
-  let totalCount = 0;
+  let allMovies = [];
+  let filtered = [];
+  let displayed = 0;
+  let activeFilters = { type: 'all', genre: 'all', era: 'all', debatable: 'all' };
+  let sortBy = 'popularity';
 
   const lights = document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
 
-  const FILTER_KEYWORDS = {
-    hallmark: ['hallmark','lifetime','christmas movie channel'],
-    movies:   ['movie','film','cinema','netflix','disney','streaming'],
-    recipes:  ['recipe','bake','cookie','food','cook','dessert','treat'],
-    santa:    ['santa','north pole','reindeer','elf','claus','christmas eve'],
-    shopping: ['gift','shop','deal','ornament','decoration','sale','buy'],
-  };
-
-  function categorize(article) {
-    const text = ((article.title||'')+(article.description||'')).toLowerCase();
-    for(const [cat, words] of Object.entries(FILTER_KEYWORDS)){
-      if(words.some(w => text.includes(w))) return cat;
-    }
-    return 'other';
+  function getEra(year) {
+    if (!year) return null;
+    if (year < 1980) return 'classic';
+    if (year < 2000) return '80s90s';
+    if (year < 2010) return '2000s';
+    if (year < 2020) return '2010s';
+    return '2020s';
   }
 
-  function formatDate(iso) {
-    if(!iso) return '';
-    const d = new Date(iso);
-    return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  function applyFilters() {
+    filtered = allMovies.filter(m => {
+      if (activeFilters.type !== 'all' && m.type !== activeFilters.type) return false;
+      if (activeFilters.genre !== 'all' && !(m.genres || []).includes(activeFilters.genre)) return false;
+      if (activeFilters.era !== 'all' && getEra(m.year) !== activeFilters.era) return false;
+      if (activeFilters.debatable === 'true' && !m.debatable) return false;
+      return true;
+    });
+
+    filtered.sort((a, b) => {
+      if (sortBy === 'rating') return (b.rating || 0) - (a.rating || 0);
+      if (sortBy === 'year_desc') return (b.year || 0) - (a.year || 0);
+      if (sortBy === 'year_asc') return (a.year || 0) - (b.year || 0);
+      if (sortBy === 'title') return (a.title || '').localeCompare(b.title || '');
+      return (b.rating || 0) - (a.rating || 0);
+    });
+
+    displayed = 0;
+    document.getElementById('movie-grid').innerHTML = '';
+    document.getElementById('results-count').textContent = `${filtered.length} titles`;
+
+    const banner = document.getElementById('debate-banner');
+    banner.classList.toggle('show', activeFilters.debatable === 'true');
+
+    renderMore();
   }
 
-  function getEmoji(article) {
-    const cat = categorize(article);
-    const map = {hallmark:'🎬',movies:'🎥',recipes:'🍪',santa:'🎅',shopping:'🎁',other:'🎄'};
-    return map[cat]||'🎄';
-  }
-
-  function buildCard(article) {
+  function buildCard(m) {
     const a = document.createElement('a');
-    a.className = 'news-card';
-    a.href = article.url;
+    a.className = 'movie-card';
+    a.href = `https://www.themoviedb.org/${m.type === 'tv' ? 'tv' : 'movie'}/${m.tmdb_id}`;
     a.target = '_blank';
     a.rel = 'noopener';
-    a.setAttribute('data-cat', categorize(article));
-    const emoji = getEmoji(article);
-    const imgHtml = article.image_url
-      ? `<img src="${article.image_url}" alt="" loading="lazy" onload="this.classList.add('loaded')">`
+
+    const posterUrl = m.poster_path ? `${TMDB_IMG}${m.poster_path}` : null;
+    const imgHtml = posterUrl
+      ? `<img src="${posterUrl}" alt="${m.title}" loading="lazy" onload="this.classList.add('loaded')">`
       : '';
+    const rating = m.rating ? `⭐ ${m.rating}` : '';
+    const debateBadge = m.debatable ? `<span class="debate-badge">🤔 Debatable</span>` : '';
+
     a.innerHTML = `
-      <div class="thumb">${emoji}${imgHtml}</div>
-      <div class="body">
-        <div class="source-row">
-          <span class="source">${article.source||'News'}</span>
-          <span class="date">${formatDate(article.published_at)}</span>
+      <div class="poster">
+        ${imgHtml}
+        <div class="fallback">
+          <span class="emo">🎄</span>
+          <span class="ttl">${m.title}</span>
+          <span class="yr">${m.year || ''}</span>
         </div>
-        <h3>${article.title||''}</h3>
-        <p>${(article.description||'').slice(0,160)}${article.description&&article.description.length>160?'…':''}</p>
-        <span class="read-more">Read Story →</span>
-      </div>`;
+        <div class="mbar">
+          <div class="mtitle">${m.title}</div>
+          <div class="mmeta">
+            <span class="myear">${m.year || ''}</span>
+            <span class="mrating">${rating}</span>
+          </div>
+        </div>
+      </div>
+      <span class="type-badge type-${m.type}">${m.type === 'tv' ? 'TV' : 'Film'}</span>
+      ${debateBadge}`;
     return a;
   }
 
-  async function loadNews(reset=false) {
-    if(reset){
-      currentPage=0;
-      document.getElementById('news-grid').innerHTML='<div class="loading">🎄 Loading the latest Christmas news...</div>';
-      document.getElementById('load-more').style.display='none';
-    }
-    const from = currentPage * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1;
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/christmas_news?select=*&order=published_at.desc&limit=${PAGE_SIZE}&offset=${from}`,
-      { headers:{
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Range': `${from}-${to}`,
-        'Prefer': 'count=exact',
-      }}
-    );
-    const articles = await res.json();
-    const cr = res.headers.get('content-range');
-    if(cr) totalCount = parseInt(cr.split('/')[1])||0;
-
-    const grid = document.getElementById('news-grid');
-    if(reset) grid.innerHTML='';
-
-    if(!articles.length && currentPage===0){
-      grid.innerHTML='<div class="empty">No news stories yet — check back tomorrow! 🎄</div>';
+  function renderMore() {
+    const grid = document.getElementById('movie-grid');
+    const batch = filtered.slice(displayed, displayed + PAGE_SIZE);
+    if (batch.length === 0 && displayed === 0) {
+      grid.innerHTML = '<div class="empty">No titles match your filters — try broadening them. 🎄</div>';
+      document.getElementById('load-more').style.display = 'none';
       return;
     }
-
-    const filtered = currentFilter==='all'
-      ? articles
-      : articles.filter(a => categorize(a)===currentFilter);
-
-    filtered.forEach(a => grid.appendChild(buildCard(a)));
-    currentPage++;
-
+    batch.forEach(m => grid.appendChild(buildCard(m)));
+    displayed += batch.length;
     const btn = document.getElementById('load-more');
-    if(currentPage * PAGE_SIZE < totalCount){
-      btn.style.display='block';
-      btn.disabled=false;
-      btn.textContent='Load More Stories';
-    } else {
-      btn.style.display='none';
-    }
+    btn.style.display = displayed < filtered.length ? 'block' : 'none';
+    btn.disabled = false;
+    btn.textContent = `Load More (${filtered.length - displayed} remaining)`;
   }
 
-  document.getElementById('filters').addEventListener('click', e=>{
-    const chip = e.target.closest('.chip');
-    if(!chip) return;
-    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-    chip.classList.add('active');
-    currentFilter = chip.getAttribute('data-filter');
-    document.querySelectorAll('.news-card').forEach(card=>{
-      const show = currentFilter==='all' || card.getAttribute('data-cat')===currentFilter;
-      card.style.display = show ? '' : 'none';
+  async function loadAllMovies() {
+    let page = 0;
+    const pageSize = 1000;
+    while (true) {
+      const from = page * pageSize;
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/christmas_movies?select=*&order=rating.desc.nullslast&limit=${pageSize}&offset=${from}`,
+        { headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        }}
+      );
+      const data = await res.json();
+      if (!data.length) break;
+      allMovies.push(...data);
+      if (data.length < pageSize) break;
+      page++;
+    }
+    applyFilters();
+  }
+
+  // Filter chips
+  document.querySelectorAll('.chip[data-filter]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const filterType = chip.getAttribute('data-filter');
+      const value = chip.getAttribute('data-value');
+
+      if (filterType === 'debatable') {
+        const isActive = chip.classList.contains('active');
+        chip.classList.toggle('active', !isActive);
+        activeFilters.debatable = isActive ? 'all' : 'true';
+      } else {
+        document.querySelectorAll(`.chip[data-filter="${filterType}"]`).forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        activeFilters[filterType] = value;
+      }
+      applyFilters();
     });
   });
 
-  document.getElementById('load-more').addEventListener('click', ()=>{
-    document.getElementById('load-more').disabled=true;
-    document.getElementById('load-more').textContent='Loading...';
-    loadNews();
+  // Sort
+  document.getElementById('sort-select').addEventListener('change', e => {
+    sortBy = e.target.value;
+    applyFilters();
   });
 
-  loadNews(true);
+  // Load more
+  document.getElementById('load-more').addEventListener('click', () => {
+    document.getElementById('load-more').disabled = true;
+    renderMore();
+  });
+
+  loadAllMovies();
 </script>
 </body>
 </html>
