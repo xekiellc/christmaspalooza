@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas News — ChristmasPalooza</title>
+<meta name="description" content="Daily Christmas news — Hallmark announcements, holiday events, Santa sightings, ornament releases and more. Updated every day.">
+<meta property="og:title" content="Christmas News — ChristmasPalooza">
+<meta property="og:description" content="Daily Christmas news updated every morning. The world's most festive news feed.">
+<meta property="og:url" content="https://christmaspalooza.com/news.html">
+<meta property="og:type" content="website">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRMF4MXS5L');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mountains+of+Christmas:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#e8132b;--red-deep:#a30d1f;--green:#0f7a3d;--green-deep:#063d20;
+    --gold:#ffc83d;--pink:#ff4fa3;--blue:#27c2ff;--cream:#fff7e9;--ink:#0a1f12;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;color:var(--cream);
+    background:radial-gradient(1200px 600px at 15% -5%,rgba(39,194,255,.18),transparent 60%),
+    radial-gradient(1000px 500px at 90% 8%,rgba(255,79,163,.16),transparent 55%),
+    linear-gradient(180deg,#073d22 0%,#052e19 35%,#04240f 100%);
+    background-attachment:fixed;overflow-x:hidden}
+  .lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:30;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent)}
+  .bulb{width:11px;height:15px;border-radius:50% 50% 45% 45%;margin-top:6px;position:relative;animation:twinkle 1.6s infinite ease-in-out}
+  .bulb::before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#3a3a3a;border-radius:2px}
+  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red)}
+  .bulb:nth-child(5n+2){background:var(--gold);box-shadow:0 0 12px var(--gold);animation-delay:.3s}
+  .bulb:nth-child(5n+3){background:var(--blue);box-shadow:0 0 12px var(--blue);animation-delay:.6s}
+  .bulb:nth-child(5n+4){background:var(--pink);box-shadow:0 0 12px var(--pink);animation-delay:.9s}
+  .bulb:nth-child(5n+5){background:#7CFF8E;box-shadow:0 0 12px #7CFF8E;animation-delay:1.2s}
+  @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+  nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:linear-gradient(90deg,rgba(163,13,31,.92),rgba(6,61,32,.92));border-bottom:3px solid var(--gold);box-shadow:var(--shadow)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:10px}
+  .logo{font-family:'Lilita One',cursive;font-size:1.7rem;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
+  .logo .lc{color:#fff}
+  .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a.active{color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
+  .page-head{text-align:center;padding:50px 0 30px}
+  .page-head .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:14px}
+  .page-head h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(2.4rem,7vw,4.5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep)}
+  .page-head p{max-width:560px;margin:12px auto 0;font-weight:600;opacity:.9;font-size:1.05rem}
+  .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:0 0 30px}
+  .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.8rem;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .chip.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:900px){.news-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.news-grid{grid-template-columns:1fr}}
+  .news-card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;text-decoration:none;color:var(--cream)}
+  .news-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .news-card .thumb{height:180px;overflow:hidden;background:linear-gradient(135deg,var(--green-deep),var(--red-deep));position:relative;display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .news-card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+  .news-card .thumb img.loaded{opacity:1}
+  .news-card .body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
+  .news-card .source-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .news-card .source{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--gold)}
+  .news-card .date{font-size:.72rem;font-weight:700;opacity:.6}
+  .news-card h3{font-weight:800;font-size:1rem;color:#fff;line-height:1.3;margin-bottom:8px}
+  .news-card p{font-size:.88rem;font-weight:600;opacity:.85;flex:1;line-height:1.5}
+  .news-card .read-more{margin-top:12px;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold)}
+  .load-more{display:block;margin:36px auto 0;background:var(--red);color:#fff;border:none;font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:14px 32px;border-radius:999px;cursor:pointer;font-size:1rem;box-shadow:0 7px 0 var(--red-deep);transition:.15s}
+  .load-more:hover{transform:translateY(3px);box-shadow:0 4px 0 var(--red-deep)}
+  .load-more:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .loading{text-align:center;padding:60px 0;font-weight:800;font-size:1.1rem;opacity:.7}
+  .empty{text-align:center;padding:60px 0;font-weight:700;opacity:.6}
+  footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
+  .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
+  .foot-logo .lc{color:#fff}
+  .foot-logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="lights" id="lights"></div>
+
+<nav><div class="nav-inner">
+  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Countdown</a></li>
+    <li><a href="/recipes.html">Recipes</a></li>
+    <li><a href="/movies.html">Movies</a></li>
+    <li><a href="/books.html">Bookstore</a></li>
+    <li><a href="/news.html" class="active">News</a></li>
+  </ul>
+</div></nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="eyebrow">📰 Updated Daily</span>
+    <h1>Christmas News</h1>
+    <p>Hallmark announcements, holiday events, ornament releases, Santa sightings — the world's most festive news feed.</p>
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="chip active" data-filter="all">All News</button>
+    <button class="chip" data-filter="hallmark">Hallmark</button>
+    <button class="chip" data-filter="movies">Movies</button>
+    <button class="chip" data-filter="recipes">Recipes</button>
+    <button class="chip" data-filter="santa">Santa</button>
+    <button class="chip" data-filter="shopping">Shopping</button>
+  </div>
+
+  <div class="news-grid" id="news-grid">
+    <div class="loading">🎄 Loading the latest Christmas news...</div>
+  </div>
+
+  <button class="load-more" id="load-more" style="display:none">Load More Stories</button>
+</div>
+
+<footer>
+  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day.</p>
+</footer>
+
+<script>
+  const SUPABASE_URL = 'https://sjpjzdbzufvqikzazatf.supabase.co';
+  const SUPABASE_ANON_KEY = 'PASTE_YOUR_ANON_KEY_HERE';
+  const PAGE_SIZE = 24;
+
+  let currentPage = 0;
+  let currentFilter = 'all';
+  let totalCount = 0;
+
+  // String lights
+  const lights = document.getElementById('lights');
+  for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
+
+  // Filter keywords for client-side categorization
+  const FILTER_KEYWORDS = {
+    hallmark: ['hallmark','lifetime','christmas movie channel'],
+    movies:   ['movie','film','cinema','netflix','disney','streaming'],
+    recipes:  ['recipe','bake','cookie','food','cook','dessert','treat'],
+    santa:    ['santa','north pole','reindeer','elf','claus','christmas eve'],
+    shopping: ['gift','shop','deal','ornament','decoration','sale','buy'],
+  };
+
+  function categorize(article) {
+    const text = ((article.title||'')+(article.description||'')).toLowerCase();
+    for(const [cat, words] of Object.entries(FILTER_KEYWORDS)){
+      if(words.some(w => text.includes(w))) return cat;
+    }
+    return 'other';
+  }
+
+  function formatDate(iso) {
+    if(!iso) return '';
+    const d = new Date(iso);
+    return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  }
+
+  function getEmoji(article) {
+    const cat = categorize(article);
+    const map = {hallmark:'🎬',movies:'🎥',recipes:'🍪',santa:'🎅',shopping:'🎁',other:'🎄'};
+    return map[cat]||'🎄';
+  }
+
+  function buildCard(article) {
+    const a = document.createElement('a');
+    a.className = 'news-card';
+    a.href = article.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.setAttribute('data-cat', categorize(article));
+
+    const emoji = getEmoji(article);
+    const imgHtml = article.image_url
+      ? `<img src="${article.image_url}" alt="" loading="lazy" onload="this.classList.add('loaded')">`
+      : '';
+
+    a.innerHTML = `
+      <div class="thumb">${emoji}${imgHtml}</div>
+      <div class="body">
+        <div class="source-row">
+          <span class="source">${article.source||'News'}</span>
+          <span class="date">${formatDate(article.published_at)}</span>
+        </div>
+        <h3>${article.title||''}</h3>
+        <p>${(article.description||'').slice(0,160)}${article.description&&article.description.length>160?'…':''}</p>
+        <span class="read-more">Read Story →</span>
+      </div>`;
+    return a;
+  }
+
+  async function loadNews(reset=false) {
+    if(reset){
+      currentPage=0;
+      document.getElementById('news-grid').innerHTML='<div class="loading">🎄 Loading the latest Christmas news...</div>';
+      document.getElementById('load-more').style.display='none';
+    }
+
+    const from = currentPage * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
+
+    const url = `${SUPABASE_URL}/rest/v1/christmas_news?select=*&order=published_at.desc&limit=${PAGE_SIZE}&offset=${from}`;
+    const res = await fetch(url, {
+      headers:{
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Range': `${from}-${to}`,
+        'Prefer': 'count=exact',
+      }
+    });
+
+    const articles = await res.json();
+    const contentRange = res.headers.get('content-range');
+    if(contentRange){
+      const parts = contentRange.split('/');
+      totalCount = parseInt(parts[1])||0;
+    }
+
+    const grid = document.getElementById('news-grid');
+    if(reset) grid.innerHTML='';
+
+    if(!articles.length && currentPage===0){
+      grid.innerHTML='<div class="empty">No news stories yet — check back tomorrow! 🎄</div>';
+      return;
+    }
+
+    // Apply current filter
+    const filtered = currentFilter==='all'
+      ? articles
+      : articles.filter(a => categorize(a)===currentFilter);
+
+    filtered.forEach(a => grid.appendChild(buildCard(a)));
+
+    currentPage++;
+    const loaded = currentPage * PAGE_SIZE;
+    const btn = document.getElementById('load-more');
+    if(loaded < totalCount){
+      btn.style.display='block';
+      btn.disabled=false;
+      btn.textContent='Load More Stories';
+    } else {
+      btn.style.display='none';
+    }
+  }
+
+  // Filter chips
+  document.getElementById('filters').addEventListener('click', e=>{
+    const chip = e.target.closest('.chip');
+    if(!chip) return;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    currentFilter = chip.getAttribute('data-filter');
+
+    // Re-filter existing cards without re-fetching
+    document.querySelectorAll('.news-card').forEach(card=>{
+      const show = currentFilter==='all' || card.getAttribute('data-cat')===currentFilter;
+      card.style.display = show ? '' : 'none';
+    });
+  });
+
+  // Load more
+  document.getElementById('load-more').addEventListener('click', ()=>{
+    document.getElementById('load-more').disabled=true;
+    document.getElementById('load-more').textContent='Loading...';
+    loadNews();
+  });
+
+  // Init
+  loadNews(true);
+</script>
+</body>
+</html>
