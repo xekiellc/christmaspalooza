@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Books — ChristmasPalooza</title>
+<meta name="description" content="The ultimate Christmas book collection. 274+ titles across fiction, children's, cookbooks, classics and more.">
+<meta property="og:title" content="Christmas Books — ChristmasPalooza">
+<meta property="og:description" content="274+ Christmas books. Fiction, children's, cookbooks, classics and more.">
+<meta property="og:url" content="https://christmaspalooza.com/books.html">
+<meta property="og:type" content="website">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRMF4MXS5L');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mountains+of+Christmas:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#e8132b;--red-deep:#a30d1f;--green:#0f7a3d;--green-deep:#063d20;
+    --gold:#ffc83d;--pink:#ff4fa3;--blue:#27c2ff;--cream:#fff7e9;--ink:#0a1f12;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;color:var(--cream);
+    background:radial-gradient(1200px 600px at 15% -5%,rgba(39,194,255,.18),transparent 60%),
+    radial-gradient(1000px 500px at 90% 8%,rgba(255,79,163,.16),transparent 55%),
+    linear-gradient(180deg,#073d22 0%,#052e19 35%,#04240f 100%);
+    background-attachment:fixed;overflow-x:hidden}
+  .lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:30;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent)}
+  .bulb{width:11px;height:15px;border-radius:50% 50% 45% 45%;margin-top:6px;position:relative;animation:twinkle 1.6s infinite ease-in-out}
+  .bulb::before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#3a3a3a;border-radius:2px}
+  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red)}
+  .bulb:nth-child(5n+2){background:var(--gold);box-shadow:0 0 12px var(--gold);animation-delay:.3s}
+  .bulb:nth-child(5n+3){background:var(--blue);box-shadow:0 0 12px var(--blue);animation-delay:.6s}
+  .bulb:nth-child(5n+4){background:var(--pink);box-shadow:0 0 12px var(--pink);animation-delay:.9s}
+  .bulb:nth-child(5n+5){background:#7CFF8E;box-shadow:0 0 12px #7CFF8E;animation-delay:1.2s}
+  @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+  nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:linear-gradient(90deg,rgba(163,13,31,.92),rgba(6,61,32,.92));border-bottom:3px solid var(--gold);box-shadow:var(--shadow)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:10px}
+  .logo{font-family:'Lilita One',cursive;font-size:1.7rem;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
+  .logo .lc{color:#fff}
+  .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a.active{color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
+  .page-head{text-align:center;padding:50px 0 30px}
+  .page-head .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:14px}
+  .page-head h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(2.4rem,7vw,4.5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep)}
+  .page-head p{max-width:560px;margin:12px auto 0;font-weight:600;opacity:.9;font-size:1.05rem}
+  .filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+  .filter-label{font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold)}
+  .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.78rem;padding:7px 14px;border-radius:999px;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .chip.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .results-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+  .results-count{font-weight:800;font-size:.9rem;opacity:.8}
+  .sort-select{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:999px;cursor:pointer}
+  .books-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:960px){.books-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:640px){.books-grid{grid-template-columns:repeat(2,1fr)}}
+  .book-card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column;text-decoration:none;color:var(--cream)}
+  .book-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .book-cover{height:220px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));display:flex;align-items:center;justify-content:center}
+  .book-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+  .book-cover img.loaded{opacity:1}
+  .book-cover .fallback{position:relative;z-index:1;text-align:center;padding:14px}
+  .book-cover .fallback .emo{font-size:3rem;display:block;margin-bottom:8px}
+  .book-cover .fallback .ftitle{font-family:'Lilita One',cursive;color:#fff;font-size:.95rem;line-height:1.2;text-shadow:0 2px 0 rgba(0,0,0,.4)}
+  .cat-badge{position:absolute;top:8px;left:8px;z-index:2;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:999px}
+  .cat-fiction{background:var(--pink);color:#fff}
+  .cat-childrens{background:#7CFF8E;color:var(--ink)}
+  .cat-cookbook{background:var(--gold);color:var(--ink)}
+  .cat-classic{background:var(--red);color:#fff}
+  .cat-nonfiction{background:var(--blue);color:var(--ink)}
+  .book-body{padding:14px 16px 18px;flex:1;display:flex;flex-direction:column}
+  .book-body h3{font-weight:800;font-size:.95rem;color:#fff;line-height:1.3;margin-bottom:4px}
+  .book-body .author{font-size:.82rem;font-weight:700;opacity:.75;margin-bottom:8px}
+  .book-body .desc{font-size:.82rem;font-weight:600;opacity:.85;flex:1;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .book-body .buy-btn{margin-top:12px;display:inline-block;background:var(--gold);color:var(--ink);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px;padding:8px 14px;border-radius:999px;text-decoration:none;text-align:center}
+  .load-more{display:block;margin:36px auto 0;background:var(--red);color:#fff;border:none;font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:14px 32px;border-radius:999px;cursor:pointer;font-size:1rem;box-shadow:0 7px 0 var(--red-deep);transition:.15s}
+  .load-more:hover{transform:translateY(3px);box-shadow:0 4px 0 var(--red-deep)}
+  .load-more:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .loading{text-align:center;padding:60px 0;font-weight:800;font-size:1.1rem;opacity:.7}
+  .empty{text-align:center;padding:60px 0;font-weight:700;opacity:.6}
+  footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
+  .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
+  .foot-logo .lc{color:#fff}
+  .foot-logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="lights" id="lights"></div>
+
+<nav><div class="nav-inner">
+  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Countdown</a></li>
+    <li><a href="/recipes.html">Recipes</a></li>
+    <li><a href="/movies.html">Movies</a></li>
+    <li><a href="/books.html" class="active">Bookstore</a></li>
+    <li><a href="/news.html">News</a></li>
+  </ul>
+</div></nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="eyebrow">📚 274+ Titles</span>
+    <h1>Christmas Bookstore</h1>
+    <p>Cozy up with the best Christmas books — fiction, children's classics, cookbooks, and more. Every title links to Bookshop.org.</p>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Category</span>
+    <button class="chip active" data-cat="all">All Books</button>
+    <button class="chip" data-cat="fiction">📖 Fiction</button>
+    <button class="chip" data-cat="childrens">🧒 Children's</button>
+    <button class="chip" data-cat="cookbook">🍪 Cookbooks</button>
+    <button class="chip" data-cat="classic">📜 Classics</button>
+    <button class="chip" data-cat="nonfiction">🎄 Nonfiction</button>
+  </div>
+
+  <div class="results-bar">
+    <span class="results-count" id="results-count">Loading...</span>
+    <select class="sort-select" id="sort-select">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="title">A–Z</option>
+    </select>
+  </div>
+
+  <div class="books-grid" id="books-grid">
+    <div class="loading">📚 Loading Christmas books...</div>
+  </div>
+
+  <button class="load-more" id="load-more" style="display:none">Load More Books</button>
+</div>
+
+<footer>
+  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Books via Google Books · Shop links via Bookshop.org · Christmas All Year. Party All Day.</p>
+</footer>
+
+<script>
+  const SUPABASE_URL = 'https://sjpjzdbzufvqikzazatf.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcGp6ZGJ6dWZ2cWlremF6YXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NTU1NzQsImV4cCI6MjA5NjUzMTU3NH0.pEdyCUyb2n9w07hcvzISC-02FS88A-cofdF-vDdX_K4';
+  const PAGE_SIZE = 32;
+
+  let allBooks = [];
+  let filtered = [];
+  let displayed = 0;
+  let activecat = 'all';
+  let sortBy = 'newest';
+
+  const CAT_EMOJI = {
+    fiction: '📖', childrens: '🧒', cookbook: '🍪', classic: '📜', nonfiction: '🎄'
+  };
+
+  const lights = document.getElementById('lights');
+  for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
+
+  function applyFilters() {
+    filtered = allBooks.filter(b => activecat === 'all' || b.category === activecat);
+
+    filtered.sort((a, b) => {
+      if (sortBy === 'newest') return (b.published_year || 0) - (a.published_year || 0);
+      if (sortBy === 'oldest') return (a.published_year || 0) - (b.published_year || 0);
+      if (sortBy === 'title') return (a.title || '').localeCompare(b.title || '');
+      return 0;
+    });
+
+    displayed = 0;
+    document.getElementById('books-grid').innerHTML = '';
+    document.getElementById('results-count').textContent = `${filtered.length} books`;
+    renderMore();
+  }
+
+  function buildCard(book) {
+    const a = document.createElement('a');
+    a.className = 'book-card';
+    a.href = book.buy_url || `https://bookshop.org/search?keywords=${encodeURIComponent(book.title)}`;
+    a.target = '_blank';
+    a.rel = 'noopener';
+
+    const cat = book.category || 'fiction';
+    const emoji = CAT_EMOJI[cat] || '📚';
+    const imgHtml = book.cover_url
+      ? `<img src="${book.cover_url}" alt="${book.title}" loading="lazy" onload="this.classList.add('loaded')">`
+      : '';
+
+    a.innerHTML = `
+      <div class="book-cover">
+        ${imgHtml}
+        <div class="fallback">
+          <span class="emo">${emoji}</span>
+          <span class="ftitle">${book.title}</span>
+        </div>
+        <span class="cat-badge cat-${cat}">${cat}</span>
+      </div>
+      <div class="book-body">
+        <h3>${book.title}</h3>
+        <div class="author">${book.author || 'Unknown Author'}${book.published_year ? ' · ' + book.published_year : ''}</div>
+        <div class="desc">${book.description || ''}</div>
+        <span class="buy-btn">Shop on Bookshop.org 📖</span>
+      </div>`;
+    return a;
+  }
+
+  function renderMore() {
+    const grid = document.getElementById('books-grid');
+    const batch = filtered.slice(displayed, displayed + PAGE_SIZE);
+    if (batch.length === 0 && displayed === 0) {
+      grid.innerHTML = '<div class="empty">No books found — try a different category. 📚</div>';
+      document.getElementById('load-more').style.display = 'none';
+      return;
+    }
+    batch.forEach(b => grid.appendChild(buildCard(b)));
+    displayed += batch.length;
+    const btn = document.getElementById('load-more');
+    btn.style.display = displayed < filtered.length ? 'block' : 'none';
+    btn.disabled = false;
+    btn.textContent = `Load More Books (${filtered.length - displayed} remaining)`;
+  }
+
+  async function loadAllBooks() {
+    let page = 0;
+    const pageSize = 1000;
+    while (true) {
+      const from = page * pageSize;
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/christmas_books?select=*&order=published_year.desc.nullslast&limit=${pageSize}&offset=${from}`,
+        { headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        }}
+      );
+      const data = await res.json();
+      if (!data.length) break;
+      allBooks.push(...data);
+      if (data.length < pageSize) break;
+      page++;
+    }
+    applyFilters();
+  }
+
+  document.querySelectorAll('.chip[data-cat]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip[data-cat]').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activecat = chip.getAttribute('data-cat');
+      applyFilters();
+    });
+  });
+
+  document.getElementById('sort-select').addEventListener('change', e => {
+    sortBy = e.target.value;
+    applyFilters();
+  });
+
+  document.getElementById('load-more').addEventListener('click', () => {
+    document.getElementById('load-more').disabled = true;
+    renderMore();
+  });
+
+  loadAllBooks();
+</script>
+</body>
+</html>
