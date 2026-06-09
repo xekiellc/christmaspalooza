@@ -131,18 +131,16 @@
 
 <script>
   const SUPABASE_URL = 'https://sjpjzdbzufvqikzazatf.supabase.co';
-  const SUPABASE_ANON_KEY = 'PASTE_YOUR_ANON_KEY_HERE';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcGp6ZGJ6dWZ2cWlremF6YXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NTU1NzQsImV4cCI6MjA5NjUzMTU3NH0.pEdyCUyb2n9w07hcvzISC-02FS88A-cofdF-vDdX_K4';
   const PAGE_SIZE = 24;
 
   let currentPage = 0;
   let currentFilter = 'all';
   let totalCount = 0;
 
-  // String lights
   const lights = document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
 
-  // Filter keywords for client-side categorization
   const FILTER_KEYWORDS = {
     hallmark: ['hallmark','lifetime','christmas movie channel'],
     movies:   ['movie','film','cinema','netflix','disney','streaming'],
@@ -178,12 +176,10 @@
     a.target = '_blank';
     a.rel = 'noopener';
     a.setAttribute('data-cat', categorize(article));
-
     const emoji = getEmoji(article);
     const imgHtml = article.image_url
       ? `<img src="${article.image_url}" alt="" loading="lazy" onload="this.classList.add('loaded')">`
       : '';
-
     a.innerHTML = `
       <div class="thumb">${emoji}${imgHtml}</div>
       <div class="body">
@@ -204,26 +200,20 @@
       document.getElementById('news-grid').innerHTML='<div class="loading">🎄 Loading the latest Christmas news...</div>';
       document.getElementById('load-more').style.display='none';
     }
-
     const from = currentPage * PAGE_SIZE;
     const to = from + PAGE_SIZE - 1;
-
-    const url = `${SUPABASE_URL}/rest/v1/christmas_news?select=*&order=published_at.desc&limit=${PAGE_SIZE}&offset=${from}`;
-    const res = await fetch(url, {
-      headers:{
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/christmas_news?select=*&order=published_at.desc&limit=${PAGE_SIZE}&offset=${from}`,
+      { headers:{
         'apikey': SUPABASE_ANON_KEY,
         'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         'Range': `${from}-${to}`,
         'Prefer': 'count=exact',
-      }
-    });
-
+      }}
+    );
     const articles = await res.json();
-    const contentRange = res.headers.get('content-range');
-    if(contentRange){
-      const parts = contentRange.split('/');
-      totalCount = parseInt(parts[1])||0;
-    }
+    const cr = res.headers.get('content-range');
+    if(cr) totalCount = parseInt(cr.split('/')[1])||0;
 
     const grid = document.getElementById('news-grid');
     if(reset) grid.innerHTML='';
@@ -233,17 +223,15 @@
       return;
     }
 
-    // Apply current filter
     const filtered = currentFilter==='all'
       ? articles
       : articles.filter(a => categorize(a)===currentFilter);
 
     filtered.forEach(a => grid.appendChild(buildCard(a)));
-
     currentPage++;
-    const loaded = currentPage * PAGE_SIZE;
+
     const btn = document.getElementById('load-more');
-    if(loaded < totalCount){
+    if(currentPage * PAGE_SIZE < totalCount){
       btn.style.display='block';
       btn.disabled=false;
       btn.textContent='Load More Stories';
@@ -252,29 +240,24 @@
     }
   }
 
-  // Filter chips
   document.getElementById('filters').addEventListener('click', e=>{
     const chip = e.target.closest('.chip');
     if(!chip) return;
     document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
     chip.classList.add('active');
     currentFilter = chip.getAttribute('data-filter');
-
-    // Re-filter existing cards without re-fetching
     document.querySelectorAll('.news-card').forEach(card=>{
       const show = currentFilter==='all' || card.getAttribute('data-cat')===currentFilter;
       card.style.display = show ? '' : 'none';
     });
   });
 
-  // Load more
   document.getElementById('load-more').addEventListener('click', ()=>{
     document.getElementById('load-more').disabled=true;
     document.getElementById('load-more').textContent='Loading...';
     loadNews();
   });
 
-  // Init
   loadNews(true);
 </script>
 </body>
