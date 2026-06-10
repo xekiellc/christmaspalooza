@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Status — ChristmasPalooza</title>
+<meta name="description" content="What is Santa doing right now? Live Santa Status updates 365 days a year — only on ChristmasPalooza.">
+<meta property="og:title" content="Santa Status — ChristmasPalooza">
+<meta property="og:description" content="What is Santa doing right now? Live Santa Status updates 365 days a year.">
+<meta property="og:url" content="https://christmaspalooza.com/santa.html">
+<meta property="og:type" content="website">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRMF4MXS5L');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mountains+of+Christmas:wght@400;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#e8132b;--red-deep:#a30d1f;--green:#0f7a3d;--green-deep:#063d20;
+    --gold:#ffc83d;--pink:#ff4fa3;--blue:#27c2ff;--cream:#fff7e9;--ink:#0a1f12;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;color:var(--cream);
+    background:radial-gradient(1200px 600px at 15% -5%,rgba(39,194,255,.18),transparent 60%),
+    radial-gradient(1000px 500px at 90% 8%,rgba(255,79,163,.16),transparent 55%),
+    linear-gradient(180deg,#073d22 0%,#052e19 35%,#04240f 100%);
+    background-attachment:fixed;overflow-x:hidden}
+  .lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:30;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent)}
+  .bulb{width:11px;height:15px;border-radius:50% 50% 45% 45%;margin-top:6px;position:relative;animation:twinkle 1.6s infinite ease-in-out}
+  .bulb::before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#3a3a3a;border-radius:2px}
+  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red)}
+  .bulb:nth-child(5n+2){background:var(--gold);box-shadow:0 0 12px var(--gold);animation-delay:.3s}
+  .bulb:nth-child(5n+3){background:var(--blue);box-shadow:0 0 12px var(--blue);animation-delay:.6s}
+  .bulb:nth-child(5n+4){background:var(--pink);box-shadow:0 0 12px var(--pink);animation-delay:.9s}
+  .bulb:nth-child(5n+5){background:#7CFF8E;box-shadow:0 0 12px #7CFF8E;animation-delay:1.2s}
+  @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+  nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:linear-gradient(90deg,rgba(163,13,31,.92),rgba(6,61,32,.92));border-bottom:3px solid var(--gold);box-shadow:var(--shadow)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:10px}
+  .logo{font-family:'Lilita One',cursive;font-size:1.7rem;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
+  .logo .lc{color:#fff}
+  .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a.active{color:var(--gold)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
+
+  .santa-hero{text-align:center;padding:54px 0 30px}
+  .santa-hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:18px}
+  .santa-hero h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(2.8rem,8vw,5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep);line-height:.95}
+  .santa-hero .sub{font-weight:600;opacity:.9;margin-top:12px;font-size:1.05rem}
+
+  .status-card{margin:32px auto 0;max-width:680px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.18));border:2px solid rgba(255,200,61,.5);border-radius:26px;padding:32px 28px;box-shadow:var(--shadow);text-align:center}
+  .status-card .santa-emoji{font-size:5rem;margin-bottom:16px;display:block;animation:santabob 3s ease-in-out infinite}
+  @keyframes santabob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .status-card .status-label{font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.75rem;color:var(--gold);margin-bottom:8px}
+  .status-card .status-activity{font-family:'Lilita One',cursive;font-size:clamp(1.6rem,4vw,2.4rem);color:#fff;text-transform:uppercase;text-shadow:0 2px 0 var(--red-deep);line-height:1.1;margin-bottom:16px}
+  .status-card .status-quote{font-family:'Mountains of Christmas',cursive;font-weight:700;font-size:1.3rem;color:var(--gold);line-height:1.5;margin-bottom:20px;min-height:3.5em}
+  .status-card .status-date{font-weight:800;font-size:.82rem;opacity:.65;text-transform:uppercase;letter-spacing:1px}
+  .status-card .countdown-pill{display:inline-block;background:linear-gradient(90deg,var(--red-deep),var(--red));border-radius:999px;padding:10px 22px;font-family:'Lilita One',cursive;font-size:1.1rem;color:#fff;margin-top:16px;box-shadow:0 4px 0 var(--red-deep)}
+
+  .season-section{margin:48px 0}
+  .season-section h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;text-transform:uppercase;text-shadow:0 2px 0 var(--green-deep);margin-bottom:20px;text-align:center}
+  .season-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:560px){.season-grid{grid-template-columns:1fr}}
+  .season-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.14));border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+  .season-card .s-emo{font-size:2rem;flex-shrink:0;margin-top:2px}
+  .season-card .s-body h3{font-weight:800;font-size:.95rem;color:#fff;margin-bottom:4px}
+  .season-card .s-body p{font-size:.85rem;font-weight:600;opacity:.85;line-height:1.5}
+  .season-card.active{border-color:var(--gold);background:linear-gradient(180deg,rgba(255,200,61,.1),rgba(0,0,0,.14))}
+
+  .share-block{text-align:center;margin:48px 0 60px}
+  .share-block h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;text-transform:uppercase;margin-bottom:10px}
+  .share-block p{font-weight:600;opacity:.9;margin-bottom:20px}
+  .btn{font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;padding:14px 26px;border-radius:999px;font-size:.95rem;transition:.15s;display:inline-block;margin:6px}
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 6px 0 var(--red-deep)}
+  .btn-primary:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--red-deep)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:2px solid var(--gold)}
+  .btn-ghost:hover{background:var(--gold);color:var(--ink)}
+
+  footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
+  .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
+  .foot-logo .lc{color:#fff}
+  .foot-logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="lights" id="lights"></div>
+
+<nav><div class="nav-inner">
+  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Countdown</a></li>
+    <li><a href="/movies.html">Movies</a></li>
+    <li><a href="/books.html">Bookstore</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/santa.html" class="active">Santa Status</a></li>
+    <li><a href="/penny.html">🐾 Penny</a></li>
+  </ul>
+</div></nav>
+
+<div class="wrap">
+  <div class="santa-hero">
+    <span class="eyebrow">🎅 Live from the North Pole · Updated Daily</span>
+    <h1>Santa Status</h1>
+    <p class="sub">Wondering what the big guy is up to right now? We have sources.</p>
+  </div>
+
+  <div class="status-card">
+    <span class="santa-emoji" id="santa-emoji">🎅</span>
+    <div class="status-label">Current Status</div>
+    <div class="status-activity" id="status-activity">Loading...</div>
+    <div class="status-quote" id="status-quote">&nbsp;</div>
+    <div class="status-date" id="status-date"></div>
+    <div class="countdown-pill" id="status-countdown">-- days until Christmas</div>
+  </div>
+
+  <div class="season-section">
+    <h2>🗓️ Santa's Year at a Glance</h2>
+    <div class="season-grid" id="season-grid"></div>
+  </div>
+
+  <div class="share-block">
+    <h2>Spread the Word 🎄</h2>
+    <p>Santa personally asked us to let everyone know what he's up to. The least we can do is share.</p>
+    <a href="/" class="btn btn-primary">🎄 Back to the Palooza</a>
+    <a href="/santa-letter.html" class="btn btn-ghost">📬 Write to Santa</a>
+  </div>
+</div>
+
+<footer>
+  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day. · Penny approved. 🐾</p>
+</footer>
+
+<script>
+  const lights=document.getElementById('lights');
+  for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
+
+  // Santa's daily statuses — keyed by month (0-11) and day ranges
+  const STATUSES = [
+    // January
+    { months:[0], days:[1,5],   emoji:'😴', activity:'Post-Christmas Recovery', quote:'Ho ho ho... zzzz. After 200 million deliveries in one night, even I need a few days. Mrs. Claus has strict orders: no alarms, no reindeer, no elves. Just cocoa and silence.' },
+    { months:[0], days:[6,15],  emoji:'📬', activity:'Reading Thank-You Letters', quote:'The children\'s thank-you letters have arrived! Every single one is read personally. Young Timothy from Ohio drew me riding a dinosaur. I\'m framing it.' },
+    { months:[0], days:[16,25], emoji:'🛁', activity:'North Pole Spa Week', quote:'Mrs. Claus insists. The beard gets a deep conditioning treatment. The boots get resoled. I get eight hours of sleep like a normal person for once.' },
+    { months:[0], days:[26,31], emoji:'📊', activity:'Annual Delivery Debrief', quote:'Reviewing the numbers with the elves. 99.97% on-time delivery rate. The 0.03%? That was Dasher\'s fault. He knows what he did.' },
+    // February
+    { months:[1], days:[1,14],  emoji:'💌', activity:'Valentine\'s Day Observation', quote:'Not my holiday, but I respect the hustle. I\'ve been watching Cupid work for centuries. Between you and me, he\'s very disorganized. No lists whatsoever.' },
+    { months:[1], days:[15,28], emoji:'📝', activity:'Starting the New Nice List', quote:'A fresh list. A fresh start. Every child begins the year with a clean slate. Yes, even the ones from last year. I believe in second chances. Third chances, too.' },
+    // March
+    { months:[2], days:[1,15],  emoji:'✏️', activity:'Toy Design Season Begins', quote:'The design elves have submitted 847 new toy concepts. We have a very promising flying robot, three different types of slime kits, and something called a "vibe checker." I\'m told it\'s for the teenagers.' },
+    { months:[2], days:[16,31], emoji:'🔨', activity:'Workshop Prototyping', quote:'The workshop smells of fresh wood and ambition. Prototype #1 of the new wooden train set is magnificent. Prototype #47 is... also wooden. Progress is progress.' },
+    // April
+    { months:[3], days:[1,10],  emoji:'🌱', activity:'Spring Workshop Inventory', quote:'Spring cleaning at the North Pole. We have found 3,000 misplaced toy parts, one elf who was napping behind the wrapping station since February, and Mrs. Claus\'s missing cookie recipe from 1987.' },
+    { months:[3], days:[11,30], emoji:'📐', activity:'Toy Design Approvals', quote:'Approving final designs for this year\'s toys. My criteria: Would a child\'s face light up? Would a parent sigh lovingly? Would it survive being sat on by a golden retriever? All three must be yes.' },
+    // May
+    { months:[4], days:[1,15],  emoji:'🦌', activity:'Reindeer Training Begins', quote:'Dasher and Dancer are in peak form. Prancer is showing off, as usual. Rudolph\'s nose is fully charged and glowing magnificently. Comet pulled a hamstring but insists he\'s fine. He\'s not fine.' },
+    { months:[4], days:[16,31], emoji:'🏋️', activity:'Reindeer Fitness Testing', quote:'We ran the full route simulation today. 510 million kilometers. The reindeer completed it in 4.2 seconds. I completed the post-flight paperwork in considerably longer.' },
+    // June
+    { months:[5], days:[1,10],  emoji:'☀️', activity:'Summer Planning Sessions', quote:'June at the North Pole is... still cold. But the sun never sets, which plays havoc with everyone\'s sleep schedules. The elves are running on midnight sunshine and sheer Christmas enthusiasm.' },
+    { months:[5], days:[11,20], emoji:'🎄', activity:'Christmas in July Prep', quote:'Christmas in July is coming and I take it VERY seriously. The elves think it\'s my way of extending Christmas. They\'re absolutely right and I have no regrets whatsoever.' },
+    { months:[5], days:[21,30], emoji:'📦', activity:'Supply Chain Review', quote:'Reviewing the global toy supply chain. 847 suppliers across 34 countries. We source ethically, sustainably, and with an absolute commitment to quality. The naughty list applies to vendors too.' },
+    // July
+    { months:[6], days:[1,5],   emoji:'🎉', activity:'CHRISTMAS IN JULY', quote:'IT\'S CHRISTMAS IN JULY! I have decorated the workshop. The elves are wearing Santa hats. The reindeer have tinsel in their antlers. Mrs. Claus made gingerbread cookies. TODAY COUNTS.' },
+    { months:[6], days:[6,15],  emoji:'🎁', activity:'Mid-Year Gift Trend Review', quote:'Analyzing this year\'s gift trends. AI toys are big. Outdoor adventure kits are enormous. And apparently every child in North America wants something called a Stanley cup. I thought that was hockey.' },
+    { months:[6], days:[16,31], emoji:'📋', activity:'Naughty/Nice Pre-Audit', quote:'The preliminary naughty/nice audit has begun. I want to be clear: the list is long, the standards are high, and I read every single name personally. Yes, even the adults. Especially the adults.' },
+    // August
+    { months:[7], days:[1,15],  emoji:'🛷', activity:'Sleigh Maintenance', quote:'The sleigh is in for its annual service. New runners. Freshly oiled harnesses. The GPS has been updated — though between you and me, after 1,700 years I know the route by heart.' },
+    { months:[7], days:[16,31], emoji:'🗺️', activity:'Route Planning & Optimization', quote:'Running the delivery route algorithms. We\'ve optimized for time zones, chimney dimensions, cookie placement, and household dog temperaments. Every detail matters.' },
+    // September
+    { months:[8], days:[1,15],  emoji:'🔍', activity:'Naughty/Nice List Audits', quote:'The formal audit season has begun. I review every case personally. Appeals are accepted through October 1st. My standard is simple: Have you been kind? Have you tried your best? That\'s all I ask.' },
+    { months:[8], days:[16,30], emoji:'🏭', activity:'Full Production Begins', quote:'The workshop is running 24 hours a day. All 47,000 elves are on schedule. The cookie supply is holding. The hot cocoa reserves are at record highs. We are ready. Ho ho ho.' },
+    // October
+    { months:[9], days:[1,15],  emoji:'🎃', activity:'Respecting Halloween Season', quote:'I observe a strict no-Christmas-before-Halloween rule. The elves disagree. Every year they try to sneak tinsel onto the jack-o-lanterns. Every year I catch them. The naughty list is very convenient.' },
+    { months:[9], days:[16,31], emoji:'🚀', activity:'Final Production Push', quote:'Halloween is over. The gloves are OFF. Christmas music is playing in the workshop. The elves are singing. I may be humming. Production is at 340% capacity. WE ARE DOING THIS.' },
+    // November
+    { months:[10], days:[1,10], emoji:'📦', activity:'Packing Begins', quote:'The first presents are being wrapped and packed. Mrs. Claus supervises the ribbon department personally. She has very strong feelings about bow symmetry. I have learned not to comment.' },
+    { months:[10], days:[11,24], emoji:'✅', activity:'Final List Review', quote:'The final naughty/nice determinations are being made. I review every borderline case myself. When in doubt, I consider: Did they try? Did they grow? Did they show kindness when it was hard? The nice list gets the benefit of the doubt.' },
+    { months:[10], days:[25,30], emoji:'🦃', activity:'Thanksgiving Observation', quote:'Not my holiday, but I respect it deeply. Gratitude is the spirit of Christmas every day of the year. Also, the parade is wonderful. I have a cameo. I will not spoil it.' },
+    // December
+    { months:[11], days:[1,5],  emoji:'🎄', activity:'DECEMBER HAS ARRIVED', quote:'DECEMBER. IS. HERE. The countdown is real. The sleigh is loaded. The reindeer are ready. The elves are fully caffeinated. I have eaten 14 cookies this morning alone. WE ARE IN THE CHRISTMAS ZONE.' },
+    { months:[11], days:[6,10], emoji:'📬', activity:'Reading Final Letters', quote:'Reading the final wave of children\'s letters. Every wish is considered. Every drawing of me on a dinosaur is treasured. The sincerity of children is the greatest gift I receive every year.' },
+    { months:[11], days:[11,15], emoji:'⚡', activity:'Final Systems Check', quote:'Running final diagnostics on the sleigh. The navigation system is green. The magic reserves are at 100%. The cookie consumption estimates for Christmas Eve have been updated. I will need significantly more cookies.' },
+    { months:[11], days:[16,20], emoji:'🌍', activity:'Route Confirmation', quote:'Final route confirmed. 510 million kilometers. Every time zone accounted for. Every chimney measured. Every household dog noted in the database. We leave in less than 10 days. The world has no idea what\'s coming.' },
+    { months:[11], days:[21,23], emoji:'🚨', activity:'PRE-LAUNCH COUNTDOWN', quote:'THREE DAYS. The workshop is silent now except for final checks. The elves are writing farewell letters to their families — just for the night, they assure me. The reindeer are not sleeping. Neither am I.' },
+    { months:[11], days:[24,24], emoji:'🚀', activity:'DELIVERY NIGHT — WE\'RE FLYING', quote:'HO HO HO! WE ARE IN THE AIR! 510 million kilometers. One night. Every child. Every chimney. Every cookie. This is what we train 364 days for. MERRY CHRISTMAS TO ALL AND TO ALL A GOOD NIGHT!' },
+    { months:[11], days:[25,25], emoji:'🥳', activity:'Christmas Day — Mission Complete', quote:'...We did it. Again. Every present delivered. Every stocking filled. Every cookie eaten. (The snickerdoodles in Ohio were exceptional.) Merry Christmas, everyone. Rest now. We\'ll do it all again next year.' },
+    { months:[11], days:[26,31], emoji:'🌅', activity:'Post-Christmas Debrief', quote:'The numbers are in. Another perfect Christmas. The elves are celebrating. Mrs. Claus is already planning next year\'s cookie menu. And I... I am sitting by the fire, reading thank-you letters, and thinking: there is no better job in the world.' },
+  ];
+
+  const SEASONS = [
+    { emoji:'😴', months:'January', label:'Recovery & Planning', desc:'Post-Christmas rest, reading thank-you letters, and starting the new Nice List.' },
+    { emoji:'✏️', months:'February – April', label:'Design & Prototyping', desc:'The workshop design elves submit toy concepts. Prototypes are built, tested, and occasionally sat on.' },
+    { emoji:'🦌', months:'May – June', label:'Reindeer Training', desc:'Dasher, Dancer, and the crew begin their flight conditioning. Comet insists he\'s fine. He\'s not fine.' },
+    { emoji:'🎄', months:'July', label:'Christmas in July', desc:'Santa\'s favorite month besides December. All rules suspended. Tinsel everywhere. Mrs. Claus makes gingerbread.' },
+    { emoji:'🏭', months:'August – September', label:'Full Production', desc:'47,000 elves running 24/7. The naughty/nice audit is underway. The cookie reserves are building.' },
+    { emoji:'📦', months:'October – November', label:'Packing & Final Lists', desc:'Presents wrapped, routes confirmed, final naughty/nice determinations made. The elves are not sleeping.' },
+    { emoji:'🚀', months:'December', label:'LAUNCH SEASON', desc:'DEFCON CHRISTMAS. Everything leads to this. Every day of training, planning, and cookie-eating was for December.' },
+    { emoji:'🌅', months:'December 26–31', label:'Debrief & Early Planning', desc:'Reviewing the mission. Writing thank-you letters. And quietly, almost imperceptibly, starting to think about next year.' },
+  ];
+
+  function getStatus() {
+    const now = new Date();
+    const month = now.getMonth();
+    const day = now.getDate();
+    for (const s of STATUSES) {
+      if (s.months.includes(month) && day >= s.days[0] && day <= s.days[1]) {
+        return s;
+      }
+    }
+    return STATUSES[0];
+  }
+
+  function daysUntilChristmas() {
+    const now = new Date();
+    const y = now.getFullYear();
+    let xmas = new Date(y, 11, 25);
+    if (now > xmas) xmas = new Date(y + 1, 11, 25);
+    return Math.max(0, Math.ceil((xmas - now) / 86400000));
+  }
+
+  function formatDate(d) {
+    return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  }
+
+  // Render current status
+  const status = getStatus();
+  const days = daysUntilChristmas();
+  document.getElementById('santa-emoji').textContent = status.emoji;
+  document.getElementById('status-activity').textContent = status.activity;
+  document.getElementById('status-quote').textContent = '"' + status.quote + '"';
+  document.getElementById('status-date').textContent = 'Status as of ' + formatDate(new Date());
+  document.getElementById('status-countdown').textContent = days === 0 ? '🎄 IT\'S CHRISTMAS!' : days + ' days until Christmas';
+
+  // Render seasons
+  const currentMonth = new Date().getMonth();
+  const seasonMonthMap = [6,6,6,6,6,6,6,6,6,6,6,6]; // rough mapping, just highlight december as active in dec
+  const grid = document.getElementById('season-grid');
+  SEASONS.forEach((s, i) => {
+    const div = document.createElement('div');
+    const isActive = (currentMonth === 11 && i === 6) ||
+                     (currentMonth === 0 && i === 0) ||
+                     ([1,2,3].includes(currentMonth) && i === 1) ||
+                     ([4,5].includes(currentMonth) && (i === 2 || i === 3)) ||
+                     ([7,8].includes(currentMonth) && i === 4) ||
+                     ([9,10].includes(currentMonth) && i === 5);
+    div.className = 'season-card' + (isActive ? ' active' : '');
+    div.innerHTML = `<span class="s-emo">${s.emoji}</span><div class="s-body"><h3>${s.months} · ${s.label}</h3><p>${s.desc}</p></div>`;
+    grid.appendChild(div);
+  });
+</script>
+</body>
+</html>
