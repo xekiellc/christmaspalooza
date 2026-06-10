@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Write to Santa — ChristmasPalooza</title>
+<meta name="description" content="Write a letter to Santa and get a personal reply from the North Pole. Only on ChristmasPalooza.">
+<meta property="og:title" content="Write to Santa — ChristmasPalooza">
+<meta property="og:description" content="Write your Christmas wishes and get a personal reply from Santa himself.">
+<meta property="og:url" content="https://christmaspalooza.com/santa-letter.html">
+<meta property="og:type" content="website">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRMF4MXS5L');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mountains+of+Christmas:wght@400;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#e8132b;--red-deep:#a30d1f;--green:#0f7a3d;--green-deep:#063d20;
+    --gold:#ffc83d;--pink:#ff4fa3;--blue:#27c2ff;--cream:#fff7e9;--ink:#0a1f12;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;color:var(--cream);
+    background:radial-gradient(1200px 600px at 15% -5%,rgba(39,194,255,.18),transparent 60%),
+    radial-gradient(1000px 500px at 90% 8%,rgba(255,79,163,.16),transparent 55%),
+    linear-gradient(180deg,#073d22 0%,#052e19 35%,#04240f 100%);
+    background-attachment:fixed;overflow-x:hidden}
+  .lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:30;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent)}
+  .bulb{width:11px;height:15px;border-radius:50% 50% 45% 45%;margin-top:6px;position:relative;animation:twinkle 1.6s infinite ease-in-out}
+  .bulb::before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#3a3a3a;border-radius:2px}
+  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red)}
+  .bulb:nth-child(5n+2){background:var(--gold);box-shadow:0 0 12px var(--gold);animation-delay:.3s}
+  .bulb:nth-child(5n+3){background:var(--blue);box-shadow:0 0 12px var(--blue);animation-delay:.6s}
+  .bulb:nth-child(5n+4){background:var(--pink);box-shadow:0 0 12px var(--pink);animation-delay:.9s}
+  .bulb:nth-child(5n+5){background:#7CFF8E;box-shadow:0 0 12px #7CFF8E;animation-delay:1.2s}
+  @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+  nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:linear-gradient(90deg,rgba(163,13,31,.92),rgba(6,61,32,.92));border-bottom:3px solid var(--gold);box-shadow:var(--shadow)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:10px}
+  .logo{font-family:'Lilita One',cursive;font-size:1.7rem;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
+  .logo .lc{color:#fff}
+  .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a.active{color:var(--gold)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
+
+  .page-hero{text-align:center;padding:54px 0 30px}
+  .page-hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:18px}
+  .page-hero h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(2.8rem,8vw,5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep);line-height:.95}
+  .page-hero .sub{font-weight:600;opacity:.9;margin-top:12px;font-size:1.05rem;max-width:520px;margin-left:auto;margin-right:auto}
+
+  /* LETTER FORM */
+  .letter-form{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.18));border:2px solid rgba(255,200,61,.4);border-radius:26px;padding:32px 28px;margin:0 auto 40px;box-shadow:var(--shadow)}
+  .letter-form .form-group{margin-bottom:20px}
+  .letter-form label{display:block;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:8px}
+  .letter-form input,.letter-form textarea,.letter-form select{width:100%;background:rgba(0,0,0,.3);border:1.5px solid rgba(255,255,255,.2);border-radius:12px;padding:12px 16px;color:var(--cream);font-family:'Nunito';font-size:1rem;font-weight:600;transition:.2s;outline:none}
+  .letter-form input:focus,.letter-form textarea:focus,.letter-form select:focus{border-color:var(--gold);background:rgba(0,0,0,.4)}
+  .letter-form input::placeholder,.letter-form textarea::placeholder{opacity:.5}
+  .letter-form select option{background:#063d20;color:var(--cream)}
+  .letter-form textarea{resize:vertical;min-height:140px;line-height:1.6}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+  .wishes-group{margin-bottom:20px}
+  .wish-item{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+  .wish-item input{flex:1}
+  .wish-item .remove-wish{background:rgba(232,19,43,.3);border:1px solid var(--red);color:#fff;border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:800;font-size:.85rem;transition:.15s;flex-shrink:0}
+  .wish-item .remove-wish:hover{background:var(--red)}
+  .add-wish{background:rgba(255,255,255,.1);border:1.5px dashed rgba(255,255,255,.3);color:var(--cream);border-radius:12px;padding:10px 16px;cursor:pointer;font-family:'Nunito';font-weight:800;font-size:.88rem;width:100%;transition:.15s;margin-top:4px}
+  .add-wish:hover{border-color:var(--gold);background:rgba(255,200,61,.1)}
+  .send-btn{width:100%;background:var(--red);color:#fff;border:none;font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:16px;border-radius:999px;cursor:pointer;font-size:1.1rem;box-shadow:0 7px 0 var(--red-deep);transition:.15s;margin-top:8px}
+  .send-btn:hover{transform:translateY(3px);box-shadow:0 4px 0 var(--red-deep)}
+  .send-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+  /* LOADING */
+  .loading-state{text-align:center;padding:40px;display:none}
+  .loading-state .elf-spin{font-size:3.5rem;animation:spin 1s linear infinite;display:block;margin-bottom:16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .loading-state p{font-family:'Mountains of Christmas',cursive;font-weight:700;font-size:1.3rem;color:var(--gold)}
+  .loading-state .substatus{font-size:.9rem;font-weight:600;opacity:.7;margin-top:8px}
+
+  /* REPLY LETTER */
+  .reply-wrap{display:none;margin-bottom:60px}
+  .reply-paper{background:linear-gradient(180deg,#fffdf5,#fff8e6);border-radius:18px;box-shadow:0 24px 60px -12px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.08);padding:48px 44px;position:relative;overflow:hidden;color:#2a1a00}
+  .reply-paper::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 27px,rgba(200,180,120,.2) 27px,rgba(200,180,120,.2) 28px);pointer-events:none}
+  .reply-paper .np-header{text-align:center;margin-bottom:28px;position:relative;z-index:1}
+  .reply-paper .np-seal{font-size:2.8rem;margin-bottom:6px;display:block}
+  .reply-paper .np-title{font-family:'Lilita One',cursive;font-size:1.3rem;color:var(--red-deep);text-transform:uppercase;letter-spacing:2px}
+  .reply-paper .np-subtitle{font-size:.82rem;font-weight:700;color:#666;letter-spacing:1px;text-transform:uppercase}
+  .reply-paper .np-divider{border:none;border-top:2px solid rgba(163,13,31,.2);margin:16px 0}
+  .reply-paper .letter-body{font-family:'Reenie Beanie',cursive;font-size:1.55rem;line-height:1.7;color:#1a0e00;position:relative;z-index:1;white-space:pre-wrap;min-height:200px}
+  .reply-paper .letter-sig{margin-top:28px;text-align:right;position:relative;z-index:1}
+  .reply-paper .letter-sig .sig-text{font-family:'Reenie Beanie',cursive;font-size:2rem;color:var(--red-deep)}
+  .reply-paper .letter-sig .sig-sub{font-size:.78rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  .reply-paper .stamp{position:absolute;bottom:28px;right:28px;width:72px;height:72px;border:3px solid var(--red-deep);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-direction:column;transform:rotate(8deg);opacity:.85;background:rgba(255,255,255,.5)}
+  .reply-paper .stamp .s-emo{font-size:1.8rem}
+  .reply-paper .stamp .s-txt{font-size:.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--red-deep)}
+
+  .reply-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .btn{font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;padding:14px 26px;border-radius:999px;font-size:.95rem;transition:.15s;display:inline-block;border:none;cursor:pointer}
+  .btn-primary{background:var(--red);color:#fff;box-shadow:0 6px 0 var(--red-deep)}
+  .btn-primary:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--red-deep)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:2px solid var(--gold)}
+  .btn-ghost:hover{background:var(--gold);color:var(--ink)}
+  .btn-print{background:var(--green);color:#fff;box-shadow:0 6px 0 var(--green-deep)}
+  .btn-print:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--green-deep)}
+
+  .error-msg{background:rgba(232,19,43,.2);border:1px solid var(--red);border-radius:12px;padding:14px 18px;font-weight:700;font-size:.92rem;margin-top:12px;display:none}
+
+  footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
+  .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
+  .foot-logo .lc{color:#fff}
+  .foot-logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
+
+  @media print{
+    nav,.lights,footer,.reply-actions,.letter-form,.page-hero{display:none!important}
+    body{background:#fff!important;color:#000}
+    .reply-wrap{display:block!important}
+    .reply-paper{box-shadow:none;border:1px solid #ccc}
+  }
+</style>
+</head>
+<body>
+<div class="lights" id="lights"></div>
+
+<nav><div class="nav-inner">
+  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Countdown</a></li>
+    <li><a href="/movies.html">Movies</a></li>
+    <li><a href="/books.html">Bookstore</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/santa.html">Santa Status</a></li>
+    <li><a href="/santa-letter.html" class="active">Write to Santa</a></li>
+    <li><a href="/penny.html">🐾 Penny</a></li>
+  </ul>
+</div></nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <span class="eyebrow">📬 Direct Line to the North Pole</span>
+    <h1>Write to Santa</h1>
+    <p class="sub">Tell Santa your name, whether you've been nice, and what you're wishing for. He reads every letter personally.</p>
+  </div>
+
+  <div class="letter-form" id="letter-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="child-name" placeholder="e.g. Emily, or Mom, or Todd from Accounting" maxlength="60">
+      </div>
+      <div class="form-group">
+        <label>Your Age (optional)</label>
+        <input type="text" id="child-age" placeholder="e.g. 7, or 34, or 'timeless'" maxlength="20">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Have you been nice this year?</label>
+      <select id="nice-status">
+        <option value="very nice">⭐ Very nice — I have receipts</option>
+        <option value="mostly nice">😇 Mostly nice — a few incidents</option>
+        <option value="it's complicated">🤔 It's complicated</option>
+        <option value="working on it">💪 Working on it — improvement noted</option>
+        <option value="naughty but optimistic">😈 Naughty but optimistic about next year</option>
+      </select>
+    </div>
+    <div class="form-group wishes-group">
+      <label>Your Christmas Wishes (up to 5)</label>
+      <div id="wish-list">
+        <div class="wish-item"><input type="text" placeholder="Wish #1 — dream big" maxlength="100"></div>
+        <div class="wish-item"><input type="text" placeholder="Wish #2 — (optional)" maxlength="100"></div>
+      </div>
+      <button class="add-wish" id="add-wish">+ Add another wish</button>
+    </div>
+    <div class="form-group">
+      <label>Anything else Santa should know?</label>
+      <textarea id="extra-note" placeholder="Tell Santa something about your year, a kind thing you did, someone who deserves recognition, or just say hi to the reindeer..." maxlength="400"></textarea>
+    </div>
+    <button class="send-btn" id="send-btn">🎅 Send My Letter to Santa</button>
+    <div class="error-msg" id="error-msg">Santa's elves hit a snag. Please try again in a moment!</div>
+  </div>
+
+  <div class="loading-state" id="loading-state">
+    <span class="elf-spin">🎅</span>
+    <p>Santa is reading your letter...</p>
+    <div class="substatus" id="loading-sub">Checking the Nice List... please hold.</div>
+  </div>
+
+  <div class="reply-wrap" id="reply-wrap">
+    <div class="reply-paper" id="reply-paper">
+      <div class="np-header">
+        <span class="np-seal">🎄</span>
+        <div class="np-title">Santa Claus · North Pole</div>
+        <div class="np-subtitle">Official Correspondence · <span id="reply-date"></span></div>
+        <hr class="np-divider">
+      </div>
+      <div class="letter-body" id="reply-body"></div>
+      <div class="letter-sig">
+        <div class="sig-text">Santa Claus 🎅</div>
+        <div class="sig-sub">North Pole · Est. Forever</div>
+      </div>
+      <div class="stamp"><span class="s-emo">🎁</span><span class="s-txt">North Pole</span></div>
+    </div>
+    <div class="reply-actions">
+      <button class="btn btn-print" onclick="window.print()">🖨️ Print My Letter</button>
+      <button class="btn btn-primary" id="write-another">✉️ Write Another Letter</button>
+      <a href="/" class="btn btn-ghost">🎄 Back to the Palooza</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day. · Penny approved. 🐾</p>
+</footer>
+
+<script>
+  const lights=document.getElementById('lights');
+  for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
+
+  // Add wish items
+  const wishList=document.getElementById('wish-list');
+  document.getElementById('add-wish').addEventListener('click',()=>{
+    const items=wishList.querySelectorAll('.wish-item');
+    if(items.length>=5)return;
+    const n=items.length+1;
+    const div=document.createElement('div');div.className='wish-item';
+    div.innerHTML=`<input type="text" placeholder="Wish #${n} — (optional)" maxlength="100">
+      <button class="remove-wish" onclick="this.parentElement.remove()">✕</button>`;
+    wishList.appendChild(div);
+    if(wishList.querySelectorAll('.wish-item').length>=5){
+      document.getElementById('add-wish').style.display='none';
+    }
+  });
+
+  // Loading messages
+  const loadingMessages=[
+    'Checking the Nice List... please hold.',
+    'Consulting the reindeer for references...',
+    'Cross-referencing with the North Pole database...',
+    'Mrs. Claus is proofreading...',
+    'Adding extra Christmas spirit...',
+    'Sealing the envelope with a candy cane...',
+  ];
+  let loadingInterval;
+
+  function startLoading(){
+    let i=0;
+    const sub=document.getElementById('loading-sub');
+    sub.textContent=loadingMessages[0];
+    loadingInterval=setInterval(()=>{
+      i=(i+1)%loadingMessages.length;
+      sub.textContent=loadingMessages[i];
+    },2200);
+  }
+
+  function stopLoading(){clearInterval(loadingInterval);}
+
+  // Send letter
+  document.getElementById('send-btn').addEventListener('click', async ()=>{
+    const name=(document.getElementById('child-name').value||'Friend').trim();
+    const age=document.getElementById('child-age').value.trim();
+    const niceStatus=document.getElementById('nice-status').value;
+    const wishes=Array.from(wishList.querySelectorAll('input')).map(i=>i.value.trim()).filter(Boolean);
+    const extra=document.getElementById('extra-note').value.trim();
+    const errorEl=document.getElementById('error-msg');
+    errorEl.style.display='none';
+
+    if(!wishes.length){
+      errorEl.textContent='Santa needs at least one wish to work with! Add a wish above.';
+      errorEl.style.display='block';return;
+    }
+
+    // Show loading
+    document.getElementById('letter-form').style.display='none';
+    const loadingEl=document.getElementById('loading-state');
+    loadingEl.style.display='block';
+    startLoading();
+
+    const prompt=`You are Santa Claus writing a warm, personal, magical reply letter to someone who has written to you at the North Pole.
+
+Here is the letter you received:
+- Name: ${name}
+- Age: ${age||'not specified'}
+- Nice status: ${niceStatus}
+- Christmas wishes: ${wishes.map((w,i)=>`${i+1}. ${w}`).join(', ')}
+- Extra note: ${extra||'none'}
+
+Write a reply letter from Santa. Guidelines:
+- Address them by name warmly at the start
+- Acknowledge their nice status with good humor (if naughty, be jolly about it — Santa believes in redemption)
+- Comment personally on each of their wishes with warmth and magic
+- If they included an extra note, respond to it genuinely
+- Mention something specific about the North Pole right now (it's currently June — summer planning season, reindeer training, toy prototyping)
+- End with a personal sign-off that feels genuine and warm
+- Tone: warm, jolly, wise, slightly formal but never stuffy — like a letter from a very beloved grandfather who also happens to be magic
+- Length: 3-4 paragraphs, substantial but not overwhelming
+- Do NOT start with "Ho ho ho" — that's too cliché. Start with "Dear [Name],"
+- Write only the letter body — no subject line, no metadata, just the letter text starting with "Dear [Name],"`;
+
+    try{
+      const response=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1000,
+          messages:[{role:'user',content:prompt}]
+        })
+      });
+      const data=await response.json();
+      const letterText=data.content&&data.content[0]&&data.content[0].text;
+      if(!letterText)throw new Error('No reply');
+
+      stopLoading();
+      loadingEl.style.display='none';
+
+      // Show reply
+      const replyWrap=document.getElementById('reply-wrap');
+      document.getElementById('reply-body').textContent=letterText;
+      document.getElementById('reply-date').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+      replyWrap.style.display='block';
+      replyWrap.scrollIntoView({behavior:'smooth',block:'start'});
+
+    }catch(err){
+      stopLoading();
+      loadingEl.style.display='none';
+      document.getElementById('letter-form').style.display='block';
+      errorEl.textContent='Santa\'s elves hit a snag. Please try again in a moment!';
+      errorEl.style.display='block';
+    }
+  });
+
+  document.getElementById('write-another').addEventListener('click',()=>{
+    document.getElementById('reply-wrap').style.display='none';
+    document.getElementById('letter-form').style.display='block';
+    document.getElementById('child-name').value='';
+    document.getElementById('child-age').value='';
+    document.getElementById('extra-note').value='';
+    document.getElementById('nice-status').selectedIndex=0;
+    const items=Array.from(wishList.querySelectorAll('.wish-item'));
+    items.forEach((item,i)=>{item.querySelector('input').value='';if(i>1)item.remove();});
+    document.getElementById('add-wish').style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
