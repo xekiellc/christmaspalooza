@@ -12,7 +12,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ChristmasPalooza — Christmas All Year. Party All Day.">
 <meta name="twitter:description" content="The internet's biggest Christmas celebration — 365 days a year.">
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -25,16 +24,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mountains+of+Christmas:wght@400;700&family=Nunito:ital,wght@0,400;0,600;0,800;1,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --red:#e8132b; --red-deep:#a30d1f; --green:#0f7a3d; --green-deep:#063d20;
-    --gold:#ffc83d; --pink:#ff4fa3; --blue:#27c2ff; --cream:#fff7e9; --ink:#0a1f12;
+    --red:#e8132b;--red-deep:#a30d1f;--green:#0f7a3d;--green-deep:#063d20;
+    --gold:#ffc83d;--pink:#ff4fa3;--blue:#27c2ff;--cream:#fff7e9;--ink:#0a1f12;
     --shadow:0 18px 40px -18px rgba(0,0,0,.55);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Nunito',sans-serif;color:var(--cream);
     background:
-      radial-gradient(1200px 600px at 15% -5%, rgba(39,194,255,.18), transparent 60%),
-      radial-gradient(1000px 500px at 90% 8%, rgba(255,79,163,.16), transparent 55%),
+      radial-gradient(1200px 600px at 15% -5%,rgba(39,194,255,.18),transparent 60%),
+      radial-gradient(1000px 500px at 90% 8%,rgba(255,79,163,.16),transparent 55%),
       linear-gradient(180deg,#073d22 0%,#052e19 35%,#04240f 100%);
     background-attachment:fixed;overflow-x:hidden;position:relative}
   .snow{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
@@ -43,7 +42,7 @@
   .lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:30;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent)}
   .bulb{width:11px;height:15px;border-radius:50% 50% 45% 45%;margin-top:6px;position:relative;animation:twinkle 1.6s infinite ease-in-out}
   .bulb::before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#3a3a3a;border-radius:2px}
-  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red);animation-delay:0s}
+  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red)}
   .bulb:nth-child(5n+2){background:var(--gold);box-shadow:0 0 12px var(--gold);animation-delay:.3s}
   .bulb:nth-child(5n+3){background:var(--blue);box-shadow:0 0 12px var(--blue);animation-delay:.6s}
   .bulb:nth-child(5n+4){background:var(--pink);box-shadow:0 0 12px var(--pink);animation-delay:.9s}
@@ -51,15 +50,13 @@
   @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
   .wrap{max-width:1180px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
   nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:linear-gradient(90deg,rgba(163,13,31,.92),rgba(6,61,32,.92));border-bottom:3px solid var(--gold);box-shadow:var(--shadow)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:10px}
   .logo{font-family:'Lilita One',cursive;font-size:1.7rem;letter-spacing:.5px;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
   .logo .lc{color:#fff}
   .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
   .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
   .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
   .nav-links a:hover{color:var(--gold);transform:translateY(-2px)}
-  .nav-cta{background:var(--gold);color:var(--ink);padding:9px 18px;border-radius:999px;font-weight:800;text-decoration:none;text-transform:uppercase;font-size:.85rem;box-shadow:0 6px 0 #c79313;transition:.15s}
-  .nav-cta:hover{transform:translateY(2px);box-shadow:0 3px 0 #c79313}
   header{text-align:center;padding:54px 0 30px;position:relative}
   .kicker{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:18px}
   h1{font-family:'Lilita One',cursive;font-weight:400;line-height:.95;letter-spacing:1px;font-size:clamp(3.2rem,9vw,7rem);text-transform:uppercase}
@@ -104,12 +101,14 @@
   @media(max-width:560px){.g3,.g4{grid-template-columns:1fr}}
   .card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column}
   .card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .card.linked{text-decoration:none;color:var(--cream)}
   .card .thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.4rem}
   .card .body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
   .tag{align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px}
   .card h3{font-family:'Nunito';font-weight:800;font-size:1.15rem;color:#fff;margin-bottom:6px}
   .card p{font-size:.92rem;font-weight:600;opacity:.88;flex:1}
   .card .meta{margin-top:12px;font-weight:800;font-size:.85rem;color:var(--gold)}
+  .card .live-badge{display:inline-block;background:var(--green);color:#fff;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-top:10px}
   .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
   .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.8rem;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
   .chip:hover{border-color:var(--gold);transform:translateY(-2px)}
@@ -125,7 +124,6 @@
   .poster .pfallback .emo{font-size:3rem}
   .poster .pfallback .ttl{font-family:'Lilita One',cursive;color:#fff;font-size:1.05rem;line-height:1.05;text-shadow:0 2px 0 rgba(0,0,0,.4)}
   .poster .pfallback .yr{font-weight:800;font-size:.8rem;color:var(--gold)}
-  .poster::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 16px,rgba(0,0,0,.18) 16px,rgba(0,0,0,.18) 20px);opacity:.25;z-index:0}
   .movie .mbar{position:absolute;bottom:0;left:0;right:0;z-index:2;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));padding:26px 12px 12px;display:flex;justify-content:space-between;align-items:flex-end}
   .movie .mname{font-weight:800;color:#fff;font-size:.92rem;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.8)}
   .movie .mtag{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;background:var(--gold);color:var(--ink);padding:3px 8px;border-radius:999px;flex-shrink:0;margin-left:6px}
@@ -142,6 +140,8 @@
   .shop-note a{color:var(--gold)}
   .soon .thumb{position:relative}
   .soon-badge{position:absolute;top:10px;right:10px;background:var(--blue);color:var(--ink);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 9px;border-radius:999px}
+  .live-tile{border-color:rgba(15,122,61,.6)!important}
+  .live-tile:hover{border-color:var(--gold)!important}
 
   /* SPIRIT INDEX */
   .csi-wrap{max-width:680px;margin:0 auto;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.18));border:2px solid rgba(255,200,61,.4);border-radius:26px;padding:32px 24px 28px;box-shadow:var(--shadow)}
@@ -173,10 +173,6 @@
   .foot-links a:hover{color:var(--gold)}
   .foot-note{opacity:.6;font-size:.82rem;font-weight:600;max-width:560px;margin:8px auto 0}
   .foot-note a{color:var(--gold)}
-  .social{display:flex;gap:12px;justify-content:center;margin:16px 0 6px}
-  .social a{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;color:var(--cream);transition:.15s}
-  .social a:hover{background:var(--gold);color:var(--ink);transform:translateY(-3px)}
-  .social svg{width:20px;height:20px}
   .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
   .sound-toggle{position:fixed;right:18px;bottom:18px;z-index:60;width:54px;height:54px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(180deg,#a30d1f,#7a0a17);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 20px -6px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;transition:.15s}
   .sound-toggle:hover{transform:translateY(-3px) scale(1.05)}
@@ -188,7 +184,7 @@
 <body>
 <div class="lights" id="lights"></div>
 <div class="snow" id="snow"></div>
-<button class="sound-toggle off" id="sound-toggle" aria-label="Toggle bell sounds" title="Toggle bell sounds">🔕</button>
+<button class="sound-toggle off" id="sound-toggle" aria-label="Toggle bell sounds">🔕</button>
 <div class="sound-hint" id="sound-hint">🔔 Click for sleigh bells</div>
 
 <nav><div class="nav-inner">
@@ -199,9 +195,9 @@
     <li><a href="#movies">Movies</a></li>
     <li><a href="#books">Bookstore</a></li>
     <li><a href="/news.html">News</a></li>
+    <li><a href="/santa.html">🎅 Santa</a></li>
     <li><a href="/penny.html">🐾 Penny</a></li>
   </ul>
-  <a href="#more" class="nav-cta">Join the Party</a>
 </div></nav>
 
 <div class="wrap">
@@ -273,71 +269,39 @@
     </div>
     <div class="grid g4" id="movie-grid">
       <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="It's a Wonderful Life" data-year="1946" href="https://www.themoviedb.org/search?query=It%27s%20a%20Wonderful%20Life">
-        <div class="poster"><img class="pimg" alt="It's a Wonderful Life poster">
-          <div class="pfallback"><span class="emo">🔔</span><span class="ttl">It's a Wonderful Life</span><span class="yr">1946</span></div>
-          <div class="mbar"><span class="mname">It's a Wonderful Life</span><span class="mtag">Classic</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="It's a Wonderful Life poster"><div class="pfallback"><span class="emo">🔔</span><span class="ttl">It's a Wonderful Life</span><span class="yr">1946</span></div><div class="mbar"><span class="mname">It's a Wonderful Life</span><span class="mtag">Classic</span></div></div></a>
       <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="Miracle on 34th Street" data-year="1947" href="https://www.themoviedb.org/search?query=Miracle%20on%2034th%20Street%201947">
-        <div class="poster"><img class="pimg" alt="Miracle on 34th Street poster">
-          <div class="pfallback"><span class="emo">🎅</span><span class="ttl">Miracle on 34th Street</span><span class="yr">1947</span></div>
-          <div class="mbar"><span class="mname">Miracle on 34th Street</span><span class="mtag">Classic</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Miracle on 34th Street poster"><div class="pfallback"><span class="emo">🎅</span><span class="ttl">Miracle on 34th Street</span><span class="yr">1947</span></div><div class="mbar"><span class="mname">Miracle on 34th Street</span><span class="mtag">Classic</span></div></div></a>
       <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="White Christmas" data-year="1954" href="https://www.themoviedb.org/search?query=White%20Christmas%201954">
-        <div class="poster"><img class="pimg" alt="White Christmas poster">
-          <div class="pfallback"><span class="emo">❄️</span><span class="ttl">White Christmas</span><span class="yr">1954</span></div>
-          <div class="mbar"><span class="mname">White Christmas</span><span class="mtag">Classic</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="White Christmas poster"><div class="pfallback"><span class="emo">❄️</span><span class="ttl">White Christmas</span><span class="yr">1954</span></div><div class="mbar"><span class="mname">White Christmas</span><span class="mtag">Classic</span></div></div></a>
       <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="A Christmas Story" data-year="1983" href="https://www.themoviedb.org/search?query=A%20Christmas%20Story%201983">
-        <div class="poster"><img class="pimg" alt="A Christmas Story poster">
-          <div class="pfallback"><span class="emo">🔫</span><span class="ttl">A Christmas Story</span><span class="yr">1983</span></div>
-          <div class="mbar"><span class="mname">A Christmas Story</span><span class="mtag">Classic</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="A Christmas Story poster"><div class="pfallback"><span class="emo">🔫</span><span class="ttl">A Christmas Story</span><span class="yr">1983</span></div><div class="mbar"><span class="mname">A Christmas Story</span><span class="mtag">Classic</span></div></div></a>
       <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="National Lampoon's Christmas Vacation" data-year="1989" href="https://www.themoviedb.org/search?query=National%20Lampoon%27s%20Christmas%20Vacation">
-        <div class="poster"><img class="pimg" alt="Christmas Vacation poster">
-          <div class="pfallback"><span class="emo">💡</span><span class="ttl">Christmas Vacation</span><span class="yr">1989</span></div>
-          <div class="mbar"><span class="mname">Christmas Vacation</span><span class="mtag">Comedy</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Christmas Vacation poster"><div class="pfallback"><span class="emo">💡</span><span class="ttl">Christmas Vacation</span><span class="yr">1989</span></div><div class="mbar"><span class="mname">Christmas Vacation</span><span class="mtag">Comedy</span></div></div></a>
       <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="Scrooged" data-year="1988" href="https://www.themoviedb.org/search?query=Scrooged%201988">
-        <div class="poster"><img class="pimg" alt="Scrooged poster">
-          <div class="pfallback"><span class="emo">👻</span><span class="ttl">Scrooged</span><span class="yr">1988</span></div>
-          <div class="mbar"><span class="mname">Scrooged</span><span class="mtag">Comedy</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Scrooged poster"><div class="pfallback"><span class="emo">👻</span><span class="ttl">Scrooged</span><span class="yr">1988</span></div><div class="mbar"><span class="mname">Scrooged</span><span class="mtag">Comedy</span></div></div></a>
       <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="Elf" data-year="2003" href="https://www.themoviedb.org/search?query=Elf%202003">
-        <div class="poster"><img class="pimg" alt="Elf poster">
-          <div class="pfallback"><span class="emo">🧝</span><span class="ttl">Elf</span><span class="yr">2003</span></div>
-          <div class="mbar"><span class="mname">Elf</span><span class="mtag">Comedy</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Elf poster"><div class="pfallback"><span class="emo">🧝</span><span class="ttl">Elf</span><span class="yr">2003</span></div><div class="mbar"><span class="mname">Elf</span><span class="mtag">Comedy</span></div></div></a>
       <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="Home Alone" data-year="1990" href="https://www.themoviedb.org/search?query=Home%20Alone%201990">
-        <div class="poster"><img class="pimg" alt="Home Alone poster">
-          <div class="pfallback"><span class="emo">🏠</span><span class="ttl">Home Alone</span><span class="yr">1990</span></div>
-          <div class="mbar"><span class="mname">Home Alone</span><span class="mtag">Comedy</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Home Alone poster"><div class="pfallback"><span class="emo">🏠</span><span class="ttl">Home Alone</span><span class="yr">1990</span></div><div class="mbar"><span class="mname">Home Alone</span><span class="mtag">Comedy</span></div></div></a>
       <a class="movie" data-cat="family" target="_blank" rel="noopener" data-title="The Santa Clause" data-year="1994" href="https://www.themoviedb.org/search?query=The%20Santa%20Clause%201994">
-        <div class="poster"><img class="pimg" alt="The Santa Clause poster">
-          <div class="pfallback"><span class="emo">🤶</span><span class="ttl">The Santa Clause</span><span class="yr">1994</span></div>
-          <div class="mbar"><span class="mname">The Santa Clause</span><span class="mtag">Family</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="The Santa Clause poster"><div class="pfallback"><span class="emo">🤶</span><span class="ttl">The Santa Clause</span><span class="yr">1994</span></div><div class="mbar"><span class="mname">The Santa Clause</span><span class="mtag">Family</span></div></div></a>
       <a class="movie" data-cat="family" target="_blank" rel="noopener" data-title="How the Grinch Stole Christmas" data-year="2000" href="https://www.themoviedb.org/search?query=How%20the%20Grinch%20Stole%20Christmas%202000">
-        <div class="poster"><img class="pimg" alt="How the Grinch Stole Christmas poster">
-          <div class="pfallback"><span class="emo">😈</span><span class="ttl">How the Grinch Stole Christmas</span><span class="yr">2000</span></div>
-          <div class="mbar"><span class="mname">Grinch (Live-Action)</span><span class="mtag">Family</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="How the Grinch Stole Christmas poster"><div class="pfallback"><span class="emo">😈</span><span class="ttl">How the Grinch Stole Christmas</span><span class="yr">2000</span></div><div class="mbar"><span class="mname">Grinch (Live-Action)</span><span class="mtag">Family</span></div></div></a>
       <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="Rudolph the Red-Nosed Reindeer" data-year="1964" href="https://www.themoviedb.org/search?query=Rudolph%20the%20Red-Nosed%20Reindeer%201964">
-        <div class="poster"><img class="pimg" alt="Rudolph poster">
-          <div class="pfallback"><span class="emo">🦌</span><span class="ttl">Rudolph the Red-Nosed Reindeer</span><span class="yr">1964</span></div>
-          <div class="mbar"><span class="mname">Rudolph</span><span class="mtag">Cartoon</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Rudolph poster"><div class="pfallback"><span class="emo">🦌</span><span class="ttl">Rudolph the Red-Nosed Reindeer</span><span class="yr">1964</span></div><div class="mbar"><span class="mname">Rudolph</span><span class="mtag">Cartoon</span></div></div></a>
       <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="A Charlie Brown Christmas" data-year="1965" href="https://www.themoviedb.org/search?query=A%20Charlie%20Brown%20Christmas">
-        <div class="poster"><img class="pimg" alt="A Charlie Brown Christmas poster">
-          <div class="pfallback"><span class="emo">🎄</span><span class="ttl">A Charlie Brown Christmas</span><span class="yr">1965</span></div>
-          <div class="mbar"><span class="mname">Charlie Brown</span><span class="mtag">Cartoon</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="A Charlie Brown Christmas poster"><div class="pfallback"><span class="emo">🎄</span><span class="ttl">A Charlie Brown Christmas</span><span class="yr">1965</span></div><div class="mbar"><span class="mname">Charlie Brown</span><span class="mtag">Cartoon</span></div></div></a>
       <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="The Polar Express" data-year="2004" href="https://www.themoviedb.org/search?query=The%20Polar%20Express">
-        <div class="poster"><img class="pimg" alt="The Polar Express poster">
-          <div class="pfallback"><span class="emo">🚂</span><span class="ttl">The Polar Express</span><span class="yr">2004</span></div>
-          <div class="mbar"><span class="mname">The Polar Express</span><span class="mtag">Cartoon</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="The Polar Express poster"><div class="pfallback"><span class="emo">🚂</span><span class="ttl">The Polar Express</span><span class="yr">2004</span></div><div class="mbar"><span class="mname">The Polar Express</span><span class="mtag">Cartoon</span></div></div></a>
       <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="Klaus" data-year="2019" href="https://www.themoviedb.org/search?query=Klaus%202019">
-        <div class="poster"><img class="pimg" alt="Klaus poster">
-          <div class="pfallback"><span class="emo">📮</span><span class="ttl">Klaus</span><span class="yr">2019</span></div>
-          <div class="mbar"><span class="mname">Klaus</span><span class="mtag">Cartoon</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="Klaus poster"><div class="pfallback"><span class="emo">📮</span><span class="ttl">Klaus</span><span class="yr">2019</span></div><div class="mbar"><span class="mname">Klaus</span><span class="mtag">Cartoon</span></div></div></a>
       <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="The Nightmare Before Christmas" data-year="1993" href="https://www.themoviedb.org/search?query=The%20Nightmare%20Before%20Christmas">
-        <div class="poster"><img class="pimg" alt="The Nightmare Before Christmas poster">
-          <div class="pfallback"><span class="emo">🎃</span><span class="ttl">The Nightmare Before Christmas</span><span class="yr">1993</span></div>
-          <div class="mbar"><span class="mname">Nightmare Before Christmas</span><span class="mtag">Cartoon</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="The Nightmare Before Christmas poster"><div class="pfallback"><span class="emo">🎃</span><span class="ttl">The Nightmare Before Christmas</span><span class="yr">1993</span></div><div class="mbar"><span class="mname">Nightmare Before Christmas</span><span class="mtag">Cartoon</span></div></div></a>
       <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="The Grinch" data-year="2018" href="https://www.themoviedb.org/search?query=The%20Grinch%202018">
-        <div class="poster"><img class="pimg" alt="The Grinch 2018 poster">
-          <div class="pfallback"><span class="emo">💚</span><span class="ttl">The Grinch</span><span class="yr">2018</span></div>
-          <div class="mbar"><span class="mname">The Grinch (2018)</span><span class="mtag">Cartoon</span></div></div></a>
+        <div class="poster"><img class="pimg" alt="The Grinch 2018 poster"><div class="pfallback"><span class="emo">💚</span><span class="ttl">The Grinch</span><span class="yr">2018</span></div><div class="mbar"><span class="mname">The Grinch (2018)</span><span class="mtag">Cartoon</span></div></div></a>
     </div>
-    <p class="shop-note" id="tmdb-note">🎬 Poster art via <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. Tap any film to view on TMDB.</p>
+    <p class="shop-note" id="tmdb-note">🎬 Poster art via <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. Tap any film to view on TMDB. <a href="/movies.html" style="color:var(--gold);margin-left:8px">See all 240+ titles →</a></p>
   </section>
 
   <!-- BOOKSTORE -->
@@ -364,7 +328,7 @@
         <div class="cover" style="background:linear-gradient(160deg,#063d20,#a30d1f)">🔍<img class="cimg" alt=""></div>
         <div class="info"><h4>Hercule Poirot's Christmas</h4><div class="auth">Agatha Christie</div><span class="buy">Shop 📖</span></div></a>
     </div>
-    <p class="shop-note">📦 Covers via <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>. More festive shelves loading — picture books, cozy mysteries & Christmas cookbooks.</p>
+    <p class="shop-note">📦 Covers via <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>. <a href="/books.html" style="color:var(--gold);margin-left:8px">Browse all 274+ books →</a></p>
   </section>
 
   <!-- SPIRIT INDEX -->
@@ -403,19 +367,41 @@
     </div>
   </section>
 
-  <!-- MORE -->
+  <!-- MORE MERRY MADNESS -->
   <section class="block" id="more">
     <div class="sec-head"><div class="eyebrow">🎪 The Palooza Grows</div><h2>More Merry Madness</h2>
-      <p>This is just the tree-lighting. Here's what the elves are wiring up next.</p></div>
+      <p>More Christmas, more chaos, more joy — all year long.</p></div>
     <div class="grid g4">
-      <div class="card soon"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)">🎅<span class="soon-badge">Live Soon</span></div>
-        <div class="body"><h3>Santa Status</h3><p>Real-time North Pole updates, 365 days a year. (Currently: feeding the reindeer.)</p></div></div>
-      <div class="card soon"><div class="thumb" style="background:linear-gradient(135deg,#ffc83d,#ff4fa3)">📰<span class="soon-badge">Live Soon</span></div>
-        <div class="body"><h3>Christmas News</h3><p>Hallmark drops, tree lightings, parades & Santa news — refreshed daily.</p></div></div>
-      <div class="card soon"><div class="thumb" style="background:linear-gradient(135deg,#27c2ff,#7CFF8E)">📬<span class="soon-badge">Live Soon</span></div>
-        <div class="body"><h3>Letter to Santa</h3><p>Type your wish, print a beautiful keepsake letter straight from the North Pole.</p></div></div>
-      <div class="card soon"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#ffc83d)">🧑‍🤝‍🧑<span class="soon-badge">Live Soon</span></div>
-        <div class="body"><h3>Community Palooza</h3><p>Share your tree, join challenges, and swap cookie recipes with fellow Christmas obsessives.</p></div></div>
+      <a href="/santa.html" class="card linked live-tile">
+        <div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)">🎅</div>
+        <div class="body">
+          <h3>Santa Status</h3>
+          <p>Real-time North Pole updates, 365 days a year. Find out what Santa's up to right now.</p>
+          <span class="live-badge">✅ Live Now</span>
+        </div>
+      </a>
+      <a href="/news.html" class="card linked live-tile">
+        <div class="thumb" style="background:linear-gradient(135deg,#ffc83d,#ff4fa3)">📰</div>
+        <div class="body">
+          <h3>Christmas News</h3>
+          <p>Hallmark drops, tree lightings, parades & Santa news — refreshed every morning.</p>
+          <span class="live-badge">✅ Live Now</span>
+        </div>
+      </a>
+      <a href="/santa-letter.html" class="card linked soon">
+        <div class="thumb" style="background:linear-gradient(135deg,#27c2ff,#7CFF8E)">📬<span class="soon-badge">Coming Soon</span></div>
+        <div class="body">
+          <h3>Letter to Santa</h3>
+          <p>Type your wish, get a personal reply straight from the North Pole. Santa reads every letter.</p>
+        </div>
+      </a>
+      <div class="card soon">
+        <div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#ffc83d)">🧑‍🤝‍🧑<span class="soon-badge">Coming Soon</span></div>
+        <div class="body">
+          <h3>Community Palooza</h3>
+          <p>Share your tree, join challenges, and swap cookie recipes with fellow Christmas obsessives.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -429,34 +415,32 @@
     <li><a href="#movies">Movies</a></li>
     <li><a href="#books">Bookstore</a></li>
     <li><a href="/news.html">News</a></li>
+    <li><a href="/santa.html">🎅 Santa</a></li>
     <li><a href="/penny.html">🐾 Penny</a></li>
   </ul>
-  <div class="social">
-    <a href="#" aria-label="ChristmasPalooza on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="ChristmasPalooza on TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.4 2.3 1.9 4 4.2 4.3v2.7c-1.5.1-2.9-.4-4.2-1.2v6.1c0 3.3-2.5 5.4-5.3 5.4-2.7 0-4.9-2-4.9-4.8 0-2.9 2.4-4.9 5.3-4.6v2.8c-.4-.1-.8-.2-1.2-.1-1 .1-1.7.9-1.6 2 .1 1 1 1.8 2 1.7 1.1 0 1.9-.9 1.9-2.1V3H14z"/></svg></a>
-    <a href="#" aria-label="ChristmasPalooza on Pinterest"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.1-2 .1-2.8l1.1-4.8s-.3-.6-.3-1.4c0-1.3.8-2.3 1.7-2.3.8 0 1.2.6 1.2 1.4 0 .8-.5 2.1-.8 3.2-.2 1 .5 1.7 1.4 1.7 1.7 0 3-1.8 3-4.4 0-2.3-1.6-3.9-4-3.9-2.7 0-4.3 2-4.3 4.2 0 .8.3 1.7.7 2.2.1.1.1.2.1.3l-.2.9c0 .2-.2.3-.4.1-1-.5-1.6-1.9-1.6-3.1 0-2.5 1.8-4.8 5.3-4.8 2.8 0 4.9 2 4.9 4.6 0 2.8-1.7 5-4.2 5-.8 0-1.6-.4-1.9-.9l-.5 2c-.2.7-.7 1.7-1 2.3A10 10 0 1 0 12 2z"/></svg></a>
-  </div>
   <p class="foot-note">Christmas all year. Party all day. 🎅 Book covers via <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a> · Movie data by <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>.</p>
   <p class="foot-copy">© 2026 ChristmasPalooza · Made with ♥ and too much eggnog 🥚 · Penny approved. 🐾</p>
 </footer>
 
 <script>
-  // ===== TMDB KEY =====
-  const TMDB_KEY = "c3e7d08b36778ab325e8f6c461a6e118";
+  const TMDB_KEY="c3e7d08b36778ab325e8f6c461a6e118";
 
-  // String lights
   const lights=document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
 
-  // Snow
-  const snow=document.getElementById('snow');const flakes=['❄','❅','❆','•'];
-  for(let i=0;i<55;i++){const f=document.createElement('div');f.className='flake';
+  const snow=document.getElementById('snow');
+  const flakes=['❄','❅','❆','•'];
+  for(let i=0;i<55;i++){
+    const f=document.createElement('div');f.className='flake';
     f.textContent=flakes[Math.floor(Math.random()*flakes.length)];
-    f.style.left=Math.random()*100+'vw';f.style.fontSize=(Math.random()*14+8)+'px';
-    f.style.animationDuration=(Math.random()*8+6)+'s';f.style.animationDelay=(-Math.random()*10)+'s';
-    f.style.opacity=Math.random()*0.6+0.3;snow.appendChild(f);}
+    f.style.left=Math.random()*100+'vw';
+    f.style.fontSize=(Math.random()*14+8)+'px';
+    f.style.animationDuration=(Math.random()*8+6)+'s';
+    f.style.animationDelay=(-Math.random()*10)+'s';
+    f.style.opacity=Math.random()*0.6+0.3;
+    snow.appendChild(f);
+  }
 
-  // Countdown
   function nextXmas(){const now=new Date();let y=now.getFullYear();let x=new Date(y,11,25,0,0,0);if(now>x){x=new Date(y+1,11,25,0,0,0);}return x;}
   function daysUntil(t){return Math.max(0,Math.ceil((t-new Date())/86400000));}
   function pad(n){return String(n).padStart(2,'0');}
@@ -464,23 +448,27 @@
     const now=new Date(),x=nextXmas();let diff=Math.max(0,x-now);
     const d=Math.floor(diff/86400000);diff-=d*86400000;
     const h=Math.floor(diff/3600000);diff-=h*3600000;
-    const m=Math.floor(diff/60000);diff-=m*60000;const s=Math.floor(diff/1000);
+    const m=Math.floor(diff/60000);diff-=m*60000;
+    const s=Math.floor(diff/1000);
     document.getElementById('dbig').textContent=d;
     document.getElementById('h').textContent=pad(h);
     document.getElementById('m').textContent=pad(m);
     document.getElementById('s').textContent=pad(s);
     const y=now.getFullYear();
-    const eve=new Date(y,11,24);if(now>eve)eve.setFullYear(y+1);document.getElementById('eve').textContent=daysUntil(eve);
+    const eve=new Date(y,11,24);if(now>eve)eve.setFullYear(y+1);
+    document.getElementById('eve').textContent=daysUntil(eve);
     function bF(yr){let nov=new Date(yr,10,1);let thu=(11-nov.getDay())%7;let fourth=1+thu+21;return new Date(yr,10,fourth+1);}
-    let bf=bF(y);if(now>bf)bf=bF(y+1);document.getElementById('bf').textContent=daysUntil(bf);
-    let hm=new Date(y,9,24);if(now>hm)hm.setFullYear(y+1);document.getElementById('hm').textContent=daysUntil(hm);
-    const start=new Date(y,0,1),end=new Date(y+1,0,1),pct=((now-start)/(end-start)*100);
+    let bf=bF(y);if(now>bf)bf=bF(y+1);
+    document.getElementById('bf').textContent=daysUntil(bf);
+    let hm=new Date(y,9,24);if(now>hm)hm.setFullYear(y+1);
+    document.getElementById('hm').textContent=daysUntil(hm);
+    const start=new Date(y,0,1),end=new Date(y+1,0,1);
+    const pct=((now-start)/(end-start)*100);
     document.getElementById('yearpct').textContent=pct.toFixed(1);
     document.getElementById('yearfill').style.width=pct+'%';
   }
   tick();setInterval(tick,1000);
 
-  // Rotating spark
   const sparks=[
     "Fun fact: The first decorated Christmas trees were hung upside down from ceilings in medieval Europe!",
     "🎵 Today's earworm: 'Jingle Bells' was originally written for Thanksgiving. Oops.",
@@ -493,23 +481,24 @@
   ];
   document.getElementById('spark').textContent=sparks[Math.floor(Math.random()*sparks.length)];
 
-  // Book covers from Open Library
   (function loadBookCovers(){
     document.querySelectorAll('.book[data-ol]').forEach(async card=>{
-      const q=card.getAttribute('data-ol');const img=card.querySelector('.cimg');
+      const q=card.getAttribute('data-ol');
+      const img=card.querySelector('.cimg');
       try{
         const r=await fetch('https://openlibrary.org/search.json?'+q+'&limit=1&fields=cover_i');
-        const j=await r.json();const id=j.docs&&j.docs[0]&&j.docs[0].cover_i;
-        if(id){img.src='https://covers.openlibrary.org/b/id/'+id+'-L.jpg';
-          img.onload=()=>{img.classList.add('loaded');};}
+        const j=await r.json();
+        const id=j.docs&&j.docs[0]&&j.docs[0].cover_i;
+        if(id){
+          img.src='https://covers.openlibrary.org/b/id/'+id+'-L.jpg';
+          img.onload=()=>{img.classList.add('loaded');};
+        }
       }catch(e){}
     });
   })();
 
-  // Movie posters from TMDB
   (function loadMoviePosters(){
-    if(!TMDB_KEY){return;}
-    document.getElementById('tmdb-note').innerHTML='🎬 Posters live from <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. Tap any film to view.';
+    if(!TMDB_KEY)return;
     document.querySelectorAll('.movie[data-title]').forEach(async card=>{
       const t=card.getAttribute('data-title'),yr=card.getAttribute('data-year');
       const img=card.querySelector('.pimg');
@@ -517,13 +506,14 @@
         const u='https://api.themoviedb.org/3/search/movie?api_key='+TMDB_KEY+'&query='+encodeURIComponent(t)+'&year='+yr;
         const r=await fetch(u);const j=await r.json();
         const hit=(j.results||[]).find(x=>x.poster_path)||j.results&&j.results[0];
-        if(hit&&hit.poster_path){img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;
-          img.onload=()=>{img.classList.add('loaded');};}
+        if(hit&&hit.poster_path){
+          img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;
+          img.onload=()=>{img.classList.add('loaded');};
+        }
       }catch(e){}
     });
   })();
 
-  // Movie filter chips
   (function movieFilters(){
     const chips=document.querySelectorAll('#filters .chip');
     const cards=document.querySelectorAll('#movie-grid .movie');
@@ -532,13 +522,11 @@
       chip.classList.add('active');
       const f=chip.getAttribute('data-filter');
       cards.forEach(card=>{
-        const show=(f==='all'||card.getAttribute('data-cat')===f);
-        card.classList.toggle('hide',!show);
+        card.classList.toggle('hide',f!=='all'&&card.getAttribute('data-cat')!==f);
       });
     }));
   })();
 
-  // ===== Christmas Spirit Index =====
   (function(){
     const F=[
       {emo:'🗓️',name:'Countdown Proximity',max:25,vals:[4,3,3,3,4,5,6,8,12,17,22,25],quip:'The only clock that matters.'},
@@ -611,11 +599,9 @@
     slider.value=todayM;update(todayM);
   })();
 
-  // ===== Ambient sleigh-bell jingle =====
   (function(){
-    var AUDIO_SRC='/audio/sleigh-bells.mp3';
     var audio=document.createElement('audio');
-    audio.src=AUDIO_SRC;audio.loop=true;audio.volume=0;
+    audio.src='/audio/sleigh-bells.mp3';audio.loop=true;audio.volume=0;
     document.body.appendChild(audio);
     var on=false,autoIntent=true,firstGesture=null,fadeTimer=null;
     var toggle=document.getElementById('sound-toggle');
@@ -624,7 +610,9 @@
       clearInterval(fadeTimer);var start=audio.volume,steps=20,step=0;
       fadeTimer=setInterval(function(){step++;
         audio.volume=Math.max(0,Math.min(1,start+(target-start)*(step/steps)));
-        if(step>=steps){clearInterval(fadeTimer);if(cb)cb();}},dur/steps);}
+        if(step>=steps){clearInterval(fadeTimer);if(cb)cb();}
+      },dur/steps);
+    }
     function showHint(){hint.classList.add('show');setTimeout(function(){hint.classList.remove('show');},6000);}
     function disarm(){if(firstGesture){document.removeEventListener('pointerdown',firstGesture);document.removeEventListener('keydown',firstGesture);firstGesture=null;}}
     function start(){
@@ -632,10 +620,12 @@
       audio.play().then(function(){
         on=true;toggle.textContent='🔔';toggle.classList.remove('off');hint.classList.remove('show');
         fadeTo(0.4,900);
-      }).catch(function(){});}
+      }).catch(function(){});
+    }
     function stop(){
       on=false;autoIntent=false;toggle.textContent='🔕';toggle.classList.add('off');
-      fadeTo(0,400,function(){audio.pause();});}
+      fadeTo(0,400,function(){audio.pause();});
+    }
     toggle.addEventListener('click',function(){on?stop():start();});
     window.addEventListener('load',function(){
       audio.play().then(function(){
