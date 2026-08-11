@@ -72,8 +72,9 @@
   @media(max-width:1100px){.movie-grid{grid-template-columns:repeat(4,1fr)}}
   @media(max-width:800px){.movie-grid{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:560px){.movie-grid{grid-template-columns:repeat(2,1fr)}}
-  .movie-card{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.16);transition:.2s;display:block;text-decoration:none}
+  .movie-card{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.16);transition:.2s;display:block;text-decoration:none;cursor:pointer}
   .movie-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .movie-card:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   .poster{position:relative;aspect-ratio:2/3;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center}
   .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:1}
   .poster img.loaded{opacity:1}
@@ -88,6 +89,34 @@
   .mbar .myear{font-size:.7rem;font-weight:700;opacity:.7}
   .mbar .mrating{font-size:.7rem;font-weight:800;color:var(--gold)}
   .type-badge{position:absolute;top:8px;left:8px;z-index:3;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 7px;border-radius:999px}
+
+  /* Watch modal */
+  .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(4,10,6,.82);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow-y:auto}
+  .modal-overlay.show{display:flex}
+  .modal-card{background:linear-gradient(180deg,#0c2a17,#071c0f);border:2px solid rgba(255,200,61,.4);border-radius:22px;max-width:640px;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);position:relative;overflow:hidden}
+  .modal-close{position:absolute;top:12px;right:12px;z-index:5;width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.4);background:rgba(0,0,0,.4);color:#fff;font-size:1.1rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+  .modal-close:hover{border-color:var(--gold);color:var(--gold)}
+  .modal-hero{display:flex;gap:18px;padding:22px 22px 0}
+  .modal-poster{width:120px;flex-shrink:0;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.5);aspect-ratio:2/3;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));display:flex;align-items:center;justify-content:center}
+  .modal-poster img{width:100%;height:100%;object-fit:cover}
+  .modal-title{font-family:'Lilita One',cursive;font-size:1.5rem;color:#fff;line-height:1.1;text-shadow:0 2px 0 var(--red-deep)}
+  .modal-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .modal-meta span{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+  .modal-overview{margin-top:10px;font-size:.9rem;line-height:1.4;opacity:.85}
+  .modal-body{padding:18px 22px 24px}
+  .watch-section h3{font-family:'Lilita One',cursive;font-weight:400;font-size:1.05rem;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+  .watch-group{margin-bottom:14px}
+  .watch-group .wg-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:.7;margin-bottom:8px;display:block}
+  .provider-row{display:flex;gap:10px;flex-wrap:wrap}
+  .provider-chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px 12px 6px 6px;text-decoration:none;color:var(--cream);font-weight:700;font-size:.82rem;transition:.15s}
+  .provider-chip:hover{border-color:var(--gold);background:rgba(255,255,255,.14)}
+  .provider-chip img{width:32px;height:32px;border-radius:8px;display:block}
+  .watch-empty{font-size:.88rem;opacity:.75;line-height:1.4;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:14px}
+  .watch-loading{font-size:.88rem;opacity:.7;padding:8px 0}
+  .modal-tmdb-link{display:inline-block;margin-top:16px;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,200,61,.4)}
+  .modal-tmdb-link:hover{border-color:var(--gold)}
+  .watch-attr{margin-top:14px;font-size:.68rem;opacity:.55;line-height:1.4}
+  @media(max-width:520px){.modal-hero{flex-direction:column}.modal-poster{width:100px}}
   .type-movie{background:var(--red);color:#fff}
   .type-tv{background:var(--blue);color:var(--ink)}
   .load-more{display:block;margin:36px auto 0;background:var(--red);color:#fff;border:none;font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:14px 32px;border-radius:999px;cursor:pointer;font-size:1rem;box-shadow:0 7px 0 var(--red-deep);transition:.15s}
@@ -111,7 +140,7 @@
 <div class="lights" id="lights"></div>
 
 <nav><div class="nav-inner">
-  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <a href="/" class="logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
   <ul class="nav-links">
     <li><a href="/">Countdown</a></li>
     <li><a href="/recipes.html">Recipes</a></li>
@@ -123,7 +152,7 @@
 
 <div class="wrap">
   <div class="page-head">
-    <span class="eyebrow">🎬 240+ Titles</span>
+    <span class="eyebrow">240+ Titles</span>
     <h1>Christmas Movies & TV</h1>
     <p>Every Christmas movie and TV show worth watching — classics, comedies, cartoons, Hallmark, and the great holiday debates.</p>
   </div>
@@ -155,13 +184,13 @@
       <button class="chip" data-filter="era" data-value="2020s">2020s</button>
     </div>
     <div class="filter-row">
-      <span class="filter-label">🔥 Hot</span>
-      <button class="chip debate-chip" data-filter="debatable" data-value="true">🤔 Debatable Christmas Movies</button>
+      <span class="filter-label">Hot</span>
+      <button class="chip debate-chip" data-filter="debatable" data-value="true">Debatable Christmas Movies</button>
     </div>
   </div>
 
   <div class="debate-banner" id="debate-banner">
-    <span class="ic">🤔</span>
+    
     <div class="txt"><b>The Great Christmas Movie Debate.</b> Are these really Christmas movies? You decide — and tell us why.</div>
   </div>
 
@@ -177,14 +206,36 @@
   </div>
 
   <div class="movie-grid" id="movie-grid">
-    <div class="loading">🎄 Loading Christmas movies...</div>
+    <div class="loading">Loading Christmas movies...</div>
   </div>
 
   <button class="load-more" id="load-more" style="display:none">Load More</button>
 </div>
 
+<div class="modal-overlay" id="watch-modal" role="dialog" aria-modal="true" aria-label="Where to watch">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" aria-label="Close">&#10005;</button>
+    <div class="modal-hero">
+      <div class="modal-poster" id="modal-poster"></div>
+      <div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-overview" id="modal-overview"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="watch-section">
+        <h3>Where to Watch</h3>
+        <div id="watch-content"><div class="watch-loading">Checking streaming availability&hellip;</div></div>
+        <a href="#" target="_blank" rel="noopener" class="modal-tmdb-link" id="modal-tmdb-link">Full details on TMDB &#8599;</a>
+        <p class="watch-attr">Streaming availability sourced from JustWatch via TMDB, for the United States, and can change daily. Air dates and times for cable/broadcast TV are not covered by this data &mdash; check your provider's guide for scheduled airings.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
-  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <a href="/" style="text-decoration:none"><div class="foot-logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
   <p class="foot-copy">© 2026 ChristmasPalooza · Movie data by TMDB · Christmas All Year. Party All Day.</p>
 </footer>
 
@@ -192,6 +243,9 @@
   const SUPABASE_URL = 'https://sjpjzdbzufvqikzazatf.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcGp6ZGJ6dWZ2cWlremF6YXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NTU1NzQsImV4cCI6MjA5NjUzMTU3NH0.pEdyCUyb2n9w07hcvzISC-02FS88A-cofdF-vDdX_K4';
   const TMDB_IMG = 'https://image.tmdb.org/t/p/w342';
+  const TMDB_KEY = 'c3e7d08b36778ab325e8f6c461a6e118';
+  const TMDB_PROVIDER_IMG = 'https://image.tmdb.org/t/p/w92';
+  const WATCH_REGION = 'US';
   const PAGE_SIZE = 40;
 
   let allMovies = [];
@@ -238,23 +292,24 @@
   }
 
   function buildCard(m) {
-    const a = document.createElement('a');
+    const a = document.createElement('div');
     a.className = 'movie-card';
-    a.href = `https://www.themoviedb.org/${m.type === 'tv' ? 'tv' : 'movie'}/${m.tmdb_id}`;
-    a.target = '_blank';
-    a.rel = 'noopener';
+    a.tabIndex = 0;
+    a.setAttribute('role', 'button');
+    a.setAttribute('aria-label', `See where to watch ${m.title}`);
+    a.addEventListener('click', () => openWatchModal(m));
+    a.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openWatchModal(m); } });
     const posterUrl = m.poster_path ? `${TMDB_IMG}${m.poster_path}` : null;
     const imgHtml = posterUrl
       ? `<img src="${posterUrl}" alt="${m.title}" loading="lazy" onload="this.classList.add('loaded')">`
       : '';
-    const rating = m.rating ? `⭐ ${m.rating}` : '';
-    const debateBadge = m.debatable ? `<span class="debate-badge">🤔 Debatable</span>` : '';
+    const rating = m.rating ? `${m.rating}` : '';
+    const debateBadge = m.debatable ? `<span class="debate-badge">Debatable</span>` : '';
     a.innerHTML = `
       <div class="poster">
         ${imgHtml}
         <div class="fallback">
-          <span class="emo">🎄</span>
-          <span class="ttl">${m.title}</span>
+                    <span class="ttl">${m.title}</span>
           <span class="yr">${m.year || ''}</span>
         </div>
         <div class="mbar">
@@ -274,7 +329,7 @@
     const grid = document.getElementById('movie-grid');
     const batch = filtered.slice(displayed, displayed + PAGE_SIZE);
     if (batch.length === 0 && displayed === 0) {
-      grid.innerHTML = '<div class="empty">No titles match your filters — try broadening them. 🎄</div>';
+      grid.innerHTML = '<div class="empty">No titles match your filters — try broadening them.</div>';
       document.getElementById('load-more').style.display = 'none';
       return;
     }
@@ -285,6 +340,65 @@
     btn.disabled = false;
     btn.textContent = `Load More (${filtered.length - displayed} remaining)`;
   }
+
+  const watchModal = document.getElementById('watch-modal');
+  const watchCache = {};
+
+  function providerRow(list, label) {
+    if (!list || !list.length) return '';
+    const chips = list.map(p => `<a class="provider-chip" href="${p.link || '#'}" target="_blank" rel="noopener"><img src="${TMDB_PROVIDER_IMG}${p.logo_path}" alt="${p.provider_name}" loading="lazy">${p.provider_name}</a>`).join('');
+    return `<div class="watch-group"><span class="wg-label">${label}</span><div class="provider-row">${chips}</div></div>`;
+  }
+
+  async function fetchWatchProviders(m) {
+    const cacheKey = `${m.type}-${m.tmdb_id}`;
+    if (watchCache[cacheKey]) return watchCache[cacheKey];
+    const kind = m.type === 'tv' ? 'tv' : 'movie';
+    const url = `https://api.themoviedb.org/3/${kind}/${m.tmdb_id}/watch/providers?api_key=${TMDB_KEY}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const region = (data.results || {})[WATCH_REGION] || null;
+    watchCache[cacheKey] = region;
+    return region;
+  }
+
+  async function openWatchModal(m) {
+    document.getElementById('modal-title').textContent = m.title;
+    document.getElementById('modal-overview').textContent = m.overview || '';
+    document.getElementById('modal-meta').innerHTML = `
+      <span>${m.type === 'tv' ? 'TV' : 'Film'}</span>
+      ${m.year ? `<span>${m.year}</span>` : ''}
+      ${m.rating ? `<span>${m.rating} / 10</span>` : ''}`;
+    const posterUrl = m.poster_path ? `${TMDB_IMG}${m.poster_path}` : null;
+    document.getElementById('modal-poster').innerHTML = posterUrl ? `<img src="${posterUrl}" alt="${m.title}">` : '';
+    document.getElementById('modal-tmdb-link').href = `https://www.themoviedb.org/${m.type === 'tv' ? 'tv' : 'movie'}/${m.tmdb_id}`;
+    const watchContent = document.getElementById('watch-content');
+    watchContent.innerHTML = '<div class="watch-loading">Checking streaming availability&hellip;</div>';
+    watchModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+
+    try {
+      const region = await fetchWatchProviders(m);
+      if (!region) {
+        watchContent.innerHTML = '<div class="watch-empty">Not currently available to stream, rent, or buy in the US. Check back closer to the holidays &mdash; Christmas titles rotate onto streaming often.</div>';
+        return;
+      }
+      const html = providerRow(region.flatrate, 'Streaming') +
+                   providerRow(region.rent, 'Rent') +
+                   providerRow(region.buy, 'Buy');
+      watchContent.innerHTML = html || '<div class="watch-empty">Not currently available to stream, rent, or buy in the US.</div>';
+    } catch (e) {
+      watchContent.innerHTML = '<div class="watch-empty">Couldn\'t load streaming availability right now &mdash; try the full TMDB link below.</div>';
+    }
+  }
+
+  function closeWatchModal() {
+    watchModal.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('modal-close').addEventListener('click', closeWatchModal);
+  watchModal.addEventListener('click', e => { if (e.target === watchModal) closeWatchModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWatchModal(); });
 
   async function loadAllMovies() {
     let page = 0;
