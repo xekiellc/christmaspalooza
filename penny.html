@@ -7,9 +7,9 @@
 <meta name="description" content="Meet Penelope — the copper-red rescue golden retriever who thinks every day is Christmas. The official mascot of ChristmasPalooza.">
 <meta property="og:title" content="Meet Penelope — ChristmasPalooza">
 <meta property="og:description" content="She wasn't invited. She came anyway. She always does. Meet Penny — the heart of ChristmasPalooza.">
+<meta property="og:image" content="https://christmaspalooza.com/Penny_AI1.png">
 <meta property="og:url" content="https://christmaspalooza.com/penny.html">
 <meta property="og:type" content="website">
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -47,28 +47,39 @@
   .logo{font-family:'Lilita One',cursive;font-size:1.7rem;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
   .logo .lc{color:#fff}
   .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;align-items:center}
   .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
   .nav-links a:hover{color:var(--gold)}
   .nav-links a.active{color:var(--gold)}
+  .nav-penny{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);vertical-align:middle;margin-right:4px}
   .wrap{max-width:860px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
-  .penny-hero{text-align:center;padding:60px 0 40px}
-  .penny-hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:18px}
+
+  .penny-hero{text-align:center;padding:40px 0 20px;position:relative}
+  .penny-hero-img{width:320px;max-width:90%;margin:0 auto 20px;display:block;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+  .penny-hero .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:14px}
   .penny-hero h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(3rem,8vw,5.5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep);line-height:.95}
-  .penny-hero .full-name{display:block;font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);font-family:'Mountains of Christmas',cursive;font-weight:700;margin-top:8px;letter-spacing:1px}
-  .penny-hero .tagline{font-size:1.2rem;font-weight:700;font-style:italic;opacity:.9;margin-top:16px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.5}
-  .penny-photo{margin:36px auto;max-width:480px;background:linear-gradient(135deg,var(--red-deep),var(--green-deep));border:3px solid var(--gold);border-radius:24px;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
-  .penny-photo .photo-placeholder{font-size:5rem;margin-bottom:12px}
-  .penny-photo .photo-note{font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:1px;opacity:.7}
-  .penny-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:21px;display:none}
-  .penny-photo img.loaded{display:block}
+  .penny-hero .full-name{display:block;font-size:clamp(1.1rem,3vw,1.6rem);color:var(--gold);font-family:'Mountains of Christmas',cursive;font-weight:700;margin-top:8px;letter-spacing:1px}
+  .penny-hero .tagline{font-size:1.15rem;font-weight:700;font-style:italic;opacity:.9;margin-top:14px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.5}
+
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:36px 0}
+  @media(max-width:600px){.gallery{grid-template-columns:1fr 1fr}}
+  .gallery img{width:100%;border-radius:16px;box-shadow:var(--shadow);border:2px solid rgba(255,200,61,.3);transition:.2s;object-fit:cover}
+  .gallery img:hover{border-color:var(--gold);transform:translateY(-4px)}
+  .gallery .gallery-main{grid-column:1/-1;max-height:380px;object-fit:cover;object-position:center 20%}
+
   .story{margin:0 auto;max-width:720px}
   .story-block{margin-bottom:48px}
   .story-block .block-eyebrow{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.75rem;margin-bottom:8px}
   .story-block h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;text-transform:uppercase;text-shadow:0 2px 0 var(--green-deep);margin-bottom:16px;line-height:1.1}
   .story-block p{font-size:1.05rem;font-weight:600;line-height:1.8;opacity:.95;margin-bottom:14px}
   .story-block p em{color:var(--gold);font-style:normal;font-weight:800}
-  .story-block .pull-quote{background:linear-gradient(135deg,rgba(255,200,61,.12),rgba(232,19,43,.08));border-left:4px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:24px 0;font-family:'Mountains of Christmas',cursive;font-weight:700;font-size:1.4rem;color:var(--gold);line-height:1.4}
+  .story-block .pull-quote{background:linear-gradient(135deg,rgba(255,200,61,.12),rgba(232,19,43,.08));border-left:4px solid var(--gold);border-radius:0 14px 14px 0;padding:18px 22px;margin:24px 0;font-family:'Mountains of Christmas',cursive;font-weight:700;font-size:1.35rem;color:var(--gold);line-height:1.4}
+
+  .inline-img{width:100%;border-radius:20px;box-shadow:var(--shadow);border:2px solid rgba(255,200,61,.3);margin:24px 0;display:block}
+  .inline-img-half{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+  .inline-img-half img{width:100%;border-radius:16px;box-shadow:var(--shadow);border:2px solid rgba(255,200,61,.3)}
+  @media(max-width:500px){.inline-img-half{grid-template-columns:1fr}}
+
   .penny-rules{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.14));border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:32px 36px;margin:48px 0;box-shadow:var(--shadow)}
   .penny-rules h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;text-transform:uppercase;margin-bottom:24px;text-align:center}
   .penny-rules .rule{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -76,20 +87,22 @@
   .penny-rules .rule .num{font-family:'Lilita One',cursive;font-size:2rem;color:var(--gold);flex-shrink:0;line-height:1}
   .penny-rules .rule .text{font-size:1rem;font-weight:700;line-height:1.6;padding-top:4px}
   .penny-rules .rule .text strong{color:var(--gold)}
+
   .rescue-block{background:linear-gradient(135deg,var(--green),var(--green-deep));border:2px solid var(--gold);border-radius:22px;padding:32px 36px;margin:48px 0;box-shadow:var(--shadow);text-align:center}
-  .rescue-block .rescue-icon{font-size:3rem;margin-bottom:12px}
   .rescue-block h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;text-transform:uppercase;margin-bottom:14px}
   .rescue-block p{font-size:1rem;font-weight:600;line-height:1.8;opacity:.95;max-width:580px;margin:0 auto 14px}
   .rescue-block .rescue-dogs{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px}
   .rescue-block .dog-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:8px 18px;font-weight:800;font-size:.9rem}
+
   .penny-cta{text-align:center;padding:48px 0 60px}
   .penny-cta h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;text-transform:uppercase;margin-bottom:10px}
   .penny-cta p{font-weight:600;opacity:.9;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto}
-  .btn{font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;padding:15px 28px;border-radius:999px;font-size:1rem;transition:.15s;display:inline-block}
+  .btn{font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;padding:15px 28px;border-radius:999px;font-size:1rem;transition:.15s;display:inline-block;margin:6px}
   .btn-primary{background:var(--red);color:#fff;box-shadow:0 7px 0 var(--red-deep)}
   .btn-primary:hover{transform:translateY(3px);box-shadow:0 4px 0 var(--red-deep)}
-  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:2px solid var(--gold);margin-left:12px}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:2px solid var(--gold)}
   .btn-ghost:hover{background:var(--gold);color:var(--ink)}
+
   footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
   .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
   .foot-logo .lc{color:#fff}
@@ -104,39 +117,39 @@
   <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
   <ul class="nav-links">
     <li><a href="/">Countdown</a></li>
+    <li><a href="/recipes.html">Recipes</a></li>
     <li><a href="/movies.html">Movies</a></li>
     <li><a href="/books.html">Bookstore</a></li>
     <li><a href="/news.html">News</a></li>
-    <li><a href="/penny.html" class="active">Meet Penny</a></li>
+    <li><a href="/santa.html">Santa Status</a></li>
+    <li><a href="/penny.html" class="active"><img src="Penny_AI.png" class="nav-penny" alt="Penny">Penny</a></li>
   </ul>
 </div></nav>
 
 <div class="wrap">
 
   <div class="penny-hero">
-    <span class="eyebrow">🐾 Official Mascot of ChristmasPalooza</span>
+    <img src="Penny_AI1.png" alt="Penelope the ChristmasPalooza mascot" class="penny-hero-img">
+    <span class="eyebrow">Official Mascot of ChristmasPalooza</span>
     <h1>Meet Penny</h1>
     <span class="full-name">Penelope — Rescued. Renamed. Absolutely Convinced Every Day Is Christmas.</span>
     <p class="tagline">"She wasn't invited. She came anyway. She always does."</p>
   </div>
 
-  <div class="penny-photo" id="penny-photo">
-    <span class="photo-placeholder">🐕</span>
-    <span class="photo-note">Penny's photo coming soon</span>
-  </div>
-
   <div class="story">
 
     <div class="story-block">
-      <div class="block-eyebrow">🏠 Where She Came From</div>
+      <div class="block-eyebrow">Where She Came From</div>
       <h2>No Name. Just a Number.</h2>
       <p>Penny didn't always have a name. She came from an Amish puppy mill — one of thousands of dogs treated as inventory, not family. The rescue organization that found her gave her a temporary name just to have something to call her. <em>She didn't know it yet, but her real life was about to start.</em></p>
       <p>When she joined our family, we named her Penelope. Penny for short. And from day one, she made it very clear that she had opinions about everything — especially about being included.</p>
       <div class="pull-quote">"She came from a place with no names, no celebrations, no joy. Now she thinks every day deserves a party."</div>
     </div>
 
+    <img src="Penny_AI3.png" alt="Penny by the Christmas tree" class="inline-img">
+
     <div class="story-block">
-      <div class="block-eyebrow">🎄 Who She Is Now</div>
+      <div class="block-eyebrow">Who She Is Now</div>
       <h2>A Little Nervous. Always Smiling.</h2>
       <p>Penny is a copper-red golden retriever — deeper and richer than your typical golden, which is fitting because she's not your typical dog. She came to us with some anxiety, and we knew that going in. Puppy mills don't exactly prepare dogs for a life of love and celebration.</p>
       <p>But here's the thing about Penny: <em>she smiles through all of it.</em> Big, goofy, genuine smile. The kind that makes you forget whatever you were worried about. She's nervous and brave at the same time, which is honestly a pretty good way to go through life.</p>
@@ -144,8 +157,13 @@
       <div class="pull-quote">"She's a little nervous about everything — except being left out."</div>
     </div>
 
+    <div class="inline-img-half">
+      <img src="Penny_AI.png" alt="Penny portrait" style="background:linear-gradient(135deg,#063d20,#a30d1f)">
+      <img src="Penny_AI2.png" alt="Penny waving" style="background:linear-gradient(135deg,#a30d1f,#063d20)">
+    </div>
+
     <div class="story-block">
-      <div class="block-eyebrow">🎅 Why She's the Mascot</div>
+      <div class="block-eyebrow">Why She's the Mascot</div>
       <h2>She Already Believed.</h2>
       <p>ChristmasPalooza exists because some of us genuinely believe Christmas shouldn't be a one-month-a-year thing. The countdown never stops. The cookies are always worth making. The movies hold up in July. The spirit is real whether it's December or June.</p>
       <p>Penny understood this before we built the site. <em>Every morning is Christmas morning to Penny.</em> Every time someone comes home, it's the greatest event in recorded history. Every belly rub is a gift. Every walk is an adventure. Every single day is worth celebrating.</p>
@@ -155,7 +173,7 @@
   </div>
 
   <div class="penny-rules">
-    <h2>🐾 Penny's Rules for Life</h2>
+    <h2>Penny's Rules for Life</h2>
     <div class="rule">
       <span class="num">01</span>
       <div class="text"><strong>Every day is Christmas.</strong> The calendar says otherwise. Penny disagrees. Penny wins.</div>
@@ -179,33 +197,32 @@
   </div>
 
   <div class="rescue-block">
-    <div class="rescue-icon">🐾</div>
     <h2>A Family of Rescues</h2>
     <p>Penny isn't the only rescue in the family. Over nearly 30 years, our family has opened its home to dogs who needed one. Every dog we've ever had has been rescued. Every single one.</p>
     <p>Our current pack: <strong>Penny</strong> (rescued from an Amish puppy mill), <strong>Lillie</strong> our King Charles Cavalier (also a puppy mill survivor), and <strong>Charlie</strong> our Bichon (rescued from an abusive home). Three dogs. Three second chances. One very full, very loud, very Christmas house.</p>
     <div class="rescue-dogs">
-      <span class="dog-pill">🐕 Penny · Golden Retriever · Puppy Mill Survivor</span>
-      <span class="dog-pill">🐶 Lillie · King Charles Cavalier · Puppy Mill Survivor</span>
-      <span class="dog-pill">🤍 Charlie · Bichon · Rescued from Abuse</span>
+      <span class="dog-pill">Penny · Golden Retriever · Puppy Mill Survivor</span>
+      <span class="dog-pill">Lillie · King Charles Cavalier · Puppy Mill Survivor</span>
+      <span class="dog-pill">Charlie · Bichon · Rescued from Abuse</span>
     </div>
   </div>
 
   <div class="penny-cta">
-    <h2>Penny Says Hi 🐾</h2>
+    <h2>Penny Says Hi</h2>
     <p>She'd tell you herself, but she's currently inserting herself between someone and another dog somewhere in the house. You know how it is.</p>
-    <a href="/" class="btn btn-primary">🎄 Back to the Palooza</a>
-    <a href="/news.html" class="btn btn-ghost">📰 Christmas News</a>
+    <a href="/" class="btn btn-primary">Back to the Palooza</a>
+    <a href="/santa.html" class="btn btn-ghost">Santa Status</a>
   </div>
 
 </div>
 
 <footer>
   <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
-  <p class="foot-copy">© 2026 ChristmasPalooza · Made with ♥ and too much eggnog 🥚 · Penny approved.</p>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day. · Penny approved.</p>
 </footer>
 
 <script>
-  const lights = document.getElementById('lights');
+  const lights=document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
 </script>
 </body>
