@@ -65,7 +65,11 @@
   .h1-bot{display:block;background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 14px rgba(255,45,68,.45))}
   .tagline{font-family:'Mountains of Christmas',cursive;font-weight:700;color:var(--gold);font-size:clamp(1.5rem,4vw,2.4rem);margin-top:6px}
   .sub{max-width:620px;margin:14px auto 0;font-size:1.12rem;font-weight:600;color:#e9ffe9;opacity:.95}
-  .countdown-card{margin:34px auto 0;max-width:760px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.18));border:2px solid rgba(255,200,61,.5);border-radius:26px;padding:26px 20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(6px)}
+  .countdown-card{margin:34px auto 0;max-width:760px;position:relative;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.18));border:2px solid rgba(255,200,61,.5);border-radius:26px;padding:26px 20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(6px)}
+  .penny-float{position:absolute;top:-42px;right:-14px;width:112px;z-index:6;animation:pennyBob 4.5s ease-in-out infinite;pointer-events:none}
+  .penny-float img{width:100%;display:block;border-radius:50%;border:3px solid var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.45);background:linear-gradient(135deg,#a30d1f,#0f7a3d)}
+  @keyframes pennyBob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-13px) rotate(3deg)}}
+  @media (max-width:640px){.penny-float{width:76px;top:-28px;right:-4px}}
   .xmas-year{font-family:'Mountains of Christmas',cursive;font-weight:700;color:var(--gold);font-size:clamp(1.4rem,4vw,2.2rem);margin-bottom:2px}
   .bignum{font-family:'Lilita One',cursive;font-size:clamp(5.5rem,26vw,13rem);line-height:.9;letter-spacing:-2px;background:linear-gradient(180deg,#fff,#ffe9cf);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 0 rgba(0,0,0,.22))}
   .bigsub{font-family:'Lilita One',cursive;text-transform:uppercase;letter-spacing:3px;font-size:clamp(1rem,3vw,1.7rem);color:#fff;margin-top:-2px;margin-bottom:16px}
@@ -199,6 +203,10 @@
   .sound-toggle{position:fixed;right:18px;bottom:18px;z-index:60;width:54px;height:54px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(180deg,#a30d1f,#7a0a17);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 20px -6px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;transition:.15s}
   .sound-toggle:hover{transform:translateY(-3px) scale(1.05)}
   .sound-toggle.off{filter:grayscale(.4);opacity:.85}
+  .sound-toggle.off #snd-icon-on{display:none}
+  .sound-toggle.off #snd-icon-off{display:block}
+  .sound-toggle:not(.off) #snd-icon-on{display:block}
+  .sound-toggle:not(.off) #snd-icon-off{display:none}
   .sound-hint{position:fixed;right:82px;bottom:30px;z-index:60;background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.25);color:#fff7e9;padding:8px 12px;border-radius:10px;font-weight:700;font-size:.8rem;opacity:0;transform:translateX(10px);transition:.3s;pointer-events:none;white-space:nowrap}
   .sound-hint.show{opacity:1;transform:translateX(0)}
 </style>
@@ -216,11 +224,11 @@
     <div class="mp-progress"><div class="mp-bar" id="mp-bar"></div></div>
   </div>
 </div>
-<button class="sound-toggle off" id="sound-toggle" aria-label="Toggle Christmas music">🔕</button>
+<button class="sound-toggle off" id="sound-toggle" aria-label="Toggle Christmas music"><svg class="snd-icon" id="snd-icon-on" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/><path d="M14.5 4.14v2.06c2.89 1.03 5 3.71 5 6.8s-2.11 5.77-5 6.8v2.06c4.01-1.05 7-4.72 7-8.86s-2.99-7.81-7-8.86z"/></svg><svg class="snd-icon" id="snd-icon-off" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M19 12l2.5-2.5-1-1L18 11l-2.5-2.5-1 1L17 12l-2.5 2.5 1 1L18 13l2.5 2.5 1-1z"/></svg></button>
 <div class="sound-hint" id="sound-hint">Click for Christmas music</div>
 
 <nav><div class="nav-inner">
-  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <a href="/" class="logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
   <ul class="nav-links">
     <li><a href="#countdown">Countdown</a></li>
     <li><a href="/recipes.html">Recipes</a></li>
@@ -239,6 +247,7 @@
     <p class="tagline">Christmas All Year. Party All Day.</p>
     <p class="sub">365 days of countdowns, cookies, carols & chaos. The Christmas countdown that <em>never</em> stops — because around here, it's <b>always</b> the most wonderful time of the year.</p>
     <div class="countdown-card">
+      <div class="penny-float"><img src="Penny_AI2.png" alt="Penny the golden retriever waving next to the countdown"></div>
       <div class="xmas-year">Christmas 2026</div>
       <div class="bignum" id="dbig">--</div>
       <div class="bigsub">Days Until Christmas</div>
@@ -272,16 +281,16 @@
     <div class="sec-head"><div class="eyebrow">The Cookie Jar</div><h2>Recipes for Christmas</h2>
       <p>Bake it like it's December — even in July. 49 festive recipes across every category.</p></div>
     <div class="grid g4">
-      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)">🍪</div>
+      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)"></div>
         <div class="body"><span style="background:var(--gold);color:var(--ink);align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px;display:inline-block">Cookies · 48</span>
         <h3>Gingerbread Cutouts</h3><p>Spiced, snappy, and built for decorating — the classic roll-cut-and-ice Christmas cookie.</p></div></div>
-      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#ffc83d)">🥧</div>
+      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#ffc83d)"></div>
         <div class="body"><span style="background:var(--pink);color:#fff;align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px;display:inline-block">Pie · serves 8</span>
         <h3>Traditional Pumpkin Pie</h3><p>Silky spiced custard in a foil-shielded crust. Christmas dinner's sweetest finish.</p></div></div>
-      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#0f7a3d,#7CFF8E)">🥜</div>
+      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#0f7a3d,#7CFF8E)"></div>
         <div class="body"><span style="background:var(--gold);color:var(--ink);align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px;display:inline-block">Cookies · 30</span>
         <h3>Jam Thumbprints</h3><p>Buttery, nut-rolled cookies with a glossy pool of jam in the middle.</p></div></div>
-      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#e8132b,#ffc83d)">🍫</div>
+      <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#e8132b,#ffc83d)"></div>
         <div class="body"><span style="background:var(--blue);color:var(--ink);align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px;display:inline-block">Cookies · 54</span>
         <h3>Peanut Butter Blossoms</h3><p>Sugar-rolled peanut butter cookies crowned with a chocolate kiss, pressed in warm.</p></div></div>
     </div>
@@ -342,22 +351,22 @@
       <p>Cozy reads handpicked by the elves. Real covers, live from the shelf.</p></div>
     <div class="grid g3">
       <a class="book" data-ol="title=A+Christmas+Carol&author=Charles+Dickens" href="https://bookshop.org/search?keywords=A%20Christmas%20Carol%20Dickens" target="_blank" rel="noopener">
-        <div class="cover" style="background:linear-gradient(160deg,#a30d1f,#e8132b)">📕<img class="cimg" alt=""></div>
+        <div class="cover" style="background:linear-gradient(160deg,#a30d1f,#e8132b)"><img class="cimg" alt=""></div>
         <div class="info"><h4>A Christmas Carol</h4><div class="auth">Charles Dickens</div><span class="buy">Shop</span></div></a>
       <a class="book" data-ol="title=The+Polar+Express&author=Chris+Van+Allsburg" href="https://bookshop.org/search?keywords=The%20Polar%20Express%20Van%20Allsburg" target="_blank" rel="noopener">
-        <div class="cover" style="background:linear-gradient(160deg,#063d20,#27c2ff)">🚂<img class="cimg" alt=""></div>
+        <div class="cover" style="background:linear-gradient(160deg,#063d20,#27c2ff)"><img class="cimg" alt=""></div>
         <div class="info"><h4>The Polar Express</h4><div class="auth">Chris Van Allsburg</div><span class="buy">Shop</span></div></a>
       <a class="book" data-ol="title=How+the+Grinch+Stole+Christmas&author=Dr+Seuss" href="https://bookshop.org/search?keywords=How%20the%20Grinch%20Stole%20Christmas" target="_blank" rel="noopener">
-        <div class="cover" style="background:linear-gradient(160deg,#0f7a3d,#7CFF8E)">💚<img class="cimg" alt=""></div>
+        <div class="cover" style="background:linear-gradient(160deg,#0f7a3d,#7CFF8E)"><img class="cimg" alt=""></div>
         <div class="info"><h4>How the Grinch Stole Christmas!</h4><div class="auth">Dr. Seuss</div><span class="buy">Shop</span></div></a>
       <a class="book" data-ol="title=The+Night+Before+Christmas&author=Clement+Moore" href="https://bookshop.org/search?keywords=The%20Night%20Before%20Christmas%20Moore" target="_blank" rel="noopener">
-        <div class="cover" style="background:linear-gradient(160deg,#27c2ff,#ff4fa3)">🌙<img class="cimg" alt=""></div>
+        <div class="cover" style="background:linear-gradient(160deg,#27c2ff,#ff4fa3)"><img class="cimg" alt=""></div>
         <div class="info"><h4>The Night Before Christmas</h4><div class="auth">Clement C. Moore</div><span class="buy">Shop</span></div></a>
       <a class="book" data-ol="title=Letters+from+Father+Christmas&author=Tolkien" href="https://bookshop.org/search?keywords=Letters%20from%20Father%20Christmas%20Tolkien" target="_blank" rel="noopener">
-        <div class="cover" style="background:linear-gradient(160deg,#a30d1f,#ffc83d)">✉️<img class="cimg" alt=""></div>
+        <div class="cover" style="background:linear-gradient(160deg,#a30d1f,#ffc83d)"><img class="cimg" alt=""></div>
         <div class="info"><h4>Letters from Father Christmas</h4><div class="auth">J.R.R. Tolkien</div><span class="buy">Shop</span></div></a>
       <a class="book" data-ol="title=Hercule+Poirot%27s+Christmas&author=Agatha+Christie" href="https://bookshop.org/search?keywords=Hercule%20Poirot%27s%20Christmas" target="_blank" rel="noopener">
-        <div class="cover" style="background:linear-gradient(160deg,#063d20,#a30d1f)">🔍<img class="cimg" alt=""></div>
+        <div class="cover" style="background:linear-gradient(160deg,#063d20,#a30d1f)"><img class="cimg" alt=""></div>
         <div class="info"><h4>Hercule Poirot's Christmas</h4><div class="auth">Agatha Christie</div><span class="buy">Shop</span></div></a>
     </div>
     <p class="shop-note">Covers via <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>. <a href="/books.html" style="color:var(--gold);margin-left:8px">Browse all 274+ books →</a></p>
@@ -415,15 +424,15 @@
       <p>More Christmas, more chaos, more joy — all year long.</p></div>
     <div class="grid g4">
       <a href="/santa.html" class="card linked live-tile">
-        <div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)">🎅</div>
+        <div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)"></div>
         <div class="body"><h3>Santa Status</h3><p>Real-time North Pole updates, 365 days a year. Find out what Santa's up to right now.</p><span class="live-badge">Live Now</span></div>
       </a>
       <a href="/news.html" class="card linked live-tile">
-        <div class="thumb" style="background:linear-gradient(135deg,#ffc83d,#ff4fa3)">📰</div>
+        <div class="thumb" style="background:linear-gradient(135deg,#ffc83d,#ff4fa3)"></div>
         <div class="body"><h3>Christmas News</h3><p>Hallmark drops, tree lightings, parades & Santa news — refreshed every morning.</p><span class="live-badge">Live Now</span></div>
       </a>
       <a href="/recipes.html" class="card linked live-tile">
-        <div class="thumb" style="background:linear-gradient(135deg,#0f7a3d,#7CFF8E)">🍪</div>
+        <div class="thumb" style="background:linear-gradient(135deg,#0f7a3d,#7CFF8E)"></div>
         <div class="body"><h3>Recipe Collection</h3><p>49 Christmas recipes — cookies, pies, drinks, mains, sides and breads. All year long.</p><span class="live-badge">Live Now</span></div>
       </a>
       <a href="/penny.html" class="card linked live-tile">
@@ -435,7 +444,7 @@
 </div>
 
 <footer>
-  <div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div>
+  <div class="foot-logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div>
   <img src="Penny_AI.png" class="foot-penny" alt="Penny">
   <ul class="foot-links">
     <li><a href="#countdown">Countdown</a></li>
@@ -483,13 +492,13 @@
   (function loadBookCovers(){document.querySelectorAll('.book[data-ol]').forEach(async card=>{const q=card.getAttribute('data-ol');const img=card.querySelector('.cimg');try{const r=await fetch('https://openlibrary.org/search.json?'+q+'&limit=1&fields=cover_i');const j=await r.json();const id=j.docs&&j.docs[0]&&j.docs[0].cover_i;if(id){img.src='https://covers.openlibrary.org/b/id/'+id+'-L.jpg';img.onload=()=>{img.classList.add('loaded');}; }}catch(e){}});})();
   (function loadMoviePosters(){if(!TMDB_KEY)return;document.querySelectorAll('.movie[data-title]').forEach(async card=>{const t=card.getAttribute('data-title'),yr=card.getAttribute('data-year');const img=card.querySelector('.pimg');try{const u='https://api.themoviedb.org/3/search/movie?api_key='+TMDB_KEY+'&query='+encodeURIComponent(t)+'&year='+yr;const r=await fetch(u);const j=await r.json();const hit=(j.results||[]).find(x=>x.poster_path)||j.results&&j.results[0];if(hit&&hit.poster_path){img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;img.onload=()=>{img.classList.add('loaded');}; }}catch(e){}});})();
   (function movieFilters(){const chips=document.querySelectorAll('#filters .chip');const cards=document.querySelectorAll('#movie-grid .movie');chips.forEach(chip=>chip.addEventListener('click',()=>{chips.forEach(c=>c.classList.remove('active'));chip.classList.add('active');const f=chip.getAttribute('data-filter');cards.forEach(card=>{card.classList.toggle('hide',f!=='all'&&card.getAttribute('data-cat')!==f);});  }));})();
-  (function(){const F=[{emo:'🗓️',name:'Countdown Proximity',max:25,vals:[4,3,3,3,4,5,6,8,12,17,22,25],quip:'The only clock that matters.'},{emo:'🎤',name:'Mariah Carey Defrost Status',max:20,vals:[2,0,0,0,0,0,1,1,2,6,18,20],quip:'She thaws every November 1st. Science.'},{emo:'🎬',name:'Hallmark Movies in Rotation',max:16,vals:[6,3,2,2,3,5,11,5,7,12,15,16],quip:'Small town. Big-city exec. Inevitable love.'},{emo:'🎃',name:'Pumpkin Spice Saturation',max:12,vals:[0,0,0,0,0,0,1,5,10,12,8,3],quip:'The gateway spice to full Christmas.'},{emo:'❄️',name:'First Snow Reports',max:15,vals:[12,10,6,2,0,0,0,0,1,5,11,15],quip:'Somewhere, a flurry is forming.'},{emo:'🎵',name:'Christmas Music Airplay',max:12,vals:[3,1,0,0,0,1,2,1,2,4,9,12],quip:'Wham! detected on loop.'}];
+  (function(){const F=[{name:'Countdown Proximity',max:25,vals:[4,3,3,3,4,5,6,8,12,17,22,25],quip:'The only clock that matters.'},{name:'Mariah Carey Defrost Status',max:20,vals:[2,0,0,0,0,0,1,1,2,6,18,20],quip:'She thaws every November 1st. Science.'},{name:'Hallmark Movies in Rotation',max:16,vals:[6,3,2,2,3,5,11,5,7,12,15,16],quip:'Small town. Big-city exec. Inevitable love.'},{name:'Pumpkin Spice Saturation',max:12,vals:[0,0,0,0,0,0,1,5,10,12,8,3],quip:'The gateway spice to full Christmas.'},{name:'First Snow Reports',max:15,vals:[12,10,6,2,0,0,0,0,1,5,11,15],quip:'Somewhere, a flurry is forming.'},{name:'Christmas Music Airplay',max:12,vals:[3,1,0,0,0,1,2,1,2,4,9,12],quip:'Wham! detected on loop.'}];
   const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];const todayM=new Date().getMonth();
   function band(s){if(s>=86)return{l:'MAXIMUM CHRISTMAS',c:'#34d36b',sub:'Defcon Tinsel. Light everything. Hide the eggnog.'};if(s>=71)return{l:'Christmas Is Coming',c:'#7CFF8E',sub:'You can smell the cinnamon from the driveway.'};if(s>=51)return{l:'Merry & Bright',c:'#ffc83d',sub:'Lights are going up. It is officially happening.'};if(s>=31)return{l:'Warming Up',c:'#ff9d3d',sub:'The tree lot just opened. Resist nothing.'};if(s>=16)return{l:'Faintly Festive',c:'#ff6b5e',sub:'A faint jingle on the wind. Keep listening.'};return{l:'Deep Off-Season',c:'#5aa9ff',sub:'Wrong time of year — but the countdown never sleeps.'};}
   function scoreFor(m){return F.reduce((t,f)=>t+f.vals[m],0);}function pt(s,r){const th=(180-1.8*s)*Math.PI/180;return[160+r*Math.cos(th),160-r*Math.sin(th)];}
   const arc=document.getElementById('csi-arc'),needle=document.getElementById('csi-needle'),numEl=document.getElementById('csi-num'),bandEl=document.getElementById('csi-band'),verdict=document.getElementById('csi-verdict'),monthOut=document.getElementById('csi-month'),slider=document.getElementById('csi-slider'),ticksG=document.getElementById('csi-ticks');
   for(let t=0;t<=10;t++){const s=t*10,o=pt(s,130),i=pt(s,116);const ln=document.createElementNS('http://www.w3.org/2000/svg','line');ln.setAttribute('x1',o[0].toFixed(1));ln.setAttribute('y1',o[1].toFixed(1));ln.setAttribute('x2',i[0].toFixed(1));ln.setAttribute('y2',i[1].toFixed(1));ticksG.appendChild(ln);}
-  let fhtml='';F.forEach((f,i)=>{fhtml+=`<div class="fr"><div class="fl"><span>${f.emo} ${f.name}</span><span class="fv" id="fv${i}">+0</span></div><div class="ftrack"><div class="ffill" id="ff${i}"></div></div><div class="fq">${f.quip}</div></div>`;});document.getElementById('csi-factors').innerHTML=fhtml;
+  let fhtml='';F.forEach((f,i)=>{fhtml+=`<div class="fr"><div class="fl"><span>${f.name}</span><span class="fv" id="fv${i}">+0</span></div><div class="ftrack"><div class="ffill" id="ff${i}"></div></div><div class="fq">${f.quip}</div></div>`;});document.getElementById('csi-factors').innerHTML=fhtml;
   let cur=0;function draw(s){const e=pt(s,130);arc.setAttribute('d','M30,160 A130,130 0 0 1 '+e[0].toFixed(1)+','+e[1].toFixed(1));const n=pt(s,112);needle.setAttribute('x2',n[0].toFixed(1));needle.setAttribute('y2',n[1].toFixed(1));const b=band(s);numEl.textContent=Math.round(s);numEl.style.color=b.c;arc.setAttribute('stroke',b.c);needle.setAttribute('stroke',b.c);bandEl.textContent=b.l;bandEl.style.color=b.c;}
   function animTo(target){const start=cur,t0=performance.now(),dur=850;function fr(now){const k=Math.min(1,(now-t0)/dur),e=1-Math.pow(1-k,3);cur=start+(target-start)*e;draw(cur);if(k<1)requestAnimationFrame(fr);}requestAnimationFrame(fr);}
   function update(m){const s=scoreFor(m);monthOut.textContent=MONTHS[m]+(m===todayM?' · today':'');verdict.textContent=band(s).sub;F.forEach((f,i)=>{document.getElementById('ff'+i).style.width=(f.vals[m]/f.max*100)+'%';document.getElementById('fv'+i).textContent='+'+f.vals[m];});animTo(s);}
@@ -505,8 +514,8 @@
   audio.addEventListener('ended',nextSong);audio.addEventListener('timeupdate',()=>{if(audio.duration){barEl.style.width=(audio.currentTime/audio.duration*100)+'%';}});
   document.getElementById('mp-next').addEventListener('click',nextSong);document.getElementById('mp-prev').addEventListener('click',prevSong);
   document.getElementById('mp-playpause').addEventListener('click',()=>{if(playing){audio.pause();ppBtn.textContent='▶';playing=false;}else{audio.play().catch(()=>{});ppBtn.textContent='⏸';playing=true;}});
-  function startMusic(){playing=true;player.classList.add('show');toggle.textContent='🔔';toggle.classList.remove('off');hint.classList.remove('show');loadSong(currentIdx);audio.play().catch(()=>{});ppBtn.textContent='⏸';sleigh.play().catch(()=>{});fadeTo(sleigh,0.18,1200);}
-  function stopMusic(){playing=false;player.classList.remove('show');toggle.textContent='🔕';toggle.classList.add('off');audio.pause();fadeTo(sleigh,0,600,()=>{sleigh.pause();});ppBtn.textContent='▶';}
+  function startMusic(){playing=true;player.classList.add('show');toggle.classList.remove('off');hint.classList.remove('show');loadSong(currentIdx);audio.play().catch(()=>{});ppBtn.textContent='⏸';sleigh.play().catch(()=>{});fadeTo(sleigh,0.18,1200);}
+  function stopMusic(){playing=false;player.classList.remove('show');toggle.classList.add('off');audio.pause();fadeTo(sleigh,0,600,()=>{sleigh.pause();});ppBtn.textContent='▶';}
   toggle.addEventListener('click',()=>{playing?stopMusic():startMusic();});
   setTimeout(()=>{if(!playing){hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),6000);}},3000);
   let gestureHandler=function(){if(!playing)startMusic();document.removeEventListener('pointerdown',gestureHandler);document.removeEventListener('keydown',gestureHandler);};
