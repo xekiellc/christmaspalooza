@@ -104,10 +104,8 @@
   .card.linked{text-decoration:none;color:var(--cream)}
   .card .thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:3.4rem}
   .card .body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
-  .tag{align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px}
   .card h3{font-family:'Nunito';font-weight:800;font-size:1.15rem;color:#fff;margin-bottom:6px}
   .card p{font-size:.92rem;font-weight:600;opacity:.88;flex:1}
-  .card .meta{margin-top:12px;font-weight:800;font-size:.85rem;color:var(--gold)}
   .card .live-badge{display:inline-block;background:var(--green);color:#fff;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-top:10px}
   .filters{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
   .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.8rem;padding:9px 18px;border-radius:999px;cursor:pointer;transition:.15s}
@@ -164,6 +162,17 @@
   .csi-wrap .fq{font-size:.74rem;opacity:.6;font-style:italic}
   .csi-wrap .hint{margin-top:16px;font-weight:700;font-size:.74rem;opacity:.6;text-transform:uppercase;letter-spacing:1px}
 
+  /* MUSIC PLAYER */
+  .music-player{position:fixed;bottom:84px;right:18px;z-index:60;background:linear-gradient(180deg,rgba(10,31,18,.97),rgba(6,61,32,.97));border:2px solid var(--gold);border-radius:18px;padding:14px 16px;width:240px;box-shadow:0 12px 40px -8px rgba(0,0,0,.7);display:none}
+  .music-player.show{display:block}
+  .mp-title{font-weight:800;font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:8px}
+  .mp-song{font-family:'Mountains of Christmas',cursive;font-weight:700;font-size:1rem;color:#fff;margin-bottom:10px;min-height:1.4em}
+  .mp-controls{display:flex;gap:8px;align-items:center}
+  .mp-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:.15s}
+  .mp-btn:hover{background:var(--gold);color:var(--ink)}
+  .mp-progress{flex:1;height:4px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden}
+  .mp-bar{height:100%;background:var(--gold);width:0;border-radius:999px;transition:width .5s linear}
+
   footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
   .foot-logo{font-family:'Lilita One',cursive;font-size:2.4rem;letter-spacing:.5px;display:inline-flex;gap:.14em;align-items:baseline}
   .foot-logo .lc{color:#fff}
@@ -174,6 +183,8 @@
   .foot-note{opacity:.6;font-size:.82rem;font-weight:600;max-width:560px;margin:8px auto 0}
   .foot-note a{color:var(--gold)}
   .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
+
+  /* SOUND TOGGLE */
   .sound-toggle{position:fixed;right:18px;bottom:18px;z-index:60;width:54px;height:54px;border-radius:50%;border:2px solid var(--gold);background:linear-gradient(180deg,#a30d1f,#7a0a17);color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 8px 20px -6px rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;transition:.15s}
   .sound-toggle:hover{transform:translateY(-3px) scale(1.05)}
   .sound-toggle.off{filter:grayscale(.4);opacity:.85}
@@ -184,8 +195,21 @@
 <body>
 <div class="lights" id="lights"></div>
 <div class="snow" id="snow"></div>
-<button class="sound-toggle off" id="sound-toggle" aria-label="Toggle bell sounds">🔕</button>
-<div class="sound-hint" id="sound-hint">🔔 Click for sleigh bells</div>
+
+<!-- Music Player -->
+<div class="music-player" id="music-player">
+  <div class="mp-title">🎄 Now Playing</div>
+  <div class="mp-song" id="mp-song">Jingle Bells</div>
+  <div class="mp-controls">
+    <button class="mp-btn" id="mp-prev" title="Previous">⏮</button>
+    <button class="mp-btn" id="mp-playpause" title="Play/Pause">⏸</button>
+    <button class="mp-btn" id="mp-next" title="Next">⏭</button>
+    <div class="mp-progress"><div class="mp-bar" id="mp-bar"></div></div>
+  </div>
+</div>
+
+<button class="sound-toggle off" id="sound-toggle" aria-label="Toggle Christmas music">🔕</button>
+<div class="sound-hint" id="sound-hint">🎄 Click for Christmas music</div>
 
 <nav><div class="nav-inner">
   <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
@@ -241,17 +265,17 @@
       <p>Bake it like it's December — even in July. Fresh festive recipes dropping all year long.</p></div>
     <div class="grid g4">
       <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)">🍪</div>
-        <div class="body"><span class="tag" style="background:var(--gold);color:var(--ink)">Cookies · 48</span>
-        <h3>Gingerbread Cutouts</h3><p>Spiced, snappy, and built for decorating — the classic roll-cut-and-ice Christmas cookie.</p><div class="meta">⏱️ Chill + bake · Easy</div></div></div>
+        <div class="body"><span class="tag" style="background:var(--gold);color:var(--ink);align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px">Cookies · 48</span>
+        <h3>Gingerbread Cutouts</h3><p>Spiced, snappy, and built for decorating — the classic roll-cut-and-ice Christmas cookie.</p></div></div>
       <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#ffc83d)">🥧</div>
-        <div class="body"><span class="tag" style="background:var(--pink);color:#fff">Pie · serves 8</span>
-        <h3>Traditional Pumpkin Pie</h3><p>Silky spiced custard in a foil-shielded crust. Christmas dinner's sweetest finish.</p><div class="meta">⏱️ ~1 hr · Easy</div></div></div>
+        <div class="body"><span class="tag" style="background:var(--pink);color:#fff;align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px">Pie · serves 8</span>
+        <h3>Traditional Pumpkin Pie</h3><p>Silky spiced custard in a foil-shielded crust. Christmas dinner's sweetest finish.</p></div></div>
       <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#0f7a3d,#7CFF8E)">🥜</div>
-        <div class="body"><span class="tag" style="background:var(--gold);color:var(--ink)">Cookies · 30</span>
-        <h3>Jam Thumbprints</h3><p>Buttery, nut-rolled cookies with a glossy pool of jam in the middle.</p><div class="meta">⏱️ ~35 min · Easy</div></div></div>
+        <div class="body"><span class="tag" style="background:var(--gold);color:var(--ink);align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px">Cookies · 30</span>
+        <h3>Jam Thumbprints</h3><p>Buttery, nut-rolled cookies with a glossy pool of jam in the middle.</p></div></div>
       <div class="card"><div class="thumb" style="background:linear-gradient(135deg,#e8132b,#ffc83d)">🍫</div>
-        <div class="body"><span class="tag" style="background:var(--blue);color:var(--ink)">Cookies · 54</span>
-        <h3>Peanut Butter Blossoms</h3><p>Sugar-rolled peanut butter cookies crowned with a chocolate kiss, pressed in warm.</p><div class="meta">⏱️ ~35 min · Easy</div></div></div>
+        <div class="body"><span class="tag" style="background:var(--blue);color:var(--ink);align-self:flex-start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:999px;margin-bottom:8px">Cookies · 54</span>
+        <h3>Peanut Butter Blossoms</h3><p>Sugar-rolled peanut butter cookies crowned with a chocolate kiss, pressed in warm.</p></div></div>
     </div>
     <p class="shop-note">🍪 Written in our own words — full originals at <a href="https://www.bhg.com" target="_blank" rel="noopener">Better Homes &amp; Gardens</a>.</p>
   </section>
@@ -374,37 +398,22 @@
     <div class="grid g4">
       <a href="/santa.html" class="card linked live-tile">
         <div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#e8132b)">🎅</div>
-        <div class="body">
-          <h3>Santa Status</h3>
-          <p>Real-time North Pole updates, 365 days a year. Find out what Santa's up to right now.</p>
-          <span class="live-badge">✅ Live Now</span>
-        </div>
+        <div class="body"><h3>Santa Status</h3><p>Real-time North Pole updates, 365 days a year. Find out what Santa's up to right now.</p><span class="live-badge">✅ Live Now</span></div>
       </a>
       <a href="/news.html" class="card linked live-tile">
         <div class="thumb" style="background:linear-gradient(135deg,#ffc83d,#ff4fa3)">📰</div>
-        <div class="body">
-          <h3>Christmas News</h3>
-          <p>Hallmark drops, tree lightings, parades & Santa news — refreshed every morning.</p>
-          <span class="live-badge">✅ Live Now</span>
-        </div>
+        <div class="body"><h3>Christmas News</h3><p>Hallmark drops, tree lightings, parades & Santa news — refreshed every morning.</p><span class="live-badge">✅ Live Now</span></div>
       </a>
       <a href="/santa-letter.html" class="card linked soon">
         <div class="thumb" style="background:linear-gradient(135deg,#27c2ff,#7CFF8E)">📬<span class="soon-badge">Coming Soon</span></div>
-        <div class="body">
-          <h3>Letter to Santa</h3>
-          <p>Type your wish, get a personal reply straight from the North Pole. Santa reads every letter.</p>
-        </div>
+        <div class="body"><h3>Letter to Santa</h3><p>Type your wish, get a personal reply straight from the North Pole. Santa reads every letter.</p></div>
       </a>
       <div class="card soon">
         <div class="thumb" style="background:linear-gradient(135deg,#a30d1f,#ffc83d)">🧑‍🤝‍🧑<span class="soon-badge">Coming Soon</span></div>
-        <div class="body">
-          <h3>Community Palooza</h3>
-          <p>Share your tree, join challenges, and swap cookie recipes with fellow Christmas obsessives.</p>
-        </div>
+        <div class="body"><h3>Community Palooza</h3><p>Share your tree, join challenges, and swap cookie recipes with fellow Christmas obsessives.</p></div>
       </div>
     </div>
   </section>
-
 </div>
 
 <footer>
@@ -425,9 +434,11 @@
 <script>
   const TMDB_KEY="c3e7d08b36778ab325e8f6c461a6e118";
 
+  // Lights
   const lights=document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
 
+  // Snow
   const snow=document.getElementById('snow');
   const flakes=['❄','❅','❆','•'];
   for(let i=0;i<55;i++){
@@ -441,6 +452,7 @@
     snow.appendChild(f);
   }
 
+  // Countdown
   function nextXmas(){const now=new Date();let y=now.getFullYear();let x=new Date(y,11,25,0,0,0);if(now>x){x=new Date(y+1,11,25,0,0,0);}return x;}
   function daysUntil(t){return Math.max(0,Math.ceil((t-new Date())/86400000));}
   function pad(n){return String(n).padStart(2,'0');}
@@ -469,6 +481,7 @@
   }
   tick();setInterval(tick,1000);
 
+  // Sparks
   const sparks=[
     "Fun fact: The first decorated Christmas trees were hung upside down from ceilings in medieval Europe!",
     "🎵 Today's earworm: 'Jingle Bells' was originally written for Thanksgiving. Oops.",
@@ -476,11 +489,12 @@
     "🎬 Watchlist: 27 days of Hallmark premieres are coming. Stock the cocoa now.",
     "🎁 The world's largest Christmas stocking was over 168 feet long. Imagine the candy.",
     "🐾 Penny's Christmas Fact: Golden retrievers were first bred in Scotland in the 1860s. Coincidence? Penny thinks not.",
-    "🎄 Christmas trees were traditionally decorated on Christmas Eve — not weeks before. Penny disagrees with this tradition.",
+    "🎄 Christmas trees were traditionally decorated on Christmas Eve. Penny disagrees with this tradition.",
     "🦌 Reindeer are the only mammals where both males and females grow antlers. Rudolph could be a girl. Just saying."
   ];
   document.getElementById('spark').textContent=sparks[Math.floor(Math.random()*sparks.length)];
 
+  // Book covers
   (function loadBookCovers(){
     document.querySelectorAll('.book[data-ol]').forEach(async card=>{
       const q=card.getAttribute('data-ol');
@@ -489,14 +503,12 @@
         const r=await fetch('https://openlibrary.org/search.json?'+q+'&limit=1&fields=cover_i');
         const j=await r.json();
         const id=j.docs&&j.docs[0]&&j.docs[0].cover_i;
-        if(id){
-          img.src='https://covers.openlibrary.org/b/id/'+id+'-L.jpg';
-          img.onload=()=>{img.classList.add('loaded');};
-        }
+        if(id){img.src='https://covers.openlibrary.org/b/id/'+id+'-L.jpg';img.onload=()=>{img.classList.add('loaded');};}
       }catch(e){}
     });
   })();
 
+  // Movie posters
   (function loadMoviePosters(){
     if(!TMDB_KEY)return;
     document.querySelectorAll('.movie[data-title]').forEach(async card=>{
@@ -506,27 +518,23 @@
         const u='https://api.themoviedb.org/3/search/movie?api_key='+TMDB_KEY+'&query='+encodeURIComponent(t)+'&year='+yr;
         const r=await fetch(u);const j=await r.json();
         const hit=(j.results||[]).find(x=>x.poster_path)||j.results&&j.results[0];
-        if(hit&&hit.poster_path){
-          img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;
-          img.onload=()=>{img.classList.add('loaded');};
-        }
+        if(hit&&hit.poster_path){img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;img.onload=()=>{img.classList.add('loaded');};}
       }catch(e){}
     });
   })();
 
+  // Movie filters
   (function movieFilters(){
     const chips=document.querySelectorAll('#filters .chip');
     const cards=document.querySelectorAll('#movie-grid .movie');
     chips.forEach(chip=>chip.addEventListener('click',()=>{
-      chips.forEach(c=>c.classList.remove('active'));
-      chip.classList.add('active');
+      chips.forEach(c=>c.classList.remove('active'));chip.classList.add('active');
       const f=chip.getAttribute('data-filter');
-      cards.forEach(card=>{
-        card.classList.toggle('hide',f!=='all'&&card.getAttribute('data-cat')!==f);
-      });
+      cards.forEach(card=>{card.classList.toggle('hide',f!=='all'&&card.getAttribute('data-cat')!==f);});
     }));
   })();
 
+  // Spirit Index
   (function(){
     const F=[
       {emo:'🗓️',name:'Countdown Proximity',max:25,vals:[4,3,3,3,4,5,6,8,12,17,22,25],quip:'The only clock that matters.'},
@@ -548,14 +556,10 @@
     }
     function scoreFor(m){return F.reduce((t,f)=>t+f.vals[m],0);}
     function pt(s,r){const th=(180-1.8*s)*Math.PI/180;return[160+r*Math.cos(th),160-r*Math.sin(th)];}
-    const arc=document.getElementById('csi-arc'),
-          needle=document.getElementById('csi-needle'),
-          numEl=document.getElementById('csi-num'),
-          bandEl=document.getElementById('csi-band'),
-          verdict=document.getElementById('csi-verdict'),
-          monthOut=document.getElementById('csi-month'),
-          slider=document.getElementById('csi-slider'),
-          ticksG=document.getElementById('csi-ticks');
+    const arc=document.getElementById('csi-arc'),needle=document.getElementById('csi-needle'),
+          numEl=document.getElementById('csi-num'),bandEl=document.getElementById('csi-band'),
+          verdict=document.getElementById('csi-verdict'),monthOut=document.getElementById('csi-month'),
+          slider=document.getElementById('csi-slider'),ticksG=document.getElementById('csi-ticks');
     for(let t=0;t<=10;t++){
       const s=t*10,o=pt(s,130),i=pt(s,116);
       const ln=document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -564,21 +568,14 @@
       ticksG.appendChild(ln);
     }
     let fhtml='';
-    F.forEach((f,i)=>{
-      fhtml+=`<div class="fr"><div class="fl"><span>${f.emo} ${f.name}</span><span class="fv" id="fv${i}">+0</span></div>
-        <div class="ftrack"><div class="ffill" id="ff${i}"></div></div>
-        <div class="fq">${f.quip}</div></div>`;
-    });
+    F.forEach((f,i)=>{fhtml+=`<div class="fr"><div class="fl"><span>${f.emo} ${f.name}</span><span class="fv" id="fv${i}">+0</span></div><div class="ftrack"><div class="ffill" id="ff${i}"></div></div><div class="fq">${f.quip}</div></div>`;});
     document.getElementById('csi-factors').innerHTML=fhtml;
     let cur=0;
     function draw(s){
-      const e=pt(s,130);
-      arc.setAttribute('d','M30,160 A130,130 0 0 1 '+e[0].toFixed(1)+','+e[1].toFixed(1));
+      const e=pt(s,130);arc.setAttribute('d','M30,160 A130,130 0 0 1 '+e[0].toFixed(1)+','+e[1].toFixed(1));
       const n=pt(s,112);needle.setAttribute('x2',n[0].toFixed(1));needle.setAttribute('y2',n[1].toFixed(1));
-      const b=band(s);
-      numEl.textContent=Math.round(s);numEl.style.color=b.c;
-      arc.setAttribute('stroke',b.c);needle.setAttribute('stroke',b.c);
-      bandEl.textContent=b.l;bandEl.style.color=b.c;
+      const b=band(s);numEl.textContent=Math.round(s);numEl.style.color=b.c;
+      arc.setAttribute('stroke',b.c);needle.setAttribute('stroke',b.c);bandEl.textContent=b.l;bandEl.style.color=b.c;
     }
     function animTo(target){
       const start=cur,t0=performance.now(),dur=850;
@@ -586,56 +583,113 @@
       requestAnimationFrame(fr);
     }
     function update(m){
-      const s=scoreFor(m);
-      monthOut.textContent=MONTHS[m]+(m===todayM?' · today':'');
-      verdict.textContent=band(s).sub;
-      F.forEach((f,i)=>{
-        document.getElementById('ff'+i).style.width=(f.vals[m]/f.max*100)+'%';
-        document.getElementById('fv'+i).textContent='+'+f.vals[m];
-      });
+      const s=scoreFor(m);monthOut.textContent=MONTHS[m]+(m===todayM?' · today':'');verdict.textContent=band(s).sub;
+      F.forEach((f,i)=>{document.getElementById('ff'+i).style.width=(f.vals[m]/f.max*100)+'%';document.getElementById('fv'+i).textContent='+'+f.vals[m];});
       animTo(s);
     }
     slider.addEventListener('input',function(){update(parseInt(this.value,10));});
     slider.value=todayM;update(todayM);
   })();
 
+  // ===== MUSIC PLAYER =====
   (function(){
-    var audio=document.createElement('audio');
-    audio.src='/audio/sleigh-bells.mp3';audio.loop=true;audio.volume=0;
-    document.body.appendChild(audio);
-    var on=false,autoIntent=true,firstGesture=null,fadeTimer=null;
-    var toggle=document.getElementById('sound-toggle');
-    var hint=document.getElementById('sound-hint');
-    function fadeTo(target,dur,cb){
-      clearInterval(fadeTimer);var start=audio.volume,steps=20,step=0;
-      fadeTimer=setInterval(function(){step++;
-        audio.volume=Math.max(0,Math.min(1,start+(target-start)*(step/steps)));
+    const SONGS=[
+      {file:'jingle-bells.mp3',name:'Jingle Bells'},
+      {file:'deck-the-halls.mp3',name:'Deck the Halls'},
+      {file:'god-rest-ye.mp3',name:'God Rest Ye Merry Gentlemen'},
+      {file:'joy-to-the-world.mp3',name:'Joy to the World'},
+    ];
+    const SLEIGH='sleigh-bells.mp3';
+
+    let currentIdx=0,playing=false,fadeTimer=null;
+    const songEl=document.getElementById('mp-song');
+    const barEl=document.getElementById('mp-bar');
+    const toggle=document.getElementById('sound-toggle');
+    const hint=document.getElementById('sound-hint');
+    const player=document.getElementById('music-player');
+    const ppBtn=document.getElementById('mp-playpause');
+
+    // Sleigh bells ambient (separate quiet loop)
+    const sleigh=new Audio(SLEIGH);
+    sleigh.loop=true;sleigh.volume=0;
+
+    // Main music audio
+    const audio=new Audio();
+    audio.volume=0.55;
+
+    function fadeTo(el,target,dur,cb){
+      clearInterval(fadeTimer);
+      const start=el.volume,steps=20;let step=0;
+      fadeTimer=setInterval(()=>{
+        step++;el.volume=Math.max(0,Math.min(1,start+(target-start)*(step/steps)));
         if(step>=steps){clearInterval(fadeTimer);if(cb)cb();}
       },dur/steps);
     }
-    function showHint(){hint.classList.add('show');setTimeout(function(){hint.classList.remove('show');},6000);}
-    function disarm(){if(firstGesture){document.removeEventListener('pointerdown',firstGesture);document.removeEventListener('keydown',firstGesture);firstGesture=null;}}
-    function start(){
-      disarm();
-      audio.play().then(function(){
-        on=true;toggle.textContent='🔔';toggle.classList.remove('off');hint.classList.remove('show');
-        fadeTo(0.4,900);
-      }).catch(function(){});
+
+    function loadSong(idx){
+      currentIdx=idx;
+      const s=SONGS[idx];
+      audio.src=s.file;
+      songEl.textContent=s.name;
+      barEl.style.width='0%';
+      if(playing){audio.play().catch(()=>{});}
     }
-    function stop(){
-      on=false;autoIntent=false;toggle.textContent='🔕';toggle.classList.add('off');
-      fadeTo(0,400,function(){audio.pause();});
+
+    function nextSong(){loadSong((currentIdx+1)%SONGS.length);}
+    function prevSong(){loadSong((currentIdx-1+SONGS.length)%SONGS.length);}
+
+    audio.addEventListener('ended',nextSong);
+    audio.addEventListener('timeupdate',()=>{
+      if(audio.duration){barEl.style.width=(audio.currentTime/audio.duration*100)+'%';}
+    });
+
+    document.getElementById('mp-next').addEventListener('click',nextSong);
+    document.getElementById('mp-prev').addEventListener('click',prevSong);
+    document.getElementById('mp-playpause').addEventListener('click',()=>{
+      if(playing){audio.pause();ppBtn.textContent='▶';playing=false;}
+      else{audio.play().catch(()=>{});ppBtn.textContent='⏸';playing=true;}
+    });
+
+    function startMusic(){
+      playing=true;
+      player.classList.add('show');
+      toggle.textContent='🔔';toggle.classList.remove('off');
+      hint.classList.remove('show');
+      loadSong(currentIdx);
+      audio.play().catch(()=>{});
+      ppBtn.textContent='⏸';
+      sleigh.play().catch(()=>{});
+      fadeTo(sleigh,0.18,1200);
     }
-    toggle.addEventListener('click',function(){on?stop():start();});
-    window.addEventListener('load',function(){
-      audio.play().then(function(){
-        on=true;toggle.textContent='🔔';toggle.classList.remove('off');fadeTo(0.4,1000);
-      }).catch(function(){
-        toggle.textContent='🔕';toggle.classList.add('off');showHint();
-        firstGesture=function(e){if(e&&toggle.contains(e.target))return;if(autoIntent&&!on)start();disarm();};
-        document.addEventListener('pointerdown',firstGesture);
-        document.addEventListener('keydown',firstGesture);
-      });
+
+    function stopMusic(){
+      playing=false;
+      player.classList.remove('show');
+      toggle.textContent='🔕';toggle.classList.add('off');
+      audio.pause();
+      fadeTo(sleigh,0,600,()=>{sleigh.pause();});
+      ppBtn.textContent='▶';
+    }
+
+    toggle.addEventListener('click',()=>{playing?stopMusic():startMusic();});
+
+    // Show hint after 3 seconds
+    setTimeout(()=>{
+      if(!playing){hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),6000);}
+    },3000);
+
+    // Auto-start on first user gesture
+    let gestureHandler=function(){
+      if(!playing)startMusic();
+      document.removeEventListener('pointerdown',gestureHandler);
+      document.removeEventListener('keydown',gestureHandler);
+    };
+    document.addEventListener('pointerdown',gestureHandler);
+    document.addEventListener('keydown',gestureHandler);
+
+    // Try immediate autoplay
+    window.addEventListener('load',()=>{
+      startMusic();
     });
   })();
 </script>
