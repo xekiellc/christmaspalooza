@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Recipes — ChristmasPalooza</title>
+<meta name="description" content="49 Christmas recipes across cookies, pies, mains, sides, breads and drinks. Bake it like it's December all year long.">
+<meta property="og:title" content="Christmas Recipes — ChristmasPalooza">
+<meta property="og:description" content="49 Christmas recipes — cookies, pies, mains, sides, breads and drinks.">
+<meta property="og:url" content="https://christmaspalooza.com/recipes.html">
+<meta property="og:type" content="website">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LRMF4MXS5L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LRMF4MXS5L');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Mountains+of+Christmas:wght@400;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#e8132b;--red-deep:#a30d1f;--green:#0f7a3d;--green-deep:#063d20;
+    --gold:#ffc83d;--pink:#ff4fa3;--blue:#27c2ff;--cream:#fff7e9;--ink:#0a1f12;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',sans-serif;color:var(--cream);
+    background:radial-gradient(1200px 600px at 15% -5%,rgba(39,194,255,.18),transparent 60%),
+    radial-gradient(1000px 500px at 90% 8%,rgba(255,79,163,.16),transparent 55%),
+    linear-gradient(180deg,#073d22 0%,#052e19 35%,#04240f 100%);
+    background-attachment:fixed;overflow-x:hidden}
+  .lights{position:fixed;top:0;left:0;right:0;height:30px;z-index:30;display:flex;justify-content:space-around;align-items:flex-start;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent)}
+  .bulb{width:11px;height:15px;border-radius:50% 50% 45% 45%;margin-top:6px;position:relative;animation:twinkle 1.6s infinite ease-in-out}
+  .bulb::before{content:"";position:absolute;top:-4px;left:3px;width:5px;height:5px;background:#3a3a3a;border-radius:2px}
+  .bulb:nth-child(5n+1){background:var(--red);box-shadow:0 0 12px var(--red)}
+  .bulb:nth-child(5n+2){background:var(--gold);box-shadow:0 0 12px var(--gold);animation-delay:.3s}
+  .bulb:nth-child(5n+3){background:var(--blue);box-shadow:0 0 12px var(--blue);animation-delay:.6s}
+  .bulb:nth-child(5n+4){background:var(--pink);box-shadow:0 0 12px var(--pink);animation-delay:.9s}
+  .bulb:nth-child(5n+5){background:#7CFF8E;box-shadow:0 0 12px #7CFF8E;animation-delay:1.2s}
+  @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.35}}
+  nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);background:linear-gradient(90deg,rgba(163,13,31,.92),rgba(6,61,32,.92));border-bottom:3px solid var(--gold);box-shadow:var(--shadow)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 22px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:10px}
+  .logo{font-family:'Lilita One',cursive;font-size:1.7rem;line-height:1;white-space:nowrap;display:inline-flex;gap:.14em;align-items:baseline;text-decoration:none}
+  .logo .lc{color:#fff}
+  .logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+  .nav-links a{color:var(--cream);text-decoration:none;font-weight:800;font-size:.95rem;text-transform:uppercase;letter-spacing:.5px;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a.active{color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px;position:relative;z-index:10}
+
+  .page-head{text-align:center;padding:50px 0 30px}
+  .page-head .eyebrow{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;padding:7px 16px;border-radius:999px;margin-bottom:14px}
+  .page-head h1{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(2.4rem,7vw,4.5rem);text-transform:uppercase;color:#fff;text-shadow:0 3px 0 var(--red-deep)}
+  .page-head p{max-width:560px;margin:12px auto 0;font-weight:600;opacity:.9;font-size:1.05rem}
+
+  .filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+  .filter-label{font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold)}
+  .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:800;text-transform:uppercase;letter-spacing:.5px;font-size:.78rem;padding:7px 14px;border-radius:999px;cursor:pointer;transition:.15s}
+  .chip:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .chip.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  .results-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+  .results-count{font-weight:800;font-size:.9rem;opacity:.8}
+  .sort-select{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:999px;cursor:pointer}
+
+  .recipes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:960px){.recipes-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.recipes-grid{grid-template-columns:1fr}}
+
+  .recipe-card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;cursor:pointer;display:flex;flex-direction:column}
+  .recipe-card:hover{transform:translateY(-6px);border-color:var(--gold)}
+  .recipe-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative}
+  .cat-badge{position:absolute;top:10px;left:10px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:999px}
+  .cat-cookies{background:var(--gold);color:var(--ink)}
+  .cat-pies{background:var(--pink);color:#fff}
+  .cat-mains{background:var(--red);color:#fff}
+  .cat-sides{background:var(--green);color:#fff}
+  .cat-breads{background:var(--blue);color:var(--ink)}
+  .cat-drinks{background:#9b59b6;color:#fff}
+  .recipe-body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
+  .recipe-body h3{font-weight:800;font-size:1.05rem;color:#fff;margin-bottom:6px;line-height:1.3}
+  .recipe-body .desc{font-size:.85rem;font-weight:600;opacity:.85;flex:1;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .recipe-meta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .recipe-meta span{font-size:.75rem;font-weight:800;opacity:.7;display:flex;align-items:center;gap:4px}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+  .modal-overlay.open{opacity:1;pointer-events:all}
+  .modal{background:linear-gradient(180deg,#073d22,#04240f);border:2px solid rgba(255,200,61,.4);border-radius:24px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;box-shadow:0 32px 80px -16px rgba(0,0,0,.8);transform:translateY(20px);transition:transform .25s}
+  .modal-overlay.open .modal{transform:translateY(0)}
+  .modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:.15s}
+  .modal-close:hover{background:var(--red)}
+  .modal-emoji{font-size:3.5rem;margin-bottom:12px;display:block}
+  .modal-cat{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:999px;display:inline-block;margin-bottom:12px}
+  .modal h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;text-transform:uppercase;text-shadow:0 2px 0 var(--red-deep);margin-bottom:8px}
+  .modal .modal-desc{font-weight:600;opacity:.9;line-height:1.6;margin-bottom:18px;font-size:1rem}
+  .modal-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .modal-meta .mm{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.08);border-radius:12px;padding:10px 16px;min-width:80px}
+  .modal-meta .mm .mv{font-family:'Lilita One',cursive;font-size:1.4rem;color:var(--gold)}
+  .modal-meta .mm .ml{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;opacity:.65;margin-top:2px}
+  .modal h3{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-size:.82rem;margin-bottom:10px;margin-top:20px}
+  .modal .ingredients{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  @media(max-width:480px){.modal .ingredients{grid-template-columns:1fr}}
+  .modal .ingredients li{font-size:.9rem;font-weight:600;padding:6px 10px;background:rgba(255,255,255,.06);border-radius:8px;border-left:3px solid var(--gold)}
+  .modal .instructions{counter-reset:steps}
+  .modal .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+  .modal .step-num{background:var(--red);color:#fff;font-family:'Lilita One',cursive;font-size:1rem;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .modal .step-text{font-size:.92rem;font-weight:600;line-height:1.6;opacity:.95}
+
+  footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
+  .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
+  .foot-logo .lc{color:#fff}
+  .foot-logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .foot-copy{opacity:.5;font-size:.78rem;font-weight:600;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="lights" id="lights"></div>
+
+<nav><div class="nav-inner">
+  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Countdown</a></li>
+    <li><a href="/recipes.html" class="active">Recipes</a></li>
+    <li><a href="/movies.html">Movies</a></li>
+    <li><a href="/books.html">Bookstore</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/santa.html">🎅 Santa</a></li>
+    <li><a href="/penny.html">🐾 Penny</a></li>
+  </ul>
+</div></nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="eyebrow">🍪 49 Recipes</span>
+    <h1>Christmas Recipes</h1>
+    <p>Cookies, pies, mains, sides, breads and drinks — bake it like it's December all year long.</p>
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Category</span>
+    <button class="chip active" data-cat="all">All</button>
+    <button class="chip" data-cat="cookies">🍪 Cookies</button>
+    <button class="chip" data-cat="pies">🥧 Pies & Desserts</button>
+    <button class="chip" data-cat="mains">🍗 Mains</button>
+    <button class="chip" data-cat="sides">🥗 Sides</button>
+    <button class="chip" data-cat="breads">🍞 Breads</button>
+    <button class="chip" data-cat="drinks">🍹 Drinks</button>
+  </div>
+
+  <div class="results-bar">
+    <span class="results-count" id="results-count">Loading...</span>
+    <select class="sort-select" id="sort-select">
+      <option value="title">A–Z</option>
+      <option value="time">Quickest First</option>
+      <option value="servings">Most Servings</option>
+    </select>
+  </div>
+
+  <div class="recipes-grid" id="recipes-grid">
+    <div style="text-align:center;padding:60px 0;font-weight:800;opacity:.7;grid-column:1/-1">🍪 Loading recipes...</div>
+  </div>
+</div>
+
+<!-- RECIPE MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <span class="modal-emoji" id="modal-emoji">🍪</span>
+    <span class="modal-cat" id="modal-cat"></span>
+    <h2 id="modal-title"></h2>
+    <p class="modal-desc" id="modal-desc"></p>
+    <div class="modal-meta" id="modal-meta"></div>
+    <h3>Ingredients</h3>
+    <ul class="ingredients" id="modal-ingredients"></ul>
+    <h3>Instructions</h3>
+    <div class="instructions" id="modal-instructions"></div>
+  </div>
+</div>
+
+<footer>
+  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day. · Penny approved. 🐾</p>
+</footer>
+
+<script>
+  const SUPABASE_URL='https://sjpjzdbzufvqikzazatf.supabase.co';
+  const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcGp6ZGJ6dWZ2cWlremF6YXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NTU1NzQsImV4cCI6MjA5NjUzMTU3NH0.pEdyCUyb2n9w07hcvzISC-02FS88A-cofdF-vDdX_K4';
+
+  const CAT_EMOJI={cookies:'🍪',pies:'🥧',mains:'🍗',sides:'🥗',breads:'🍞',drinks:'🍹'};
+  const CAT_COLORS={cookies:'cat-cookies',pies:'cat-pies',mains:'cat-mains',sides:'cat-sides',breads:'cat-breads',drinks:'cat-drinks'};
+  const CAT_THUMBS={cookies:'linear-gradient(135deg,#a30d1f,#e8132b)',pies:'linear-gradient(135deg,#a30d1f,#ffc83d)',mains:'linear-gradient(135deg,#063d20,#0f7a3d)',sides:'linear-gradient(135deg,#0f7a3d,#7CFF8E)',breads:'linear-gradient(135deg,#27c2ff,#063d20)',drinks:'linear-gradient(135deg,#9b59b6,#27c2ff)'};
+
+  let allRecipes=[];
+  let filtered=[];
+  let activeCat='all';
+  let sortBy='title';
+
+  const lights=document.getElementById('lights');
+  for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
+
+  function applyFilters(){
+    filtered=allRecipes.filter(r=>activeCat==='all'||r.category===activeCat);
+    filtered.sort((a,b)=>{
+      if(sortBy==='time')return(a.ready_in_minutes||999)-(b.ready_in_minutes||999);
+      if(sortBy==='servings')return(b.servings||0)-(a.servings||0);
+      return(a.title||'').localeCompare(b.title||'');
+    });
+    document.getElementById('results-count').textContent=`${filtered.length} recipes`;
+    renderGrid();
+  }
+
+  function renderGrid(){
+    const grid=document.getElementById('recipes-grid');
+    if(!filtered.length){
+      grid.innerHTML='<div style="text-align:center;padding:60px 0;font-weight:700;opacity:.6;grid-column:1/-1">No recipes found — try a different category.</div>';
+      return;
+    }
+    grid.innerHTML='';
+    filtered.forEach(r=>{
+      const cat=r.category||'cookies';
+      const emoji=CAT_EMOJI[cat]||'🍴';
+      const div=document.createElement('div');
+      div.className='recipe-card';
+      div.innerHTML=`
+        <div class="recipe-thumb" style="background:${CAT_THUMBS[cat]||'linear-gradient(135deg,#a30d1f,#e8132b)'}">
+          ${emoji}
+          <span class="cat-badge ${CAT_COLORS[cat]||''}">${cat}</span>
+        </div>
+        <div class="recipe-body">
+          <h3>${r.title}</h3>
+          <div class="desc">${r.description||''}</div>
+          <div class="recipe-meta">
+            ${r.ready_in_minutes?`<span>⏱️ ${r.ready_in_minutes} min</span>`:''}
+            ${r.servings?`<span>👥 Serves ${r.servings}</span>`:''}
+          </div>
+        </div>`;
+      div.addEventListener('click',()=>openModal(r));
+      grid.appendChild(div);
+    });
+  }
+
+  function openModal(r){
+    const cat=r.category||'cookies';
+    const emoji=CAT_EMOJI[cat]||'🍴';
+    document.getElementById('modal-emoji').textContent=emoji;
+    const catEl=document.getElementById('modal-cat');
+    catEl.textContent=cat;
+    catEl.className='modal-cat '+CAT_COLORS[cat];
+    document.getElementById('modal-title').textContent=r.title;
+    document.getElementById('modal-desc').textContent=r.description||'';
+
+    // Meta
+    const meta=document.getElementById('modal-meta');
+    meta.innerHTML='';
+    if(r.prep_minutes){meta.innerHTML+=`<div class="mm"><span class="mv">${r.prep_minutes}m</span><span class="ml">Prep</span></div>`;}
+    if(r.cook_minutes){meta.innerHTML+=`<div class="mm"><span class="mv">${r.cook_minutes}m</span><span class="ml">Cook</span></div>`;}
+    if(r.ready_in_minutes){meta.innerHTML+=`<div class="mm"><span class="mv">${r.ready_in_minutes}m</span><span class="ml">Total</span></div>`;}
+    if(r.servings){meta.innerHTML+=`<div class="mm"><span class="mv">${r.servings}</span><span class="ml">Servings</span></div>`;}
+
+    // Ingredients
+    const ingList=document.getElementById('modal-ingredients');
+    ingList.innerHTML='';
+    if(r.ingredients){
+      r.ingredients.split('|').forEach(ing=>{
+        if(ing.trim()){const li=document.createElement('li');li.textContent=ing.trim();ingList.appendChild(li);}
+      });
+    }
+
+    // Instructions
+    const instEl=document.getElementById('modal-instructions');
+    instEl.innerHTML='';
+    if(r.instructions){
+      r.instructions.split('.').filter(s=>s.trim().length>5).forEach((step,i)=>{
+        const div=document.createElement('div');
+        div.className='step';
+        div.innerHTML=`<span class="step-num">${i+1}</span><span class="step-text">${step.trim()}.</span>`;
+        instEl.appendChild(div);
+      });
+    }
+
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+
+  function closeModal(){
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  document.getElementById('modal-close').addEventListener('click',closeModal);
+  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+  document.querySelectorAll('.chip[data-cat]').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.chip[data-cat]').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeCat=chip.getAttribute('data-cat');
+      applyFilters();
+    });
+  });
+
+  document.getElementById('sort-select').addEventListener('change',e=>{
+    sortBy=e.target.value;
+    applyFilters();
+  });
+
+  async function loadRecipes(){
+    const res=await fetch(`${SUPABASE_URL}/rest/v1/christmas_recipes?select=*&order=title.asc`,{
+      headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`}
+    });
+    allRecipes=await res.json();
+    applyFilters();
+  }
+
+  loadRecipes();
+</script>
+</body>
+</html>
