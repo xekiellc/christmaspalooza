@@ -74,7 +74,6 @@
   .book-cover img.loaded{opacity:1}
   .book-cover img.loaded ~ .fallback{display:none}
   .book-cover .fallback{position:relative;z-index:0;text-align:center;padding:14px}
-  .book-cover .fallback .emo{font-size:3rem;display:block;margin-bottom:8px}
   .book-cover .fallback .ftitle{font-family:'Lilita One',cursive;color:#fff;font-size:.95rem;line-height:1.2;text-shadow:0 2px 0 rgba(0,0,0,.4)}
   .cat-badge{position:absolute;top:8px;left:8px;z-index:2;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:999px}
   .cat-fiction{background:var(--pink);color:#fff}
@@ -103,7 +102,7 @@
 <div class="lights" id="lights"></div>
 
 <nav><div class="nav-inner">
-  <a href="/" class="logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
+  <a href="/" class="logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></a>
   <ul class="nav-links">
     <li><a href="/">Countdown</a></li>
     <li><a href="/recipes.html">Recipes</a></li>
@@ -115,7 +114,7 @@
 
 <div class="wrap">
   <div class="page-head">
-    <span class="eyebrow">📚 274+ Titles</span>
+    <span class="eyebrow">274+ Titles</span>
     <h1>Christmas Bookstore</h1>
     <p>Cozy up with the best Christmas books — fiction, children's classics, cookbooks, and more. Every title links to Bookshop.org.</p>
   </div>
@@ -123,11 +122,11 @@
   <div class="filter-bar">
     <span class="filter-label">Category</span>
     <button class="chip active" data-cat="all">All Books</button>
-    <button class="chip" data-cat="fiction">📖 Fiction</button>
-    <button class="chip" data-cat="childrens">🧒 Children's</button>
-    <button class="chip" data-cat="cookbook">🍪 Cookbooks</button>
-    <button class="chip" data-cat="classic">📜 Classics</button>
-    <button class="chip" data-cat="nonfiction">🎄 Nonfiction</button>
+    <button class="chip" data-cat="fiction">Fiction</button>
+    <button class="chip" data-cat="childrens">Children's</button>
+    <button class="chip" data-cat="cookbook">Cookbooks</button>
+    <button class="chip" data-cat="classic">Classics</button>
+    <button class="chip" data-cat="nonfiction">Nonfiction</button>
   </div>
 
   <div class="results-bar">
@@ -140,14 +139,14 @@
   </div>
 
   <div class="books-grid" id="books-grid">
-    <div class="loading">📚 Loading Christmas books...</div>
+    <div class="loading">Loading Christmas books...</div>
   </div>
 
   <button class="load-more" id="load-more" style="display:none">Load More Books</button>
 </div>
 
 <footer>
-  <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
+  <a href="/" style="text-decoration:none"><div class="foot-logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
   <p class="foot-copy">© 2026 ChristmasPalooza · Books via Google Books · Shop links via Bookshop.org · Christmas All Year. Party All Day.</p>
 </footer>
 
@@ -161,10 +160,6 @@
   let displayed = 0;
   let activecat = 'all';
   let sortBy = 'newest';
-
-  const CAT_EMOJI = {
-    fiction: '📖', childrens: '🧒', cookbook: '🍪', classic: '📜', nonfiction: '🎄'
-  };
 
   const lights = document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
@@ -190,7 +185,6 @@
     a.target = '_blank';
     a.rel = 'noopener';
     const cat = book.category || 'fiction';
-    const emoji = CAT_EMOJI[cat] || '📚';
     const imgHtml = book.cover_url
       ? `<img src="${book.cover_url}" alt="${book.title}" loading="lazy" onload="this.classList.add('loaded')">`
       : '';
@@ -198,7 +192,6 @@
       <div class="book-cover">
         ${imgHtml}
         <div class="fallback">
-          <span class="emo">${emoji}</span>
           <span class="ftitle">${book.title}</span>
         </div>
         <span class="cat-badge cat-${cat}">${cat}</span>
@@ -207,7 +200,7 @@
         <h3>${book.title}</h3>
         <div class="author">${book.author || 'Unknown Author'}${book.published_year ? ' · ' + book.published_year : ''}</div>
         <div class="desc">${book.description || ''}</div>
-        <span class="buy-btn">Shop on Bookshop.org 📖</span>
+        <span class="buy-btn">Shop on Bookshop.org</span>
       </div>`;
     return a;
   }
@@ -216,7 +209,7 @@
     const grid = document.getElementById('books-grid');
     const batch = filtered.slice(displayed, displayed + PAGE_SIZE);
     if (batch.length === 0 && displayed === 0) {
-      grid.innerHTML = '<div class="empty">No books found — try a different category. 📚</div>';
+      grid.innerHTML = '<div class="empty">No books found — try a different category.</div>';
       document.getElementById('load-more').style.display = 'none';
       return;
     }
