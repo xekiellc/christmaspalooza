@@ -67,51 +67,54 @@
   .results-count{font-weight:800;font-size:.9rem;opacity:.8}
   .sort-select{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);color:var(--cream);font-family:'Nunito';font-weight:700;font-size:.85rem;padding:8px 14px;border-radius:999px;cursor:pointer}
 
-  .recipes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .hint-bar{text-align:center;font-size:.82rem;font-weight:700;opacity:.55;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px}
+
+  /* FLIP CARD GRID */
+  .recipes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:60px}
   @media(max-width:960px){.recipes-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.recipes-grid{grid-template-columns:1fr}}
 
-  .recipe-card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.2s;cursor:pointer;display:flex;flex-direction:column}
-  .recipe-card:hover{transform:translateY(-6px);border-color:var(--gold)}
-  .recipe-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative}
-  .cat-badge{position:absolute;top:10px;left:10px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:4px 10px;border-radius:999px}
+  .flip-card{height:340px;perspective:1200px;cursor:pointer}
+  .flip-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+  .flip-card.flipped .flip-card-inner{transform:rotateY(180deg)}
+
+  /* FRONT */
+  .flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;box-shadow:var(--shadow)}
+  .flip-front{background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(0,0,0,.2));border:1px solid rgba(255,255,255,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 22px;gap:14px}
+  .flip-front:hover{border-color:rgba(255,200,61,.5)}
+  .front-cat{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;padding:5px 14px;border-radius:999px}
   .cat-cookies{background:var(--gold);color:var(--ink)}
   .cat-pies{background:var(--pink);color:#fff}
   .cat-mains{background:var(--red);color:#fff}
   .cat-sides{background:var(--green);color:#fff}
   .cat-breads{background:var(--blue);color:var(--ink)}
-  .cat-drinks{background:#9b59b6;color:#fff}
-  .recipe-body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column}
-  .recipe-body h3{font-weight:800;font-size:1.05rem;color:#fff;margin-bottom:6px;line-height:1.3}
-  .recipe-body .desc{font-size:.85rem;font-weight:600;opacity:.85;flex:1;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .recipe-meta{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-  .recipe-meta span{font-size:.75rem;font-weight:800;opacity:.7;display:flex;align-items:center;gap:4px}
+  .cat-drinks{background:#7b2fbe;color:#fff}
+  .front-title{font-family:'Lilita One',cursive;font-size:clamp(1.2rem,2.5vw,1.55rem);color:#fff;text-transform:uppercase;text-shadow:0 2px 0 rgba(0,0,0,.3);line-height:1.1}
+  .front-desc{font-size:.82rem;font-weight:600;opacity:.8;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .front-meta{display:flex;gap:14px;margin-top:4px}
+  .front-meta span{font-size:.75rem;font-weight:800;opacity:.65;background:rgba(255,255,255,.08);padding:4px 10px;border-radius:999px}
+  .front-tap{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--gold);opacity:.8;margin-top:4px}
 
-  /* MODAL */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
-  .modal-overlay.open{opacity:1;pointer-events:all}
-  .modal{background:linear-gradient(180deg,#073d22,#04240f);border:2px solid rgba(255,200,61,.4);border-radius:24px;max-width:680px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative;box-shadow:0 32px 80px -16px rgba(0,0,0,.8);transform:translateY(20px);transition:transform .25s}
-  .modal-overlay.open .modal{transform:translateY(0)}
-  .modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;transition:.15s}
-  .modal-close:hover{background:var(--red)}
-  .modal-emoji{font-size:3.5rem;margin-bottom:12px;display:block}
-  .modal-cat{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:999px;display:inline-block;margin-bottom:12px}
-  .modal h2{font-family:'Lilita One',cursive;font-weight:400;font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;text-transform:uppercase;text-shadow:0 2px 0 var(--red-deep);margin-bottom:8px}
-  .modal .modal-desc{font-weight:600;opacity:.9;line-height:1.6;margin-bottom:18px;font-size:1rem}
-  .modal-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.12)}
-  .modal-meta .mm{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.08);border-radius:12px;padding:10px 16px;min-width:80px}
-  .modal-meta .mm .mv{font-family:'Lilita One',cursive;font-size:1.4rem;color:var(--gold)}
-  .modal-meta .mm .ml{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;opacity:.65;margin-top:2px}
-  .modal h3{font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:1px;font-size:.82rem;margin-bottom:10px;margin-top:20px}
-  .modal .ingredients{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
-  @media(max-width:480px){.modal .ingredients{grid-template-columns:1fr}}
-  .modal .ingredients li{font-size:.9rem;font-weight:600;padding:6px 10px;background:rgba(255,255,255,.06);border-radius:8px;border-left:3px solid var(--gold)}
-  .modal .instructions{counter-reset:steps}
-  .modal .step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
-  .modal .step-num{background:var(--red);color:#fff;font-family:'Lilita One',cursive;font-size:1rem;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-  .modal .step-text{font-size:.92rem;font-weight:600;line-height:1.6;opacity:.95}
+  /* BACK */
+  .flip-back{background:linear-gradient(180deg,#063d20,#04240f);border:2px solid rgba(255,200,61,.4);transform:rotateY(180deg);display:flex;flex-direction:column;overflow:hidden}
+  .back-header{padding:14px 16px 10px;border-bottom:1px solid rgba(255,255,255,.1);flex-shrink:0;display:flex;justify-content:space-between;align-items:center}
+  .back-title{font-family:'Lilita One',cursive;font-size:1rem;color:#fff;text-transform:uppercase;line-height:1.1}
+  .back-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;flex-shrink:0;transition:.15s}
+  .back-close:hover{background:var(--red)}
+  .back-scroll{flex:1;overflow-y:auto;padding:12px 16px 16px}
+  .back-scroll::-webkit-scrollbar{width:4px}
+  .back-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
+  .back-scroll::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+  .back-section{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);margin-bottom:6px;margin-top:12px}
+  .back-section:first-child{margin-top:0}
+  .back-ingredients{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+  .back-ingredients li{font-size:.78rem;font-weight:600;padding:4px 8px;background:rgba(255,255,255,.06);border-radius:6px;border-left:2px solid var(--gold);line-height:1.4}
+  .back-steps{display:flex;flex-direction:column;gap:8px}
+  .back-step{display:flex;gap:8px;align-items:flex-start}
+  .back-step-num{background:var(--red);color:#fff;font-family:'Lilita One',cursive;font-size:.8rem;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .back-step-text{font-size:.78rem;font-weight:600;line-height:1.5;opacity:.95}
 
-  footer{margin-top:60px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
+  footer{margin-top:20px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.45));padding:40px 0 30px;text-align:center}
   .foot-logo{font-family:'Lilita One',cursive;font-size:2rem;display:inline-flex;gap:.14em;align-items:baseline}
   .foot-logo .lc{color:#fff}
   .foot-logo .lp{background:linear-gradient(92deg,#ff6b5e,#ff2d44 45%,#c20e22);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -129,14 +132,14 @@
     <li><a href="/movies.html">Movies</a></li>
     <li><a href="/books.html">Bookstore</a></li>
     <li><a href="/news.html">News</a></li>
-    <li><a href="/santa.html">🎅 Santa</a></li>
-    <li><a href="/penny.html">🐾 Penny</a></li>
+    <li><a href="/santa.html">Santa Status</a></li>
+    <li><a href="/penny.html">Penny</a></li>
   </ul>
 </div></nav>
 
 <div class="wrap">
   <div class="page-head">
-    <span class="eyebrow">🍪 49 Recipes</span>
+    <span class="eyebrow">49 Recipes</span>
     <h1>Christmas Recipes</h1>
     <p>Cookies, pies, mains, sides, breads and drinks — bake it like it's December all year long.</p>
   </div>
@@ -144,12 +147,12 @@
   <div class="filter-bar">
     <span class="filter-label">Category</span>
     <button class="chip active" data-cat="all">All</button>
-    <button class="chip" data-cat="cookies">🍪 Cookies</button>
-    <button class="chip" data-cat="pies">🥧 Pies & Desserts</button>
-    <button class="chip" data-cat="mains">🍗 Mains</button>
-    <button class="chip" data-cat="sides">🥗 Sides</button>
-    <button class="chip" data-cat="breads">🍞 Breads</button>
-    <button class="chip" data-cat="drinks">🍹 Drinks</button>
+    <button class="chip" data-cat="cookies">Cookies</button>
+    <button class="chip" data-cat="pies">Pies & Desserts</button>
+    <button class="chip" data-cat="mains">Mains</button>
+    <button class="chip" data-cat="sides">Sides</button>
+    <button class="chip" data-cat="breads">Breads</button>
+    <button class="chip" data-cat="drinks">Drinks</button>
   </div>
 
   <div class="results-bar">
@@ -161,44 +164,26 @@
     </select>
   </div>
 
-  <div class="recipes-grid" id="recipes-grid">
-    <div style="text-align:center;padding:60px 0;font-weight:800;opacity:.7;grid-column:1/-1">🍪 Loading recipes...</div>
-  </div>
-</div>
+  <div class="hint-bar">Click any card to reveal the full recipe</div>
 
-<!-- RECIPE MODAL -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal" id="modal">
-    <button class="modal-close" id="modal-close">✕</button>
-    <span class="modal-emoji" id="modal-emoji">🍪</span>
-    <span class="modal-cat" id="modal-cat"></span>
-    <h2 id="modal-title"></h2>
-    <p class="modal-desc" id="modal-desc"></p>
-    <div class="modal-meta" id="modal-meta"></div>
-    <h3>Ingredients</h3>
-    <ul class="ingredients" id="modal-ingredients"></ul>
-    <h3>Instructions</h3>
-    <div class="instructions" id="modal-instructions"></div>
+  <div class="recipes-grid" id="recipes-grid">
+    <div style="text-align:center;padding:60px 0;font-weight:800;opacity:.7;grid-column:1/-1">Loading recipes...</div>
   </div>
 </div>
 
 <footer>
   <a href="/" style="text-decoration:none"><div class="foot-logo">🎄&nbsp;<span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div></a>
-  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day. · Penny approved. 🐾</p>
+  <p class="foot-copy">© 2026 ChristmasPalooza · Christmas All Year. Party All Day. · Penny approved.</p>
 </footer>
 
 <script>
   const SUPABASE_URL='https://sjpjzdbzufvqikzazatf.supabase.co';
   const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqcGp6ZGJ6dWZ2cWlremF6YXRmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5NTU1NzQsImV4cCI6MjA5NjUzMTU3NH0.pEdyCUyb2n9w07hcvzISC-02FS88A-cofdF-vDdX_K4';
 
-  const CAT_EMOJI={cookies:'🍪',pies:'🥧',mains:'🍗',sides:'🥗',breads:'🍞',drinks:'🍹'};
   const CAT_COLORS={cookies:'cat-cookies',pies:'cat-pies',mains:'cat-mains',sides:'cat-sides',breads:'cat-breads',drinks:'cat-drinks'};
-  const CAT_THUMBS={cookies:'linear-gradient(135deg,#a30d1f,#e8132b)',pies:'linear-gradient(135deg,#a30d1f,#ffc83d)',mains:'linear-gradient(135deg,#063d20,#0f7a3d)',sides:'linear-gradient(135deg,#0f7a3d,#7CFF8E)',breads:'linear-gradient(135deg,#27c2ff,#063d20)',drinks:'linear-gradient(135deg,#9b59b6,#27c2ff)'};
+  const CAT_LABELS={cookies:'Cookies',pies:'Pies & Desserts',mains:'Mains',sides:'Sides',breads:'Breads',drinks:'Drinks'};
 
-  let allRecipes=[];
-  let filtered=[];
-  let activeCat='all';
-  let sortBy='title';
+  let allRecipes=[],filtered=[],activeCat='all',sortBy='title';
 
   const lights=document.getElementById('lights');
   for(let i=0;i<40;i++){const b=document.createElement('div');b.className='bulb';lights.appendChild(b);}
@@ -214,6 +199,76 @@
     renderGrid();
   }
 
+  function buildCard(r){
+    const cat=r.category||'cookies';
+    const catLabel=CAT_LABELS[cat]||cat;
+    const catClass=CAT_COLORS[cat]||'cat-cookies';
+
+    // Parse ingredients
+    const ingredients=(r.ingredients||'').split('|').filter(s=>s.trim());
+
+    // Parse instructions into sentences
+    const steps=(r.instructions||'').split('.').filter(s=>s.trim().length>8).map(s=>s.trim());
+
+    // Build meta
+    let metaHtml='';
+    if(r.prep_minutes)metaHtml+=`<span>${r.prep_minutes}m prep</span>`;
+    if(r.cook_minutes)metaHtml+=`<span>${r.cook_minutes}m cook</span>`;
+    if(r.servings)metaHtml+=`<span>Serves ${r.servings}</span>`;
+
+    // Build ingredients HTML
+    const ingHtml=ingredients.map(i=>`<li>${i}</li>`).join('');
+
+    // Build steps HTML
+    const stepsHtml=steps.map((s,i)=>`
+      <div class="back-step">
+        <span class="back-step-num">${i+1}</span>
+        <span class="back-step-text">${s}.</span>
+      </div>`).join('');
+
+    const wrapper=document.createElement('div');
+    wrapper.className='flip-card';
+    wrapper.innerHTML=`
+      <div class="flip-card-inner">
+        <div class="flip-front">
+          <span class="front-cat ${catClass}">${catLabel}</span>
+          <div class="front-title">${r.title}</div>
+          <div class="front-desc">${r.description||''}</div>
+          <div class="front-meta">${metaHtml}</div>
+          <div class="front-tap">Click to see recipe</div>
+        </div>
+        <div class="flip-back">
+          <div class="back-header">
+            <div class="back-title">${r.title}</div>
+            <button class="back-close" title="Flip back">&#8635;</button>
+          </div>
+          <div class="back-scroll">
+            <div class="back-section">Ingredients</div>
+            <ul class="back-ingredients">${ingHtml}</ul>
+            <div class="back-section">Instructions</div>
+            <div class="back-steps">${stepsHtml}</div>
+          </div>
+        </div>
+      </div>`;
+
+    // Flip on card click
+    wrapper.addEventListener('click',function(e){
+      // Don't flip if clicking the close button
+      if(e.target.classList.contains('back-close')||e.target.closest('.back-close')){
+        e.stopPropagation();
+        wrapper.classList.remove('flipped');
+        return;
+      }
+      // Don't flip if clicking inside the back scroll area when already flipped
+      if(wrapper.classList.contains('flipped')&&e.target.closest('.back-scroll')){
+        return;
+      }
+      wrapper.classList.toggle('flipped');
+    });
+
+    return wrapper;
+  }
+
   function renderGrid(){
     const grid=document.getElementById('recipes-grid');
     if(!filtered.length){
@@ -221,80 +276,8 @@
       return;
     }
     grid.innerHTML='';
-    filtered.forEach(r=>{
-      const cat=r.category||'cookies';
-      const emoji=CAT_EMOJI[cat]||'🍴';
-      const div=document.createElement('div');
-      div.className='recipe-card';
-      div.innerHTML=`
-        <div class="recipe-thumb" style="background:${CAT_THUMBS[cat]||'linear-gradient(135deg,#a30d1f,#e8132b)'}">
-          ${emoji}
-          <span class="cat-badge ${CAT_COLORS[cat]||''}">${cat}</span>
-        </div>
-        <div class="recipe-body">
-          <h3>${r.title}</h3>
-          <div class="desc">${r.description||''}</div>
-          <div class="recipe-meta">
-            ${r.ready_in_minutes?`<span>⏱️ ${r.ready_in_minutes} min</span>`:''}
-            ${r.servings?`<span>👥 Serves ${r.servings}</span>`:''}
-          </div>
-        </div>`;
-      div.addEventListener('click',()=>openModal(r));
-      grid.appendChild(div);
-    });
+    filtered.forEach(r=>grid.appendChild(buildCard(r)));
   }
-
-  function openModal(r){
-    const cat=r.category||'cookies';
-    const emoji=CAT_EMOJI[cat]||'🍴';
-    document.getElementById('modal-emoji').textContent=emoji;
-    const catEl=document.getElementById('modal-cat');
-    catEl.textContent=cat;
-    catEl.className='modal-cat '+CAT_COLORS[cat];
-    document.getElementById('modal-title').textContent=r.title;
-    document.getElementById('modal-desc').textContent=r.description||'';
-
-    // Meta
-    const meta=document.getElementById('modal-meta');
-    meta.innerHTML='';
-    if(r.prep_minutes){meta.innerHTML+=`<div class="mm"><span class="mv">${r.prep_minutes}m</span><span class="ml">Prep</span></div>`;}
-    if(r.cook_minutes){meta.innerHTML+=`<div class="mm"><span class="mv">${r.cook_minutes}m</span><span class="ml">Cook</span></div>`;}
-    if(r.ready_in_minutes){meta.innerHTML+=`<div class="mm"><span class="mv">${r.ready_in_minutes}m</span><span class="ml">Total</span></div>`;}
-    if(r.servings){meta.innerHTML+=`<div class="mm"><span class="mv">${r.servings}</span><span class="ml">Servings</span></div>`;}
-
-    // Ingredients
-    const ingList=document.getElementById('modal-ingredients');
-    ingList.innerHTML='';
-    if(r.ingredients){
-      r.ingredients.split('|').forEach(ing=>{
-        if(ing.trim()){const li=document.createElement('li');li.textContent=ing.trim();ingList.appendChild(li);}
-      });
-    }
-
-    // Instructions
-    const instEl=document.getElementById('modal-instructions');
-    instEl.innerHTML='';
-    if(r.instructions){
-      r.instructions.split('.').filter(s=>s.trim().length>5).forEach((step,i)=>{
-        const div=document.createElement('div');
-        div.className='step';
-        div.innerHTML=`<span class="step-num">${i+1}</span><span class="step-text">${step.trim()}.</span>`;
-        instEl.appendChild(div);
-      });
-    }
-
-    document.getElementById('modal-overlay').classList.add('open');
-    document.body.style.overflow='hidden';
-  }
-
-  function closeModal(){
-    document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow='';
-  }
-
-  document.getElementById('modal-close').addEventListener('click',closeModal);
-  document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
   document.querySelectorAll('.chip[data-cat]').forEach(chip=>{
     chip.addEventListener('click',()=>{
@@ -311,11 +294,15 @@
   });
 
   async function loadRecipes(){
-    const res=await fetch(`${SUPABASE_URL}/rest/v1/christmas_recipes?select=*&order=title.asc`,{
-      headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`}
-    });
-    allRecipes=await res.json();
-    applyFilters();
+    try{
+      const res=await fetch(`${SUPABASE_URL}/rest/v1/christmas_recipes?select=*&order=title.asc`,{
+        headers:{'apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`}
+      });
+      allRecipes=await res.json();
+      applyFilters();
+    }catch(e){
+      document.getElementById('recipes-grid').innerHTML='<div style="text-align:center;padding:60px 0;font-weight:700;opacity:.6;grid-column:1/-1">Could not load recipes. Please try again.</div>';
+    }
   }
 
   loadRecipes();
