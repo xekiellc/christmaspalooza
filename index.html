@@ -118,7 +118,8 @@
   .chip:hover{border-color:var(--gold);transform:translateY(-2px)}
   .chip.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
   .movie.hide{display:none}
-  .movie{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.16);transition:.2s;display:block;text-decoration:none}
+  .movie{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.16);transition:.2s;display:block;text-decoration:none;cursor:pointer}
+  .movie:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   .movie:hover{transform:translateY(-6px);border-color:var(--gold)}
   .poster{position:relative;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));overflow:hidden}
   .poster .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:1}
@@ -131,6 +132,34 @@
   .movie .mbar{position:absolute;bottom:0;left:0;right:0;z-index:2;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));padding:26px 12px 12px;display:flex;justify-content:space-between;align-items:flex-end}
   .movie .mname{font-weight:800;color:#fff;font-size:.92rem;line-height:1.1;text-shadow:0 1px 3px rgba(0,0,0,.8)}
   .movie .mtag{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;background:var(--gold);color:var(--ink);padding:3px 8px;border-radius:999px;flex-shrink:0;margin-left:6px}
+
+  /* Watch modal */
+  .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(4,10,6,.82);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow-y:auto}
+  .modal-overlay.show{display:flex}
+  .modal-card{background:linear-gradient(180deg,#0c2a17,#071c0f);border:2px solid rgba(255,200,61,.4);border-radius:22px;max-width:640px;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);position:relative;overflow:hidden}
+  .modal-close{position:absolute;top:12px;right:12px;z-index:5;width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.4);background:rgba(0,0,0,.4);color:#fff;font-size:1.1rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+  .modal-close:hover{border-color:var(--gold);color:var(--gold)}
+  .modal-hero{display:flex;gap:18px;padding:22px 22px 0}
+  .modal-poster{width:120px;flex-shrink:0;border-radius:12px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.5);aspect-ratio:2/3;background:linear-gradient(160deg,var(--green-deep),var(--red-deep));display:flex;align-items:center;justify-content:center}
+  .modal-poster img{width:100%;height:100%;object-fit:cover}
+  .modal-title{font-family:'Lilita One',cursive;font-size:1.5rem;color:#fff;line-height:1.1;text-shadow:0 2px 0 var(--red-deep)}
+  .modal-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+  .modal-meta span{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.12)}
+  .modal-overview{margin-top:10px;font-size:.9rem;line-height:1.4;opacity:.85}
+  .modal-body{padding:18px 22px 24px}
+  .watch-section h3{font-family:'Lilita One',cursive;font-weight:400;font-size:1.05rem;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+  .watch-group{margin-bottom:14px}
+  .watch-group .wg-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;opacity:.7;margin-bottom:8px;display:block}
+  .provider-row{display:flex;gap:10px;flex-wrap:wrap}
+  .provider-chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:6px 12px 6px 6px;text-decoration:none;color:var(--cream);font-weight:700;font-size:.82rem;transition:.15s}
+  .provider-chip:hover{border-color:var(--gold);background:rgba(255,255,255,.14)}
+  .provider-chip img{width:32px;height:32px;border-radius:8px;display:block}
+  .watch-empty{font-size:.88rem;opacity:.75;line-height:1.4;background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.25);border-radius:12px;padding:14px}
+  .watch-loading{font-size:.88rem;opacity:.7;padding:8px 0}
+  .modal-tmdb-link{display:inline-block;margin-top:16px;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,200,61,.4)}
+  .modal-tmdb-link:hover{border-color:var(--gold)}
+  .watch-attr{margin-top:14px;font-size:.68rem;opacity:.55;line-height:1.4}
+  @media(max-width:520px){.modal-hero{flex-direction:column}.modal-poster{width:100px}}
   .book{display:flex;gap:14px;align-items:center;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(0,0,0,.16));border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:14px;box-shadow:var(--shadow);transition:.2s;text-decoration:none}
   .book:hover{transform:translateY(-4px);border-color:var(--gold)}
   .book .cover{width:70px;height:104px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.9rem;box-shadow:0 6px 14px rgba(0,0,0,.4);position:relative;overflow:hidden}
@@ -300,7 +329,7 @@
   <!-- MOVIES -->
   <section class="block" id="movies">
     <div class="sec-head"><div class="eyebrow">The Christmas Cinema</div><h2>Movie Marathon</h2>
-      <p>The films that ARE Christmas. Tap any title to view on TMDB.</p></div>
+      <p>The films that ARE Christmas. Tap any title to see where it's streaming.</p></div>
     <div class="filters" id="filters">
       <button class="chip active" data-filter="all">All</button>
       <button class="chip" data-filter="classic">Classics</button>
@@ -309,38 +338,38 @@
       <button class="chip" data-filter="family">Family</button>
     </div>
     <div class="grid g4" id="movie-grid">
-      <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="It's a Wonderful Life" data-year="1946" href="https://www.themoviedb.org/search?query=It%27s%20a%20Wonderful%20Life">
-        <div class="poster"><img class="pimg" alt="It's a Wonderful Life"><div class="pfallback"><span class="ttl">It's a Wonderful Life</span><span class="yr">1946</span></div><div class="mbar"><span class="mname">It's a Wonderful Life</span><span class="mtag">Classic</span></div></div></a>
-      <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="Miracle on 34th Street" data-year="1947" href="https://www.themoviedb.org/search?query=Miracle%20on%2034th%20Street%201947">
-        <div class="poster"><img class="pimg" alt="Miracle on 34th Street"><div class="pfallback"><span class="ttl">Miracle on 34th Street</span><span class="yr">1947</span></div><div class="mbar"><span class="mname">Miracle on 34th Street</span><span class="mtag">Classic</span></div></div></a>
-      <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="White Christmas" data-year="1954" href="https://www.themoviedb.org/search?query=White%20Christmas%201954">
-        <div class="poster"><img class="pimg" alt="White Christmas"><div class="pfallback"><span class="ttl">White Christmas</span><span class="yr">1954</span></div><div class="mbar"><span class="mname">White Christmas</span><span class="mtag">Classic</span></div></div></a>
-      <a class="movie" data-cat="classic" target="_blank" rel="noopener" data-title="A Christmas Story" data-year="1983" href="https://www.themoviedb.org/search?query=A%20Christmas%20Story%201983">
-        <div class="poster"><img class="pimg" alt="A Christmas Story"><div class="pfallback"><span class="ttl">A Christmas Story</span><span class="yr">1983</span></div><div class="mbar"><span class="mname">A Christmas Story</span><span class="mtag">Classic</span></div></div></a>
-      <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="National Lampoon's Christmas Vacation" data-year="1989" href="https://www.themoviedb.org/search?query=National%20Lampoon%27s%20Christmas%20Vacation">
-        <div class="poster"><img class="pimg" alt="Christmas Vacation"><div class="pfallback"><span class="ttl">Christmas Vacation</span><span class="yr">1989</span></div><div class="mbar"><span class="mname">Christmas Vacation</span><span class="mtag">Comedy</span></div></div></a>
-      <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="Scrooged" data-year="1988" href="https://www.themoviedb.org/search?query=Scrooged%201988">
-        <div class="poster"><img class="pimg" alt="Scrooged"><div class="pfallback"><span class="ttl">Scrooged</span><span class="yr">1988</span></div><div class="mbar"><span class="mname">Scrooged</span><span class="mtag">Comedy</span></div></div></a>
-      <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="Elf" data-year="2003" href="https://www.themoviedb.org/search?query=Elf%202003">
-        <div class="poster"><img class="pimg" alt="Elf"><div class="pfallback"><span class="ttl">Elf</span><span class="yr">2003</span></div><div class="mbar"><span class="mname">Elf</span><span class="mtag">Comedy</span></div></div></a>
-      <a class="movie" data-cat="comedy" target="_blank" rel="noopener" data-title="Home Alone" data-year="1990" href="https://www.themoviedb.org/search?query=Home%20Alone%201990">
-        <div class="poster"><img class="pimg" alt="Home Alone"><div class="pfallback"><span class="ttl">Home Alone</span><span class="yr">1990</span></div><div class="mbar"><span class="mname">Home Alone</span><span class="mtag">Comedy</span></div></div></a>
-      <a class="movie" data-cat="family" target="_blank" rel="noopener" data-title="The Santa Clause" data-year="1994" href="https://www.themoviedb.org/search?query=The%20Santa%20Clause%201994">
-        <div class="poster"><img class="pimg" alt="The Santa Clause"><div class="pfallback"><span class="ttl">The Santa Clause</span><span class="yr">1994</span></div><div class="mbar"><span class="mname">The Santa Clause</span><span class="mtag">Family</span></div></div></a>
-      <a class="movie" data-cat="family" target="_blank" rel="noopener" data-title="How the Grinch Stole Christmas" data-year="2000" href="https://www.themoviedb.org/search?query=How%20the%20Grinch%20Stole%20Christmas%202000">
-        <div class="poster"><img class="pimg" alt="How the Grinch Stole Christmas"><div class="pfallback"><span class="ttl">How the Grinch Stole Christmas</span><span class="yr">2000</span></div><div class="mbar"><span class="mname">Grinch (Live-Action)</span><span class="mtag">Family</span></div></div></a>
-      <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="Rudolph the Red-Nosed Reindeer" data-year="1964" href="https://www.themoviedb.org/search?query=Rudolph%20the%20Red-Nosed%20Reindeer%201964">
-        <div class="poster"><img class="pimg" alt="Rudolph"><div class="pfallback"><span class="ttl">Rudolph the Red-Nosed Reindeer</span><span class="yr">1964</span></div><div class="mbar"><span class="mname">Rudolph</span><span class="mtag">Cartoon</span></div></div></a>
-      <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="A Charlie Brown Christmas" data-year="1965" href="https://www.themoviedb.org/search?query=A%20Charlie%20Brown%20Christmas">
-        <div class="poster"><img class="pimg" alt="A Charlie Brown Christmas"><div class="pfallback"><span class="ttl">A Charlie Brown Christmas</span><span class="yr">1965</span></div><div class="mbar"><span class="mname">Charlie Brown</span><span class="mtag">Cartoon</span></div></div></a>
-      <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="The Polar Express" data-year="2004" href="https://www.themoviedb.org/search?query=The%20Polar%20Express">
-        <div class="poster"><img class="pimg" alt="The Polar Express"><div class="pfallback"><span class="ttl">The Polar Express</span><span class="yr">2004</span></div><div class="mbar"><span class="mname">The Polar Express</span><span class="mtag">Cartoon</span></div></div></a>
-      <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="Klaus" data-year="2019" href="https://www.themoviedb.org/search?query=Klaus%202019">
-        <div class="poster"><img class="pimg" alt="Klaus"><div class="pfallback"><span class="ttl">Klaus</span><span class="yr">2019</span></div><div class="mbar"><span class="mname">Klaus</span><span class="mtag">Cartoon</span></div></div></a>
-      <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="The Nightmare Before Christmas" data-year="1993" href="https://www.themoviedb.org/search?query=The%20Nightmare%20Before%20Christmas">
-        <div class="poster"><img class="pimg" alt="The Nightmare Before Christmas"><div class="pfallback"><span class="ttl">The Nightmare Before Christmas</span><span class="yr">1993</span></div><div class="mbar"><span class="mname">Nightmare Before Christmas</span><span class="mtag">Cartoon</span></div></div></a>
-      <a class="movie" data-cat="animated" target="_blank" rel="noopener" data-title="The Grinch" data-year="2018" href="https://www.themoviedb.org/search?query=The%20Grinch%202018">
-        <div class="poster"><img class="pimg" alt="The Grinch 2018"><div class="pfallback"><span class="ttl">The Grinch</span><span class="yr">2018</span></div><div class="mbar"><span class="mname">The Grinch (2018)</span><span class="mtag">Cartoon</span></div></div></a>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch It's a Wonderful Life" data-cat="classic" data-title="It's a Wonderful Life" data-year="1946">
+        <div class="poster"><img class="pimg" alt="It's a Wonderful Life"><div class="pfallback"><span class="ttl">It's a Wonderful Life</span><span class="yr">1946</span></div><div class="mbar"><span class="mname">It's a Wonderful Life</span><span class="mtag">Classic</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch Miracle on 34th Street" data-cat="classic" data-title="Miracle on 34th Street" data-year="1947">
+        <div class="poster"><img class="pimg" alt="Miracle on 34th Street"><div class="pfallback"><span class="ttl">Miracle on 34th Street</span><span class="yr">1947</span></div><div class="mbar"><span class="mname">Miracle on 34th Street</span><span class="mtag">Classic</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch White Christmas" data-cat="classic" data-title="White Christmas" data-year="1954">
+        <div class="poster"><img class="pimg" alt="White Christmas"><div class="pfallback"><span class="ttl">White Christmas</span><span class="yr">1954</span></div><div class="mbar"><span class="mname">White Christmas</span><span class="mtag">Classic</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch A Christmas Story" data-cat="classic" data-title="A Christmas Story" data-year="1983">
+        <div class="poster"><img class="pimg" alt="A Christmas Story"><div class="pfallback"><span class="ttl">A Christmas Story</span><span class="yr">1983</span></div><div class="mbar"><span class="mname">A Christmas Story</span><span class="mtag">Classic</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch National Lampoon's Christmas Vacation" data-cat="comedy" data-title="National Lampoon's Christmas Vacation" data-year="1989">
+        <div class="poster"><img class="pimg" alt="Christmas Vacation"><div class="pfallback"><span class="ttl">Christmas Vacation</span><span class="yr">1989</span></div><div class="mbar"><span class="mname">Christmas Vacation</span><span class="mtag">Comedy</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch Scrooged" data-cat="comedy" data-title="Scrooged" data-year="1988">
+        <div class="poster"><img class="pimg" alt="Scrooged"><div class="pfallback"><span class="ttl">Scrooged</span><span class="yr">1988</span></div><div class="mbar"><span class="mname">Scrooged</span><span class="mtag">Comedy</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch Elf" data-cat="comedy" data-title="Elf" data-year="2003">
+        <div class="poster"><img class="pimg" alt="Elf"><div class="pfallback"><span class="ttl">Elf</span><span class="yr">2003</span></div><div class="mbar"><span class="mname">Elf</span><span class="mtag">Comedy</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch Home Alone" data-cat="comedy" data-title="Home Alone" data-year="1990">
+        <div class="poster"><img class="pimg" alt="Home Alone"><div class="pfallback"><span class="ttl">Home Alone</span><span class="yr">1990</span></div><div class="mbar"><span class="mname">Home Alone</span><span class="mtag">Comedy</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch The Santa Clause" data-cat="family" data-title="The Santa Clause" data-year="1994">
+        <div class="poster"><img class="pimg" alt="The Santa Clause"><div class="pfallback"><span class="ttl">The Santa Clause</span><span class="yr">1994</span></div><div class="mbar"><span class="mname">The Santa Clause</span><span class="mtag">Family</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch How the Grinch Stole Christmas" data-cat="family" data-title="How the Grinch Stole Christmas" data-year="2000">
+        <div class="poster"><img class="pimg" alt="How the Grinch Stole Christmas"><div class="pfallback"><span class="ttl">How the Grinch Stole Christmas</span><span class="yr">2000</span></div><div class="mbar"><span class="mname">Grinch (Live-Action)</span><span class="mtag">Family</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch Rudolph the Red-Nosed Reindeer" data-cat="animated" data-title="Rudolph the Red-Nosed Reindeer" data-year="1964">
+        <div class="poster"><img class="pimg" alt="Rudolph"><div class="pfallback"><span class="ttl">Rudolph the Red-Nosed Reindeer</span><span class="yr">1964</span></div><div class="mbar"><span class="mname">Rudolph</span><span class="mtag">Cartoon</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch A Charlie Brown Christmas" data-cat="animated" data-title="A Charlie Brown Christmas" data-year="1965">
+        <div class="poster"><img class="pimg" alt="A Charlie Brown Christmas"><div class="pfallback"><span class="ttl">A Charlie Brown Christmas</span><span class="yr">1965</span></div><div class="mbar"><span class="mname">Charlie Brown</span><span class="mtag">Cartoon</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch The Polar Express" data-cat="animated" data-title="The Polar Express" data-year="2004">
+        <div class="poster"><img class="pimg" alt="The Polar Express"><div class="pfallback"><span class="ttl">The Polar Express</span><span class="yr">2004</span></div><div class="mbar"><span class="mname">The Polar Express</span><span class="mtag">Cartoon</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch Klaus" data-cat="animated" data-title="Klaus" data-year="2019">
+        <div class="poster"><img class="pimg" alt="Klaus"><div class="pfallback"><span class="ttl">Klaus</span><span class="yr">2019</span></div><div class="mbar"><span class="mname">Klaus</span><span class="mtag">Cartoon</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch The Nightmare Before Christmas" data-cat="animated" data-title="The Nightmare Before Christmas" data-year="1993">
+        <div class="poster"><img class="pimg" alt="The Nightmare Before Christmas"><div class="pfallback"><span class="ttl">The Nightmare Before Christmas</span><span class="yr">1993</span></div><div class="mbar"><span class="mname">Nightmare Before Christmas</span><span class="mtag">Cartoon</span></div></div></div>
+      <div class="movie" tabindex="0" role="button" aria-label="See where to watch The Grinch" data-cat="animated" data-title="The Grinch" data-year="2018">
+        <div class="poster"><img class="pimg" alt="The Grinch 2018"><div class="pfallback"><span class="ttl">The Grinch</span><span class="yr">2018</span></div><div class="mbar"><span class="mname">The Grinch (2018)</span><span class="mtag">Cartoon</span></div></div></div>
     </div>
     <p class="shop-note" id="tmdb-note">Poster art via <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. <a href="/movies.html" style="color:var(--gold);margin-left:8px">See all 240+ titles →</a></p>
   </section>
@@ -443,6 +472,28 @@
   </section>
 </div>
 
+<div class="modal-overlay" id="watch-modal" role="dialog" aria-modal="true" aria-label="Where to watch">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" aria-label="Close">&#10005;</button>
+    <div class="modal-hero">
+      <div class="modal-poster" id="modal-poster"></div>
+      <div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-overview" id="modal-overview"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="watch-section">
+        <h3>Where to Watch</h3>
+        <div id="watch-content"><div class="watch-loading">Checking streaming availability&hellip;</div></div>
+        <a href="#" target="_blank" rel="noopener" class="modal-tmdb-link" id="modal-tmdb-link">Full details on TMDB &#8599;</a>
+        <p class="watch-attr">Streaming availability sourced from JustWatch via TMDB, for the United States, and can change daily. Air dates and times for cable/broadcast TV are not covered by this data &mdash; check your provider's guide for scheduled airings.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="foot-logo"><span class="lc">CHRISTMAS</span><span class="lp">PALOOZA</span></div>
   <img src="Penny_AI.png" class="foot-penny" alt="Penny">
@@ -490,8 +541,75 @@
   const sparks=["The first decorated Christmas trees were hung upside down from ceilings in medieval Europe!","Jingle Bells was originally written for Thanksgiving. Oops.","Tip: Chill your cookie dough 30 minutes for perfect, no-spread sugar cookies.","27 days of Hallmark premieres are coming. Stock the cocoa now.","The world's largest Christmas stocking was over 168 feet long. Imagine the candy.","Golden retrievers were first bred in Scotland in the 1860s. Penny thinks this is deeply relevant.","Christmas trees were traditionally decorated on Christmas Eve. Penny disagrees with this tradition.","Reindeer are the only mammals where both males and females grow antlers. Rudolph could be a girl."];
   document.getElementById('spark').textContent=sparks[Math.floor(Math.random()*sparks.length)];
   (function loadBookCovers(){document.querySelectorAll('.book[data-ol]').forEach(async card=>{const q=card.getAttribute('data-ol');const img=card.querySelector('.cimg');try{const r=await fetch('https://openlibrary.org/search.json?'+q+'&limit=1&fields=cover_i');const j=await r.json();const id=j.docs&&j.docs[0]&&j.docs[0].cover_i;if(id){img.src='https://covers.openlibrary.org/b/id/'+id+'-L.jpg';img.onload=()=>{img.classList.add('loaded');}; }}catch(e){}});})();
-  (function loadMoviePosters(){if(!TMDB_KEY)return;document.querySelectorAll('.movie[data-title]').forEach(async card=>{const t=card.getAttribute('data-title'),yr=card.getAttribute('data-year');const img=card.querySelector('.pimg');try{const u='https://api.themoviedb.org/3/search/movie?api_key='+TMDB_KEY+'&query='+encodeURIComponent(t)+'&year='+yr;const r=await fetch(u);const j=await r.json();const hit=(j.results||[]).find(x=>x.poster_path)||j.results&&j.results[0];if(hit&&hit.poster_path){img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;img.onload=()=>{img.classList.add('loaded');}; }}catch(e){}});})();
+  (function loadMoviePosters(){if(!TMDB_KEY)return;document.querySelectorAll('.movie[data-title]').forEach(async card=>{const t=card.getAttribute('data-title'),yr=card.getAttribute('data-year');const img=card.querySelector('.pimg');try{const u='https://api.themoviedb.org/3/search/movie?api_key='+TMDB_KEY+'&query='+encodeURIComponent(t)+'&year='+yr;const r=await fetch(u);const j=await r.json();const hit=(j.results||[]).find(x=>x.poster_path)||j.results&&j.results[0];if(hit){card.dataset.tmdbId=hit.id;card.dataset.overview=hit.overview||'';card.dataset.rating=hit.vote_average?hit.vote_average.toFixed(1):'';if(hit.poster_path){img.src='https://image.tmdb.org/t/p/w500'+hit.poster_path;img.dataset.posterPath=hit.poster_path;img.onload=()=>{img.classList.add('loaded');};}}}catch(e){}});})();
   (function movieFilters(){const chips=document.querySelectorAll('#filters .chip');const cards=document.querySelectorAll('#movie-grid .movie');chips.forEach(chip=>chip.addEventListener('click',()=>{chips.forEach(c=>c.classList.remove('active'));chip.classList.add('active');const f=chip.getAttribute('data-filter');cards.forEach(card=>{card.classList.toggle('hide',f!=='all'&&card.getAttribute('data-cat')!==f);});  }));})();
+  (function watchModalSetup(){
+    const TMDB_PROVIDER_IMG='https://image.tmdb.org/t/p/w92';
+    const WATCH_REGION='US';
+    const watchModal=document.getElementById('watch-modal');
+    const watchCache={};
+
+    function providerRow(list,label){
+      if(!list||!list.length)return '';
+      const chips=list.map(p=>`<a class="provider-chip" href="${p.link||'#'}" target="_blank" rel="noopener"><img src="${TMDB_PROVIDER_IMG}${p.logo_path}" alt="${p.provider_name}" loading="lazy">${p.provider_name}</a>`).join('');
+      return `<div class="watch-group"><span class="wg-label">${label}</span><div class="provider-row">${chips}</div></div>`;
+    }
+
+    async function fetchWatchProviders(id){
+      if(watchCache[id])return watchCache[id];
+      const url=`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${TMDB_KEY}`;
+      const res=await fetch(url);
+      const data=await res.json();
+      const region=(data.results||{})[WATCH_REGION]||null;
+      watchCache[id]=region;
+      return region;
+    }
+
+    async function openWatchModal(card){
+      const title=card.getAttribute('data-title');
+      const year=card.getAttribute('data-year');
+      const id=card.dataset.tmdbId;
+      const posterPath=card.querySelector('.pimg')?.dataset.posterPath;
+      document.getElementById('modal-title').textContent=title;
+      document.getElementById('modal-overview').textContent=card.dataset.overview||'';
+      document.getElementById('modal-meta').innerHTML=`<span>Film</span>${year?`<span>${year}</span>`:''}${card.dataset.rating?`<span>${card.dataset.rating} / 10</span>`:''}`;
+      document.getElementById('modal-poster').innerHTML=posterPath?`<img src="https://image.tmdb.org/t/p/w342${posterPath}" alt="${title}">`:'';
+      document.getElementById('modal-tmdb-link').href=id?`https://www.themoviedb.org/movie/${id}`:'https://www.themoviedb.org';
+      const watchContent=document.getElementById('watch-content');
+      watchContent.innerHTML='<div class="watch-loading">Checking streaming availability&hellip;</div>';
+      watchModal.classList.add('show');
+      document.body.style.overflow='hidden';
+
+      if(!id){
+        watchContent.innerHTML='<div class="watch-empty">Couldn\'t match this title on TMDB right now &mdash; try again in a moment.</div>';
+        return;
+      }
+      try{
+        const region=await fetchWatchProviders(id);
+        if(!region){
+          watchContent.innerHTML='<div class="watch-empty">Not currently available to stream, rent, or buy in the US. Check back closer to the holidays &mdash; Christmas titles rotate onto streaming often.</div>';
+          return;
+        }
+        const html=providerRow(region.flatrate,'Streaming')+providerRow(region.rent,'Rent')+providerRow(region.buy,'Buy');
+        watchContent.innerHTML=html||'<div class="watch-empty">Not currently available to stream, rent, or buy in the US.</div>';
+      }catch(e){
+        watchContent.innerHTML='<div class="watch-empty">Couldn\'t load streaming availability right now &mdash; try the full TMDB link below.</div>';
+      }
+    }
+
+    function closeWatchModal(){
+      watchModal.classList.remove('show');
+      document.body.style.overflow='';
+    }
+
+    document.querySelectorAll('#movie-grid .movie').forEach(card=>{
+      card.addEventListener('click',()=>openWatchModal(card));
+      card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openWatchModal(card);}});
+    });
+    document.getElementById('modal-close').addEventListener('click',closeWatchModal);
+    watchModal.addEventListener('click',e=>{if(e.target===watchModal)closeWatchModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeWatchModal();});
+  })();
   (function(){const F=[{name:'Countdown Proximity',max:25,vals:[4,3,3,3,4,5,6,8,12,17,22,25],quip:'The only clock that matters.'},{name:'Mariah Carey Defrost Status',max:20,vals:[2,0,0,0,0,0,1,1,2,6,18,20],quip:'She thaws every November 1st. Science.'},{name:'Hallmark Movies in Rotation',max:16,vals:[6,3,2,2,3,5,11,5,7,12,15,16],quip:'Small town. Big-city exec. Inevitable love.'},{name:'Pumpkin Spice Saturation',max:12,vals:[0,0,0,0,0,0,1,5,10,12,8,3],quip:'The gateway spice to full Christmas.'},{name:'First Snow Reports',max:15,vals:[12,10,6,2,0,0,0,0,1,5,11,15],quip:'Somewhere, a flurry is forming.'},{name:'Christmas Music Airplay',max:12,vals:[3,1,0,0,0,1,2,1,2,4,9,12],quip:'Wham! detected on loop.'}];
   const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];const todayM=new Date().getMonth();
   function band(s){if(s>=86)return{l:'MAXIMUM CHRISTMAS',c:'#34d36b',sub:'Defcon Tinsel. Light everything. Hide the eggnog.'};if(s>=71)return{l:'Christmas Is Coming',c:'#7CFF8E',sub:'You can smell the cinnamon from the driveway.'};if(s>=51)return{l:'Merry & Bright',c:'#ffc83d',sub:'Lights are going up. It is officially happening.'};if(s>=31)return{l:'Warming Up',c:'#ff9d3d',sub:'The tree lot just opened. Resist nothing.'};if(s>=16)return{l:'Faintly Festive',c:'#ff6b5e',sub:'A faint jingle on the wind. Keep listening.'};return{l:'Deep Off-Season',c:'#5aa9ff',sub:'Wrong time of year — but the countdown never sleeps.'};}
